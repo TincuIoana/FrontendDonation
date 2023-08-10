@@ -13,6 +13,10 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
+import { TabMenuComponent } from './tab-menu/tab-menu.component';
+import {TabMenuModule} from "primeng/tabmenu";
+import {RouterModule} from "@angular/router";
+import { AppRoutingModule } from './app-routing.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -20,7 +24,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TabMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    TabMenuModule,
+    RouterModule.forRoot([]),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

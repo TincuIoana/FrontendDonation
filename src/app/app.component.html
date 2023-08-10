@@ -1,10 +1,14 @@
-<div>
-  <h2>{{ 'HOME.TITLE' | translate }}</h2>
+<div class="header-container">
 
-  <p-dropdown
-    [options]="languages"
-    [(ngModel)]="selectedLanguage"
-    optionLabel="label"
-    (onChange)="changeLanguage($event.value.code)">
-  </p-dropdown>
+  <div>
+    <app-tab-menu></app-tab-menu>
+
+    <p-dropdown
+      [options]="languages"
+      [(ngModel)]="selectedLanguage"
+      optionLabel="label"
+      (onChange)="changeLanguage($event.value.code)">
+    </p-dropdown>
+  </div>
 </div>
+<router-outlet></router-outlet>
