@@ -9,6 +9,8 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class TabMenuComponent implements OnInit {
   items: MenuItem[] | undefined;
+  // @ts-ignore
+  shouldDisplayTabMenu: true;
 
   constructor(private translate: TranslateService) {
 
@@ -20,14 +22,16 @@ export class TabMenuComponent implements OnInit {
       'MENU.USERADMINISTRATION',
       'MENU.CAMPAIGNMANAGEMENT',
       'MENU.DONORMANAGEMENT',
-      'MENU.LOGOUT'
+      'MENU.LOGOUT',
+      'MENU.LOGIN'
     ]).subscribe(translations => {
       // Assign the translations to the items array
       this.items = [
         {label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration']},
         {label: translations['MENU.CAMPAIGNMANAGEMENT']},
         {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
-        {label: translations['MENU.LOGOUT']}
+        {label: translations['MENU.LOGOUT']},
+        {label: translations['MENU.LOGIN'], routerLink: ['/login']}
       ];
     });
   }

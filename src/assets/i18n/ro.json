@@ -7,6 +7,7 @@
     "USERADMINISTRATION": "Administrare Utilizatori",
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
     "DONORMANAGEMENT": "Administrare Donatori",
-    "LOGOUT": "Deconectare"
+    "LOGOUT": "Deconectare",
+    "LOGIN" : "Logare"
   }
 }

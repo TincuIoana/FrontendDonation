@@ -7,7 +7,8 @@
     "USERADMINISTRATION": "User Administration",
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "LOGIN": "Login"
   }
 }
 
