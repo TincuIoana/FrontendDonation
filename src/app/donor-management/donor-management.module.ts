@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DonorComponent } from './donor/donor.component';
 import { DonorManagementRoutingModule } from './donor-management-routing.module';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -11,7 +12,8 @@ import { DonorManagementRoutingModule } from './donor-management-routing.module'
   ],
   imports: [
     CommonModule,
-    DonorManagementRoutingModule
+    DonorManagementRoutingModule,
+    TranslateModule
   ]
 })
 export class DonorManagementModule { }
