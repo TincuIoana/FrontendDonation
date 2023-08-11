@@ -8,7 +8,12 @@
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
     "LOGOUT": "Logout",
-    "LOGIN": "Login"
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "LOGINACC": "Login in your account",
+    "SIGNIN":"Sign up"
   }
+
+
 }
 

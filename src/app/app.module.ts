@@ -23,6 +23,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {Interceptor} from "./util/interceptors/interceptor";
 import {CookieService} from "ngx-cookie-service";
 import {ChipsModule} from "primeng/chips";
+import { SigninComponent } from './signin/signin/signin.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,9 @@
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
-    "LOGIN" : "Logare"
+    "LOGIN" : "Autentificare",
+    "PASSWORD": "Parola",
+    "LOGINACC": "Logheazate in vontul tau",
+    "SIGNIN":"Inresgistrare"
   }
 }
