@@ -1,0 +1,11 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* To ensure vertical alignment */
+}
+
+.header-container > div {
+  display: flex;
+  align-items: center; /* To align menu and dropdown vertically */
+  gap: 20px; /* Add some spacing between the menu and the dropdown */
+}

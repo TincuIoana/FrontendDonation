@@ -2,5 +2,13 @@
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"
+  },
+  "MENU": {
+    "USERADMINISTRATION": "User Administration",
+    "CAMPAIGNMANAGEMENT": "Campaign Management",
+    "DONORMANAGEMENT": "Donor Management",
+    "LOGOUT": "Logout",
+    "LOGIN": "Login"
   }
 }
+
