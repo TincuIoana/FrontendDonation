@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserAdministrationRoutingModule } from './user-administration-routing.module';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -8,7 +9,8 @@ import { UserAdministrationRoutingModule } from './user-administration-routing.m
   declarations: [],
   imports: [
     CommonModule,
-    UserAdministrationRoutingModule
+    UserAdministrationRoutingModule,
+    TranslateModule
   ]
 })
 export class UserAdministrationModule { }

@@ -18,7 +18,7 @@ export class TabMenuComponent implements OnInit {
 
   ngOnInit() {
     // Fetch the translations for the keys
-    this.translate.get([
+    this.translate.stream([
       'MENU.USERADMINISTRATION',
       'MENU.CAMPAIGNMANAGEMENT',
       'MENU.DONORMANAGEMENT',
