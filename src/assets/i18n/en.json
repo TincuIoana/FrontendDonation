@@ -12,8 +12,22 @@
     "PASSWORD": "Password",
     "LOGINACC": "Login in your account",
     "SIGNIN":"Sign up"
-  }
+  },
 
+  "CAMPAIGN": {
+    "NAME": "Name",
+    "PURPOSE": "Purpose",
+    "CAMPAIGNS": "campaigns",
+    "NEW": "New",
+    "MANAGE": "Manage campaigns",
+    "TOTAL": "In total there are",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "DETAILS": "Campaign Details",
+    "SEARCH": "Search"
+
+
+  }
 
 }
 

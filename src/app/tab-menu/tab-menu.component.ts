@@ -29,7 +29,7 @@ export class TabMenuComponent implements OnInit {
       // Assign the translations to the items array
       this.items = [
         {label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration']},
-        {label: translations['MENU.CAMPAIGNMANAGEMENT']},
+        {label: translations['MENU.CAMPAIGNMANAGEMENT'], routerLink: ['/campaign']},
         {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
         {label: translations['MENU.LOGOUT']},
         {label: translations['MENU.LOGIN'], routerLink: ['/login']},
