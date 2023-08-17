@@ -8,6 +8,16 @@
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
-    "LOGIN" : "Logare"
+    "LOGIN" : "Logare",
+    "ROLES": "Editare Roluri"
+  },
+  "ROLES": {
+    "NAME": "Nume"
+  },
+  "PERMISSIONS": {
+    "GET": "Drepturi",
+    "ADD": "Adaugare",
+    "DELETE": "Stergere",
+    "SELECT": "Alege un drept"
   }
 }

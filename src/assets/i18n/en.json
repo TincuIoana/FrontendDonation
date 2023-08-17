@@ -8,7 +8,17 @@
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
     "LOGOUT": "Logout",
-    "LOGIN": "Login"
+    "LOGIN": "Login",
+    "ROLES": "Edit Roles"
+  },
+  "ROLES": {
+    "NAME": "Name"
+  },
+  "PERMISSIONS": {
+    "GET": "Permissions",
+    "ADD": "Add",
+    "DELETE": "Delete",
+    "SELECT": "Select a permission"
   }
 }
 

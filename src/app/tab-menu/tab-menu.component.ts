@@ -23,7 +23,8 @@ export class TabMenuComponent implements OnInit {
       'MENU.CAMPAIGNMANAGEMENT',
       'MENU.DONORMANAGEMENT',
       'MENU.LOGOUT',
-      'MENU.LOGIN'
+      'MENU.LOGIN',
+      'MENU.ROLES',
     ]).subscribe(translations => {
       // Assign the translations to the items array
       this.items = [
@@ -31,7 +32,8 @@ export class TabMenuComponent implements OnInit {
         {label: translations['MENU.CAMPAIGNMANAGEMENT']},
         {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
         {label: translations['MENU.LOGOUT']},
-        {label: translations['MENU.LOGIN'], routerLink: ['/login']}
+        {label: translations['MENU.LOGIN'], routerLink: ['/login']},
+        {label: translations['MENU.ROLES'], routerLink: ['/roles-dialog']}
       ];
     });
   }
