@@ -27,5 +27,18 @@
     "DETAILS": "Detaliile campaniilor",
     "SEARCH": "Cauta"
 
+  },
+  "DONOR": {
+    "DONOR": "Donator",
+    "FIRSTN": "Prenume",
+    "LASTN": "Nume",
+    "ADDITIONALN": "Porecla",
+    "MAIDENN": "Nume de fata",
+    "MANAGE": "Manager donatori",
+    "DONORS": "donatori",
+    "DETAILS": "Detaliile donatorului"
+
+
+
   }
 }

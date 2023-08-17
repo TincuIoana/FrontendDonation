@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit{
     console.log(password)
     const loginRequest = new LoginRequest(username,password);
     localStorage.setItem("role","admin")
+
     this.loginService.login(loginRequest)
   }
 }

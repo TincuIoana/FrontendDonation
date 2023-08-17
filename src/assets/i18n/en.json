@@ -27,7 +27,21 @@
     "SEARCH": "Search"
 
 
+  },
+
+  "DONOR": {
+    "DONOR": "Donor",
+    "FIRSTN": "First name",
+    "LASTN": "Last Name",
+    "ADDITIONALN": "Additional name",
+    "MAIDENN": "Maiden name",
+    "MANAGE": "Manage donors",
+    "DONORS": "donors",
+    "DETAILS": "Donor detalis"
+
+
   }
+
 
 }
 

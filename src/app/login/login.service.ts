@@ -20,6 +20,7 @@ export class LoginService {
 
     this.http.post<LoginResponse>(this.url,loginRequest).subscribe(loginResponse =>{
       localStorage.setItem("token",loginResponse.accessToken)
+      localStorage.setItem("id",String(loginResponse.id))
       console.log(loginResponse.accessToken)
     })
   }
