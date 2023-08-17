@@ -23,6 +23,18 @@ import {AppRoutingModule} from "./app-routing.module";
 import {Interceptor} from "./util/interceptors/interceptor";
 import {CookieService} from "ngx-cookie-service";
 import {ChipsModule} from "primeng/chips";
+import { SigninComponent } from './signin/signin/signin.component';
+import { CampaignComponent } from './campaign-management/campaign/campaign.component';
+import {TableModule} from "primeng/table";
+import {FileUploadModule} from "primeng/fileupload";
+import {ToastModule} from "primeng/toast";
+import {DialogModule} from "primeng/dialog";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {PaginatorModule} from "primeng/paginator";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {RatingModule} from "primeng/rating";
+import {RippleModule} from "primeng/ripple";
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,6 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
+    SigninComponent,
+    CampaignComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +78,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabMenuModule,
     RouterModule.forRoot([]),
     ChipsModule,
+    TableModule,
+    FileUploadModule,
+    ToastModule,
+    DialogModule,
+    RadioButtonModule,
+    PaginatorModule,
+    ConfirmDialogModule,
+    RatingModule,
+    RippleModule,
+    InputTextareaModule,
   ],
   providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true}],
   bootstrap: [AppComponent]

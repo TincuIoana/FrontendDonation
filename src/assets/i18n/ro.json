@@ -8,6 +8,24 @@
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
-    "LOGIN" : "Logare"
+    "LOGIN" : "Autentificare",
+    "PASSWORD": "Parola",
+    "LOGINACC": "Logheazate in contul tau",
+    "SIGNIN":"Inresgistrare"
+  },
+
+  "CAMPAIGN": {
+    "NAME": "Nume",
+    "PURPOSE": "Scop",
+    "CAMPAIGNS": "campanii",
+    "NEW": "Nou",
+    "MANAGE": "Manager campanii",
+
+    "TOTAL": "In total sunt ",
+    "SAVE": "Salveaza",
+    "CANCEL": "Anuleaza",
+    "DETAILS": "Detaliile campaniilor",
+    "SEARCH": "Cauta"
+
   }
 }

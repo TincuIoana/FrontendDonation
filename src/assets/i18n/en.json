@@ -8,7 +8,26 @@
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
     "LOGOUT": "Logout",
-    "LOGIN": "Login"
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "LOGINACC": "Log into your account",
+    "SIGNIN":"Sign up"
+  },
+
+  "CAMPAIGN": {
+    "NAME": "Name",
+    "PURPOSE": "Purpose",
+    "CAMPAIGNS": "campaigns",
+    "NEW": "New",
+    "MANAGE": "Manage campaigns",
+    "TOTAL": "In total there are",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "DETAILS": "Campaign Details",
+    "SEARCH": "Search"
+
+
   }
+
 }
 

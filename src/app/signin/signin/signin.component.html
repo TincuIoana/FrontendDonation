@@ -1,0 +1,70 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="signinForm">
+  <p-panel header="Sign up!">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          FirstName:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="firstName" class="form-control" name="firstName">
+        </div>
+        <div class="ui-grid-col-4">
+          <div [hidden]="signinForm.controls['firstName'].valid || !signinForm.controls['firstName'].dirty" class="alert alert-danger">
+            FirstName is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          LastName:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="lastName" formControlName="lastName" class="form-control" name="lastName">
+        </div>
+        <div class="ui-grid-col-4">
+          <div [hidden]="signinForm.controls['lastName'].valid || !signinForm.controls['lastName'].dirty" class="alert alert-danger">
+            LastName is required
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          MobileNumber:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="mobileNumber" formControlName="mobileNumber" class="form-control" name="mobileNumber">
+        </div>
+        <div class="ui-grid-col-4">
+          <div [hidden]="signinForm.controls['mobileNumber'].valid || !signinForm.controls['mobileNumber'].dirty" class="alert alert-danger">
+            Mobile number is required
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Email:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="email" formControlName="email" class="form-control" name="email">
+        </div>
+        <div class="ui-grid-col-4">
+          <div [hidden]="signinForm.controls['email'].valid || !signinForm.controls['email'].dirty" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div><br>
+        <div class="ui-grid-col-6">
+          <button pButton type="submit" label="Submit" [disabled]="!signinForm.valid"></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+    </div>
+  </p-panel>
+</form>
+

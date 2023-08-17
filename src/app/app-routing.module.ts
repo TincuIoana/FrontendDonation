@@ -21,6 +21,14 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
+  {
+    path: 'signin',
+    loadChildren: () => import('./signin/signin.module').then(m => m.SigninModule)
+  },
+  {
+    path: 'campaign',
+    loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule)
+  }
 ];
 
 @NgModule({
