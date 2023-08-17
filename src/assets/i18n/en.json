@@ -9,8 +9,12 @@
     "DONORMANAGEMENT": "Donor Management",
     "LOGOUT": "Logout",
     "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "LOGINACC": "Log into your account",
+    "SIGNIN":"Sign up",
     "ROLES": "Edit Roles"
   },
+
   "ROLES": {
     "NAME": "Name"
   },
@@ -19,6 +23,20 @@
     "ADD": "Add",
     "DELETE": "Delete",
     "SELECT": "Select a permission"
+  },
+
+  "CAMPAIGN": {
+    "NAME": "Name",
+    "PURPOSE": "Purpose",
+    "CAMPAIGNS": "campaigns",
+    "NEW": "New",
+    "MANAGE": "Manage campaigns",
+    "TOTAL": "In total there are",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "DETAILS": "Campaign Details",
+    "SEARCH": "Search"
   }
+
 }
 
