@@ -22,6 +22,8 @@ import {ButtonModule} from "primeng/button";
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ListboxModule} from "primeng/listbox";
 import {ChipsModule} from "primeng/chips";
+
+
 import {SigninComponent} from './signin/signin/signin.component';
 import {CampaignComponent} from './campaign-management/campaign/campaign.component';
 import {TableModule} from "primeng/table";
@@ -40,6 +42,7 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {RouterModule} from "@angular/router";
 import {ToolbarModule} from "primeng/toolbar";
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -49,8 +52,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
+
+    NotificationComponent,
     SigninComponent,
     CampaignComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -81,6 +87,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     RouterModule.forRoot([]),
     ChipsModule,
+
+    ToastModule,
+    SidebarModule,
+    CardModule,
+  ],
+  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService],
+  bootstrap: [AppComponent]
     TableModule,
     FileUploadModule,
     ToastModule,
@@ -96,10 +109,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MultiSelectModule,
     ToolbarModule
   ],
-  providers: [
-    CookieService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-  ],
-  bootstrap: [AppComponent],
+ 
 })
 export class AppModule {}
