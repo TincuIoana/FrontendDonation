@@ -1,1 +1,127 @@
-<p>donor works!</p>
+<p-toast></p-toast>
+
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonors()" [disabled]="!selectedDonors || !selectedDonors.length"></button>
+    </ng-template>
+
+
+  </p-toolbar>
+
+  <p-table #dt [value]="donorList" [rows]="10" [paginator]="true" [globalFilterFields]="['firstName','lastName','additionalName','maidenName']"
+           [(selection)]="selectedDonors" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h2 class="p-m-0">{{'DONOR.MANAGE' | translate}}</h2>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText #textInput type="text" (input)="dt.filterGlobal(textInput.value, 'contains')" placeholder="{{'CAMPAIGN.SEARCH' | translate}}..." />
+                </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="firstName">{{'DONOR.FIRSTN' | translate}} <p-sortIcon field="firstName"></p-sortIcon></th>
+        <th pSortableColumn="lastName">{{'DONOR.LASTN'  | translate}} <p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="additionalName">{{'DONOR.ADDITIONALN'  | translate}} <p-sortIcon field="additionalName"></p-sortIcon></th>
+        <th pSortableColumn="maidenName">{{'DONOR.MAIDENN'  | translate}} <p-sortIcon field="maidenName"></p-sortIcon></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <!--    <ng-container *ngFor="let campaign of campaignList">-->
+    <ng-template pTemplate="body" let-donor>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="donor"></p-tableCheckbox>
+        </td>
+        <td>{{donor.firstName}}</td>
+        <td>{{donor.lastName}}</td>
+        <td>{{donor.additionalName}}</td>
+        <td>{{donor.maidenName}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(donor)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteDonor(donor)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <!--    </ng-container>-->
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        {{'CAMPAIGN.TOTAL' | translate}} {{donor ? donorList.length : 0 }}  {{'DONOR.DONORS' | translate}}.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="donorDialog" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="FirstName">{{'DONOR.FIRSTN'|translate}}</label>
+      <input type="text" pInputText id="FirstName" [(ngModel)]="donor.firstName" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !donor.firstName">First name is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="LastName">{{'DONOR.LASTN'|translate}}</label>
+      <textarea id="LastName" pInputTextarea [(ngModel)]="donor.lastName" required rows="3" cols="20"></textarea>
+      <small class="p-invalid" *ngIf="submitted && !donor.firstName">Last name is required.</small>
+
+    </div>
+    <div class="p-field">
+      <label for="aditional">{{'DONOR.ADDITIONALN'|translate}}</label>
+      <textarea id="aditional" pInputTextarea [(ngModel)]="donor.additionalName" required rows="3" cols="20"></textarea>
+    </div>
+    <div class="p-field">
+      <label for="maidenName">{{'DONOR.MAIDENN'|translate}}</label>
+      <textarea id="maidenName" pInputTextarea [(ngModel)]="donor.maidenName" required rows="3" cols="20"></textarea>
+    </div>
+
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveDonor()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+<p-dialog [(visible)]="donorDialog1" [style]="{width: '450px'}" header="{{'DONOR.DETAILS'|translate}}" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content1">
+    <div class="p-field">
+      <label for="updatedFirstName">{{'DONOR.FIRSTN'|translate}}</label>
+      <input type="text" pInputText id="updatedFirstName" [(ngModel)]="donor.firstName" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !donor.firstName">First name is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="updatedLastName">{{'DONOR.LASTN'|translate}}</label>
+      <textarea id="updatedLastName" pInputTextarea [(ngModel)]="donor.lastName" required rows="3" cols="20"></textarea>
+      <small class="p-invalid" *ngIf="submitted && !donor.lastName">Last name is required.</small>
+
+    </div>
+    <div class="p-field">
+      <label for="updatedaditional">{{'DONOR.ADDITIONALN'|translate}}</label>
+      <textarea id="updatedaditional" pInputTextarea [(ngModel)]="donor.additionalName" required rows="3" cols="20"></textarea>
+    </div>
+    <div class="p-field">
+      <label for="updatedmaidenName">{{'DONOR.MAIDENN'|translate}}</label>
+      <textarea id="updatedmaidenName" pInputTextarea [(ngModel)]="donor.maidenName" required rows="3" cols="20"></textarea>
+    </div>
+
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save changes" icon="pi pi-check" class="p-button-text" (click)="editDonor()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

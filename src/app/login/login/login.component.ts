@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginRequest} from "../LoginRequest";
 import {LoginService} from "../login.service";
-import {coerceStringArray} from "@angular/cdk/coercion";
 
 @Component({
   selector: 'app-login',
@@ -30,6 +29,7 @@ export class LoginComponent implements OnInit{
     console.log(password)
     const loginRequest = new LoginRequest(username,password);
     localStorage.setItem("role","admin")
+
     this.loginService.login(loginRequest)
   }
 }

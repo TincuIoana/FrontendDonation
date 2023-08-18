@@ -1,0 +1,88 @@
+<p-table [value]="roles" [tableStyle]="{'min-width': '70rem'}">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>{{'ROLES.NAME' | translate}}</th>
+      <th>{{'PERMISSIONS.GET' | translate}}</th>
+      <th>{{'PERMISSIONS.AVAILABLE' | translate}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-role>
+    <tr>
+      <td>{{role.id}}</td>
+      <td>{{role.name}}</td>
+      <td>
+        <ng-container [ngSwitch]="role.id">
+          <ng-container *ngSwitchCase="1">
+            <ul>
+              <li *ngFor="let permission of p1">
+                {{ permission.toString() }}
+              </li>
+            </ul>
+          </ng-container>
+          <ng-container *ngSwitchCase="2">
+            <ul>
+              <li *ngFor="let permission of p2">
+                {{ permission.toString() }}
+              </li>
+            </ul>
+          </ng-container>
+          <ng-container *ngSwitchCase="3">
+            <ul>
+              <li *ngFor="let permission of p3">
+                {{ permission.toString() }}
+              </li>
+            </ul>
+          </ng-container>
+          <ng-container *ngSwitchCase="4">
+            <ul>
+              <li *ngFor="let permission of p4">
+                {{ permission.toString() }}
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </td>
+      <td>
+        <ng-container [ngSwitch]="role.id">
+        <ng-container *ngSwitchCase="1">
+          <select [(ngModel)]="selectedPermission1" class="spaced-select custom-select">
+            <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
+          </select>
+          <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
+          &nbsp; <!-- Non-breaking space for adding a gap -->
+          <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
+        </ng-container>
+          <ng-container *ngSwitchCase="2">
+            <select [(ngModel)]="selectedPermission2" class="spaced-select custom-select">
+              <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
+            </select>
+            <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
+            &nbsp; <!-- Non-breaking space for adding a gap -->
+            <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
+          </ng-container>
+          <ng-container *ngSwitchCase="3">
+            <select [(ngModel)]="selectedPermission3" class="spaced-select custom-select">
+              <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
+            </select>
+            <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
+            &nbsp; <!-- Non-breaking space for adding a gap -->
+            <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
+          </ng-container>
+          <ng-container *ngSwitchCase="4">
+            <select [(ngModel)]="selectedPermission4" class="spaced-select custom-select">
+              <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
+            </select>
+            <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
+            &nbsp; <!-- Non-breaking space for adding a gap -->
+            <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
+          </ng-container>
+        </ng-container>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

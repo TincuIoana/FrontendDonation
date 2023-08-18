@@ -1,0 +1,108 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
+    </ng-template>
+
+
+  </p-toolbar>
+
+  <p-table #dt [value]="campaignList" [rows]="10" [paginator]="true" [globalFilterFields]="['name','purpose']"
+           [(selection)]="selectedCampaigns" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h2 class="p-m-0">{{'CAMPAIGN.MANAGE' | translate}}</h2>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText #textInput type="text" (input)="dt.filterGlobal(textInput.value, 'contains')" placeholder="{{'CAMPAIGN.SEARCH' | translate}}..." />
+                </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="name">{{'CAMPAIGN.NAME' | translate}} <p-sortIcon field="name"></p-sortIcon></th>
+        <th pSortableColumn="purpose">{{'CAMPAIGN.PURPOSE' | translate}} <p-sortIcon field="purpose"></p-sortIcon></th>
+        <th></th>
+      </tr>
+    </ng-template>
+<!--    <ng-container *ngFor="let campaign of campaignList">-->
+    <ng-template pTemplate="body" let-campaign>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="campaign"></p-tableCheckbox>
+        </td>
+        <td>{{campaign.name}}</td>
+        <td>{{campaign.purpose}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
+        </td>
+      </tr>
+    </ng-template>
+<!--    </ng-container>-->
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        {{'CAMPAIGN.TOTAL' | translate}} {{campaign ? campaignList.length : 0 }}  {{'CAMPAIGN.CAMPAIGNS' | translate}}.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>
+      <input type="text" pInputText id="name" [(ngModel)]="campaign.name" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !campaign.name">Name is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="purpose">{{'CAMPAIGN.PURPOSE'|translate}}</label>
+      <textarea id="purpose" pInputTextarea [(ngModel)]="campaign.purpose" required rows="3" cols="20" ></textarea>
+      <small class="p-invalid" *ngIf="submitted && !campaign.purpose">Purpose is required.</small>
+
+    </div>
+
+    <small style="color: red" class="p-invalid"  *ngIf="submitted ">{{errorMessage}}</small>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" [disabled]="!campaign.name || !campaign.purpose" (click)="saveCampaign()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+<p-dialog [(visible)]="campaignDialog1" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content1">
+    <div class="p-field">
+      <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>
+      <input type="text" pInputText id="updatedName" [(ngModel)]="campaign.name" required   autofocus />
+      <small class="p-invalid" *ngIf="submitted && !campaign.name">Name is required.</small>
+
+    </div>
+    <div class="p-field">
+      <label for="updatedPurpose">{{'CAMPAIGN.PURPOSE'|translate}}</label>
+      <textarea id="updatedPurpose" pInputTextarea [(ngModel)]="campaign.purpose" required rows="3" cols="20"></textarea>
+    </div>
+
+    <small style="color: red" class="p-invalid"  *ngIf="submitted ">{{errorMessage}}</small>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save changes" icon="pi pi-check" class="p-button-text" [disabled]="!campaign.name || !campaign.purpose" (click)="editCampaign()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
