@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {LoginModule} from "./login/login.module";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 // Lazy loading the modules. If you don't want lazy loading, import the components directly.
 const routes: Routes = [
@@ -22,9 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
-    path:'roles-dialog',
-    loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m=>m.RolesDialogModule)
-
+    path: 'roles-dialog',
+    loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m => m.RolesDialogModule)
+  },
+  {
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then(m => m.SigninModule)
   },
