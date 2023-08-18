@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
 import {Role} from "./role";
-import {PermissionEnum} from "./permission-enum";
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RolesDialogService {
-  apiUrl: string ="http://localhost:8080/roles-dialog/all";
+  apiUrl: string ="http://localhost:8080/roles-dialog";
   roles$: BehaviorSubject<Role[]> = new BehaviorSubject<Role[]>([]);
   constructor(private http: HttpClient) {}
 
