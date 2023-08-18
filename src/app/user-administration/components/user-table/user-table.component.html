@@ -1,0 +1,96 @@
+<div class="card center">
+  <p-table
+    #dt2
+    [value]="users"
+    dataKey="id"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="{{'USER.CURRENT_PAGE_REPORT_TEMPLATE' | translate}}"
+    [globalFilterFields]="[ 'firstName', 'lastName', 'mobileNumber',
+     'email', 'username', 'role.name', 'campaign.name']"
+    [tableStyle]="{ 'min-width': '75rem'}"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText #textInput type="text" (input)="dt2.filterGlobal(textInput.value, 'contains')" placeholder="{{'USER.SEARCH_KEYWORD' | translate}}" />
+                </span>
+      </div>
+    </ng-template>
+    <ng-template class="justify-content-center" pTemplate="header" >
+      <tr>
+        <th>{{"USER.FIRST_NAME" | translate}}</th>
+        <th>{{"USER.LAST_NAME" | translate}}</th>
+        <th>{{"USER.MOBILE_NUMBER" | translate}}</th>
+        <th>{{"USER.EMAIL" | translate}}</th>
+        <th>{{"USER.USERNAME" | translate}}</th>
+        <th>{{"USER.ROLES" | translate}}</th>
+        <th>{{"USER.CAMPAIGNS" | translate}}</th>
+        <th>Editing</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter matchMode="contains"  type="text" field="firstName"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="lastName"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="mobileNumber"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="email"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="username"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="roles"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="campaigns"></p-columnFilter>
+        </th>
+        <th>
+        </th>
+    </ng-template>
+    <ng-template class="justify-content-center" pTemplate="body" let-user>
+      <tr>
+        <td>
+          {{ user.firstName }}
+        </td>
+        <td>
+          {{ user.lastName }}
+        </td>
+        <td>
+          {{ user.mobileNumber }}
+        </td>
+        <td>
+          {{ user.email }}
+        </td>
+        <td>
+          {{ user.username }}
+        </td>
+        <td>
+          <app-role-dialog [roles]="user.roles"></app-role-dialog>
+        </td>
+        <td>
+          <app-campaign-dialog [campaigns]="user.campaigns"></app-campaign-dialog>
+        </td>
+        <td>
+          <app-user-edit-dialog></app-user-edit-dialog>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">{{"USER.NO_USERS_FOUND" | translate}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <app-user-new-dialog></app-user-new-dialog>
+</div>

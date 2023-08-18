@@ -1,0 +1,25 @@
+:host >>> header {
+  width: 18%;
+}
+:host >>> .p-datatable .p-datatable-thead  tr th {
+  padding: 0.1rem 0.1rem;
+}
+
+:host >>> .p-column-filter-row .p-column-filter-menu-button, .p-column-filter-row .p-column-filter-clear-button {
+  display: none;
+}
+
+:host >>> p-data {
+  justify-content: center;
+}
+
+:host >>> ng-template.p-datatable-header {
+  justify-content: center;
+}
+
+
+.center {
+  margin: auto;
+  width: 85%;
+  border: 0.01em solid grey;
+}

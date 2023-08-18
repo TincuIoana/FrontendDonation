@@ -1,12 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // PrimeNG imports
-import { DropdownModule } from 'primeng/dropdown';
-import { ToolbarModule } from 'primeng/toolbar';
+import {DropdownModule} from 'primeng/dropdown';
 
 // ngx-translate imports
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -25,17 +24,10 @@ import {TabMenuModule} from "primeng/tabmenu";
 import {ButtonModule} from "primeng/button";
 
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import {AutoComplete, AutoCompleteModule} from "primeng/autocomplete";
 import {ListboxModule} from "primeng/listbox";
-
-
-import {TabMenuComponent} from "./tab-menu/tab-menu.component";
-import {AppRoutingModule} from "./app-routing.module";
-import {Interceptor} from "./util/interceptors/interceptor";
-import {CookieService} from "ngx-cookie-service";
 import {ChipsModule} from "primeng/chips";
-import { SigninComponent } from './signin/signin/signin.component';
-import { CampaignComponent } from './campaign-management/campaign/campaign.component';
+import {SigninComponent} from './signin/signin/signin.component';
+import {CampaignComponent} from './campaign-management/campaign/campaign.component';
 import {TableModule} from "primeng/table";
 import {FileUploadModule} from "primeng/fileupload";
 import {ToastModule} from "primeng/toast";
@@ -46,6 +38,10 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {RatingModule} from "primeng/rating";
 import {RippleModule} from "primeng/ripple";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {CheckboxModule} from "primeng/checkbox";
+import {MultiSelectModule} from "primeng/multiselect";
+import {RouterModule} from "@angular/router";
+import {ToolbarModule} from "primeng/toolbar";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -98,6 +94,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     RatingModule,
     RippleModule,
     InputTextareaModule,
+    CheckboxModule,
+    MultiSelectModule,
+    ToolbarModule
   ],
   providers: [
     CookieService,
