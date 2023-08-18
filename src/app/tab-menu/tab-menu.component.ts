@@ -32,7 +32,7 @@ export class TabMenuComponent implements OnInit {
         {label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration']},
         {label: translations['MENU.CAMPAIGNMANAGEMENT'], routerLink: ['/campaign']},
         {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
-        {label: translations['MENU.LOGOUT']},
+        {label: translations['MENU.LOGOUT'], routerLink:['/logout']},
         {label: translations['MENU.LOGIN'], routerLink: ['/login']},
         {label: translations['MENU.ROLES'], routerLink: ['/roles-dialog']},
         {label: translations['MENU.SIGNIN'], routerLink: ['/signin']},

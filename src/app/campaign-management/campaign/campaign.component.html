@@ -43,6 +43,8 @@
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
+          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>
+
         </td>
       </tr>
     </ng-template>

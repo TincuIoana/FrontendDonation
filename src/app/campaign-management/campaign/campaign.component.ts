@@ -21,6 +21,7 @@ export class CampaignComponent implements OnInit {
   selectedCampaign: any;
 
   errorMessage:any
+  campaignErrors: { [campaignId: string]: string } = {};
 
 
 
@@ -88,7 +89,7 @@ export class CampaignComponent implements OnInit {
       this.campaign = {id: 0, name: '', purpose: ''}
 
 
-      // window.location.reload()
+      window.location.reload()
     }else {
       console.warn('Campaign name or purpose cannot be empty.');
       this.errorMessage="Campaign name or purpose cannot be empty."
@@ -117,8 +118,18 @@ export class CampaignComponent implements OnInit {
   deleteCampaign(campaign: any) {
     const id = campaign.id;
     console.log(id)
-    this.campaignService.deleteFromDB(id.toString())
-    window.location.reload()
+    this.campaignService.deleteFromDB(id.toString()).subscribe(
+      response => {
+        console.log('Deleted successfully:', response);
+        this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
+        window.location.reload()
+
+      },
+      error => {
+        this.campaignErrors[campaign.id] = error.error;
+        console.error('Error deleting campaign:', error.error);
+      }
+    );
 
 
   }

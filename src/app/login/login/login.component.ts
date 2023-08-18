@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginRequest} from "../LoginRequest";
 import {LoginService} from "../login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit{
     username : ['', Validators.required],
     password : ['', Validators.required]
   });
-  constructor(private fb : FormBuilder, private loginService: LoginService) { }
+  constructor(private fb : FormBuilder, private loginService: LoginService, private router: Router) { }
 
   onSubmit() {
     const username = this.loginForm.get('username')?.value;
@@ -31,5 +32,7 @@ export class LoginComponent implements OnInit{
     localStorage.setItem("role","admin")
 
     this.loginService.login(loginRequest)
+    this.router.navigate(['/campaign'])
+
   }
 }

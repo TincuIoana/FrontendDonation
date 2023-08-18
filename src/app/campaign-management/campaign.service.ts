@@ -38,8 +38,8 @@ export class CampaignService {
   }
 
 
-  deleteFromDB(id: string):void{
-    this.http.delete(this.url+'/'+id+"/" + this.userID).subscribe(log=>console.log("deleted successfully"))
+  deleteFromDB(id: string):Observable<any>{
+    return  this.http.delete(this.url+'/'+id+"/" + this.userID)
   }
 
   updateCampaignFromDB(id: string, campaign: Campaign) {

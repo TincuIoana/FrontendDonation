@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/user-administration', // or wherever you want the app to redirect by default
+    redirectTo: '/login', // or wherever you want the app to redirect by default
     pathMatch: 'full'
   },
   {
@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'campaign',
     loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./logout/logout.module').then(m=> m.LogoutModule)
   }
 ];
 

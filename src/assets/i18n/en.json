@@ -37,7 +37,7 @@
     "CANCEL": "Cancel",
     "DETAILS": "Campaign Details",
 
-    "SEARCH": "Search",
+    "SEARCH": "Search"
 
 
   },
@@ -53,13 +53,12 @@
     "DETAILS": "Donor detalis"
 
 
-  }
-
-
-
-    "SEARCH": "Search",
-    "LOGIN": "Login",
   },
+
+
+
+
+
   "USER": {
     "USER": "User",
     "FIRST_NAME": "First Name",
