@@ -37,8 +37,24 @@
     "SAVE": "Salveaza",
     "CANCEL": "Anuleaza",
     "DETAILS": "Detaliile campaniilor",
+
     "SEARCH": "Cauta",
-    "LOGIN" : "Logare"
+
+  },
+  "DONOR": {
+    "DONOR": "Donator",
+    "FIRSTN": "Prenume",
+    "LASTN": "Nume",
+    "ADDITIONALN": "Porecla",
+    "MAIDENN": "Nume de fata",
+    "MANAGE": "Manager donatori",
+    "DONORS": "donatori",
+    "DETAILS": "Detaliile donatorului",
+
+
+
+
+ 
   },
   "USER": {
     "USER": "Utilizator",

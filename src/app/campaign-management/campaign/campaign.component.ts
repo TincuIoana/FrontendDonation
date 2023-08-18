@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Campaign} from "../campaign";
 import {CampaignService} from "../campaign.service";
+import {AbstractControl, ValidationErrors} from "@angular/forms";
 
 @Component({
   selector: 'app-campaign',
@@ -18,6 +19,8 @@ export class CampaignComponent implements OnInit {
   campaignDialog1: boolean;
 
   selectedCampaign: any;
+
+  errorMessage:any
 
 
 
@@ -55,7 +58,14 @@ export class CampaignComponent implements OnInit {
   hideDialog() {
     this.campaignDialog = false;
     this.submitted = false;
+
   }
+
+
+  removeExcessiveWhitespace(input: string): string {
+    return input.replace(/\s+/g, ' ').trim();
+  }
+
 
 
 
@@ -65,19 +75,31 @@ export class CampaignComponent implements OnInit {
     this.submitted = true;
     console.log(this.campaign.name)
     console.log(this.campaign.purpose)
+    if(this.campaign.name && this.campaign.purpose && this.campaign.name.replace(/\s/g, '').length>0 ) {
 
-    const newCampaign = new Campaign(this.campaign.name,this.campaign.purpose)
-    this.campaignService.saveCampaignToDB(newCampaign)
+      const newCampaign = new Campaign(this.removeExcessiveWhitespace(this.campaign.name), this.removeExcessiveWhitespace(this.campaign.purpose))
+
+
+          this.campaignService.saveCampaignToDB(newCampaign);
+
 
       this.campaignList = [...this.campaignList];
       this.campaignDialog = false;
-      this.campaign = {id:0,name: '', purpose:''}
-    window.location.reload()
+      this.campaign = {id: 0, name: '', purpose: ''}
+
+
+      // window.location.reload()
+    }else {
+      console.warn('Campaign name or purpose cannot be empty.');
+      this.errorMessage="Campaign name or purpose cannot be empty."
+    }
+
     }
 
 
   editCampaign() {
     this.submitted = true;
+
     const campaign = this.selectedCampaign
     // this.campaign = {...(campaign)};
     console.log(campaign.id)
@@ -86,7 +108,6 @@ export class CampaignComponent implements OnInit {
     this.campaignService.updateCampaignFromDB(campaign.id.toString(),this.campaign);
     this.campaignDialog1 = false;
 
-    this.campaign = {id:0,name: '', purpose:''}
 
     window.location.reload()
 
@@ -96,7 +117,7 @@ export class CampaignComponent implements OnInit {
   deleteCampaign(campaign: any) {
     const id = campaign.id;
     console.log(id)
-    this.campaignService.deleteFromDB("/"+id)
+    this.campaignService.deleteFromDB(id.toString())
     window.location.reload()
 
 
@@ -109,14 +130,16 @@ export class CampaignComponent implements OnInit {
       const id = campaign.id;
       console.log(id);
 
-      this.campaignService.deleteFromDB("/" + id)
+      this.campaignService.deleteFromDB(id.toString())
     });
 
-    // Refresh the page after deleting all campaigns
     window.location.reload();
   }
+
+
   openEdit(campaign: any) {
     this.selectedCampaign = campaign;
+    this.campaign=campaign
     console.log(this.selectedCampaign.id)
     this.submitted = false;
     this.campaignDialog1 = true;

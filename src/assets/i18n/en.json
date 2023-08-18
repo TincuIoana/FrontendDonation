@@ -36,8 +36,29 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DETAILS": "Campaign Details",
+
     "SEARCH": "Search",
-    "LOGIN": "Login"
+
+
+  },
+
+  "DONOR": {
+    "DONOR": "Donor",
+    "FIRSTN": "First name",
+    "LASTN": "Last Name",
+    "ADDITIONALN": "Additional name",
+    "MAIDENN": "Maiden name",
+    "MANAGE": "Manage donors",
+    "DONORS": "donors",
+    "DETAILS": "Donor detalis"
+
+
+  }
+
+
+
+    "SEARCH": "Search",
+    "LOGIN": "Login",
   },
   "USER": {
     "USER": "User",
@@ -63,5 +84,6 @@
     "DEACTIVATED": "Deactivated",
     "PASSWORD_SHORT": "Parola prea scurta"
   }
+
 }
 
