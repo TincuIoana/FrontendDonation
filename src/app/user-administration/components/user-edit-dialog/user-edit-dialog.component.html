@@ -1,32 +1,32 @@
 <div class="card flex justify-content-center">
-  <button pButton pRipple label="{{'USER.EDIT' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+  <button pButton pRipple label="{{'USER.EDIT' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openEdit()"></button>
   <p-dialog  [(visible)]="showDialog" [draggable]="false" [style]="{width: '450px'}" header="{{'USER.USER' | translate}}" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
       <form [formGroup]="registerForm">
         <div class="p-field">
           <label for="firstName">{{"USER.FIRST_NAME" | translate}}</label>
           <input pInputText id="firstName" formControlName="firstName" />
-          <small *ngIf="(submitted) && !user.firstName">{{"USER.FIRST_NAME_REQUIRED" | translate}}</small>
+<!--          <small *ngIf="(submitted) && !user.firstName">{{"USER.FIRST_NAME_REQUIRED" | translate}}</small>-->
         </div>
         <div class="p-field">
           <label for="lastName">{{"USER.LAST_NAME" | translate}}</label>
           <input type="text" pInputText id="lastName" formControlName="lastName" autofocus />
-          <small class="p-invalid" *ngIf="(submitted) && !user.lastName">{{"USER.LAST_NAME_REQUIRED" | translate}}</small>
+<!--          <small class="p-invalid" *ngIf="(submitted) && !user.lastName">{{"USER.LAST_NAME_REQUIRED" | translate}}</small>-->
         </div>
         <div class="p-field">
           <label for="email">{{"USER.EMAIL" | translate}}</label>
           <input type="text" pInputText id="email" formControlName="email" autofocus />
-          <small class="p-invalid" *ngIf="(submitted) && !user.email">{{"USER.EMAIL_REQUIRED" | translate}}</small>
+<!--          <small class="p-invalid" *ngIf="(submitted) && !user.email">{{"USER.EMAIL_REQUIRED" | translate}}</small>-->
         </div>
         <div class="p-field">
           <label for="firstName">{{"USER.PASSWORD" | translate}}</label>
           <input pInputText id="password" formControlName="password" />
-          <small *ngIf="(submitted) && !user.firstName">{{"USER.FIRST_NAME_REQUIRED" | translate}}</small>
+<!--          <small *ngIf="(submitted) && !user.password">{{"USER.PASSWORD_SHORT" | translate}}</small>-->
         </div>
         <div class="card">
           <label for="mobileNumber">{{"USER.MOBILE_NUMBER" | translate}}</label>
           <input type="text" pInputText id="mobileNumber" formControlName="mobileNumber" autofocus />
-          <small class="p-invalid" *ngIf="(submitted) && !user.mobileNumber">{{errorMessage}}</small>
+<!--          <small class="p-invalid" *ngIf="(submitted) && !user.mobileNumber">{{errorMessage}}</small>-->
         </div>
         <div class="card flex justify-content-center">
           <h5>{{"USER.ROLES" | translate}}*</h5>

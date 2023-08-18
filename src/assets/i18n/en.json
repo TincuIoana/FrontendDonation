@@ -47,7 +47,7 @@
     "USERNAME": "Username",
     "ROLES": "Roles",
     "CAMPAIGNS": "Campaigns",
-    "NO_USERS_FOUND" : "No users found.",
+    "NO_USERS_FOUND": "No users found.",
     "SEARCH_KEYWORD": "Search keyword",
     "CURRENT_PAGE_REPORT_TEMPLATE": "Showing {first} to {last} of {totalRecords} entries",
     "NEW": "New user",
@@ -59,7 +59,8 @@
     "SELECT_A_CAMPAIGN": "Select a campaign",
     "PASSWORD": "Password",
     "ACTIVATED": "Activated",
-    "DEACTIVATED": "Deactivated"
+    "DEACTIVATED": "Deactivated",
+    "PASSWORD_SHORT": "Parola prea scurta"
   }
 }
 

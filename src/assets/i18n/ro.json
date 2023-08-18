@@ -60,6 +60,7 @@
     "SELECT_A_CAMPAIGN": "Selectati o campanie",
     "PASSWORD": "Parola",
     "ACTIVATED": "Activat",
-    "DEACTIVATED": "Dezactivat"
+    "DEACTIVATED": "Dezactivat",
+    "PASSWORD_SHORT": "Parola prea scurta"
   }
 }

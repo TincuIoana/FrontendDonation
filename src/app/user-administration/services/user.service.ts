@@ -37,7 +37,7 @@ export class UserService {
   //   )
   // }
   updateUser(user:User):Observable<User> {
-    return this.http.put<User>(`${this.putUrl}/${user["id"]}`, user);
+    return this.http.put<User>(`${this.putUrl}/${user.id}`, user);
   }
 
   createUser(user:User):Observable<any> {
