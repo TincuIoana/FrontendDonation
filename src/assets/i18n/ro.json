@@ -23,7 +23,8 @@
     "GET": "Drepturi",
     "ADD": "Adaugare",
     "DELETE": "Stergere",
-    "SELECT": "Alege un drept"
+    "SELECT": "Alege un drept",
+    "AVAILABLE": "Drepturi disponibile"
   },
 
   "CAMPAIGN": {
@@ -36,7 +37,8 @@
     "SAVE": "Salveaza",
     "CANCEL": "Anuleaza",
     "DETAILS": "Detaliile campaniilor",
-    "SEARCH": "Cauta"
+
+    "SEARCH": "Cauta",
 
   },
   "DONOR": {
@@ -47,12 +49,12 @@
     "MAIDENN": "Nume de fata",
     "MANAGE": "Manager donatori",
     "DONORS": "donatori",
-    "DETAILS": "Detaliile donatorului"
+    "DETAILS": "Detaliile donatorului",
 
 
 
-    "SEARCH": "Cauta",
-    "LOGIN" : "Logare"
+
+
   },
   "USER": {
     "USER": "Utilizator",
