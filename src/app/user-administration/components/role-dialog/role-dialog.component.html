@@ -1,0 +1,12 @@
+<div class="card flex justify-content-center">
+  <p-button label="{{'USER.ROLES' | translate}}" class="p-button-success p-mr-2" (click)="showRoles()"></p-button>
+  <p-dialog [(visible)]="showDialog" [style]="{width: '450px'}" header="{{'USER.ROLES' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <div>
+        <ul *ngFor="let role of roles">
+          <li>{{role.name}}</li>
+        </ul>
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

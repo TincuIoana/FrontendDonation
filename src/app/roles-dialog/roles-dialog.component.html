@@ -1,0 +1,44 @@
+<p-table [value]="roles" [tableStyle]="{'min-width': '60rem'}">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>{{'ROLES.NAME' | translate}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-role>
+    <tr>
+      <td>{{role.id}}</td>
+      <td>{{role.name}}</td>
+      <td>
+        <ng-container [ngSwitch]="role.id">
+          <ng-container *ngSwitchCase="1">
+            <form [formGroup]="getFormGroupForRole(role.id)">
+              <p-cascadeSelect
+                formControlName="selectedPermission"
+                optionLabel="toString()"
+                [style]="{ minWidth: '14rem' }"
+                placeholder="{{'PERMISSIONS.SELECT' | translate}}"
+              ></p-cascadeSelect>
+            </form>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="2">
+            <ul>
+              <li *ngFor="let permission of permissions">
+                {{ permission.toString() }}
+              </li>
+            </ul>
+          </ng-container>
+          <ng-container *ngSwitchCase="3">
+          </ng-container>
+          <ng-container *ngSwitchCase="4">
+          </ng-container>
+        </ng-container>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
