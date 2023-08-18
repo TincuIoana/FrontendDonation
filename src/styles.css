@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+.smaller-button {
+  width: 130px; /* Adjust width as needed */
+  height: 30px; /* Adjust height as needed */
+  font-size: 12px; /* Adjust font size as needed */
+}
+
+.custom-select {
+  width: 220px; /* Adjust width as needed */
+  height: 30px; /* Adjust height as needed */
+  font-size: 14px; /* Adjust font size as needed */
+}

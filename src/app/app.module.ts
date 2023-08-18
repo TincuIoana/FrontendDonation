@@ -13,11 +13,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {AppComponent} from './app.component';
-import {TabMenuComponent} from './tab-menu/tab-menu.component';
 import {LoginComponent} from './login/login/login.component';
-import {AppRoutingModule} from './app-routing.module';
-import {Interceptor} from './util/interceptors/interceptor';
-import {CookieService} from 'ngx-cookie-service';
 
 import {RolesDialogRoutingModule} from './roles-dialog/roles-dialog-routing.module';
 import {PanelModule} from "primeng/panel";
@@ -46,6 +42,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {RatingModule} from "primeng/rating";
 import {RippleModule} from "primeng/ripple";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {RouterModule} from "@angular/router";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -98,6 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RatingModule,
     RippleModule,
     InputTextareaModule,
+    ToolbarModule,
   ],
   providers: [
     CookieService,

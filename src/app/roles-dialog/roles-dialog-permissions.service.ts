@@ -25,8 +25,11 @@ export class RolesDialogPermissionsService {
   }
 
   loadPermissionsOfARole(roleId: number): Observable<PermissionEnum[]>{
-    return this.http.get<PermissionEnum[]>('http://localhost:8080/permissions/'+roleId+'/all').pipe(
-      tap(permissions => this.permissionsOfARole$.next(permissions)),
+    return this.http.get<PermissionEnum[]>(`http://localhost:8080/permissions/${roleId}/all`).pipe(
+      tap(permissions => {
+        this.permissionsOfARole$.next(permissions);
+          console.log(this.permissionsOfARole$);
+      }),
       catchError((error) => {
         window.alert(error);
         return throwError(() => error);

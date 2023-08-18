@@ -10,3 +10,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.spaced-select {
+  margin-right: 10px; /* Adjust spacing as needed */
+}
