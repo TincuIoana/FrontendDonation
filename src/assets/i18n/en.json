@@ -22,7 +22,8 @@
     "GET": "Permissions",
     "ADD": "Add",
     "DELETE": "Delete",
-    "SELECT": "Select a permission"
+    "SELECT": "Select a permission",
+    "AVAILABLE": "Permissions available"
   },
 
   "CAMPAIGN": {

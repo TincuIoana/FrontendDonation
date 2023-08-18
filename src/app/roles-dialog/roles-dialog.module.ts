@@ -11,6 +11,7 @@ import {ListboxModule} from "primeng/listbox";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CascadeSelectModule} from "primeng/cascadeselect";
+import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {CascadeSelectModule} from "primeng/cascadeselect";
     AutoCompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    CascadeSelectModule
+    CascadeSelectModule,
+    RippleModule
   ],
   providers: [
     RolesDialogService

@@ -23,7 +23,8 @@
     "GET": "Drepturi",
     "ADD": "Adaugare",
     "DELETE": "Stergere",
-    "SELECT": "Alege un drept"
+    "SELECT": "Alege un drept",
+    "AVAILABLE": "Drepturi disponibile"
   },
 
   "CAMPAIGN": {

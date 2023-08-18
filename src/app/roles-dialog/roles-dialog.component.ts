@@ -15,13 +15,19 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class RolesDialogComponent implements OnInit{
   // Convert PermissionEnum values to an array of strings
   permissions!: PermissionEnum[];
-  permissionsOfARole!: PermissionEnum[];
+  p1!: PermissionEnum[];
+  p2!: PermissionEnum[];
+  p3!: PermissionEnum[];
+  p4!: PermissionEnum[];
+
+  permissionEnumValues = Object.values(PermissionEnum).filter(value => isNaN(Number(value)));
   @Output() editPermissions = new EventEmitter<Role>();
   @Output() editRole = new EventEmitter<Role>();
   roles!: Role[];
-  // Define a map to store permissions for each role
-  rolePermissionsMap: { [roleId: number]: PermissionEnum[] } = {};
-  formGroupsMap: { [roleId: number]: FormGroup } = {};
+  selectedPermission1!: PermissionEnum;
+  selectedPermission2!: PermissionEnum;
+  selectedPermission3!: PermissionEnum;
+  selectedPermission4!: PermissionEnum;
   constructor(     private fb: FormBuilder,
                    private rolesDialogService: RolesDialogService,
                private rolesDialogPermissionsService:RolesDialogPermissionsService) { }
@@ -30,27 +36,26 @@ export class RolesDialogComponent implements OnInit{
     this.rolesDialogService.loadRoles().subscribe({
       next: (roles) => {
         this.roles = roles;
-
-        // Create form groups for each role and fetch role-specific permissions
         roles.forEach(role => {
-          const formGroup = this.fb.group({
-            selectedPermission: null // Initialize with selected permission for each role
-          });
-          this.formGroupsMap[role.id] = formGroup;
-
-          // Fetch permissions for each role and populate rolePermissionsMap
-          this.getAllPermissionsOfARole(role.id).subscribe({
+          this.rolesDialogPermissionsService.loadPermissionsOfARole(role.id).subscribe({
             next: (permissions) => {
-              this.rolePermissionsMap[role.id] = permissions;
-
-              // Set options for the role's permission selection
-              this.formGroupsMap[role.id].controls['selectedPermission'].setValue(permissions[0]);
-            },
-            error: (error) => {
-              console.error(error);
+              switch (role.id) {
+                case 1:
+                  this.p1 = permissions;
+                  break;
+                case 2:
+                  this.p2 = permissions;
+                  break;
+                case 3:
+                  this.p3 = permissions;
+                  break;
+                case 4:
+                  this.p4 = permissions;
+                  break;
+              }
             }
-          });
-        });
+          })
+        })
       },
       error: (error) => {
         console.error(error);
@@ -67,11 +72,6 @@ export class RolesDialogComponent implements OnInit{
     });
   }
 
-
-  getAllPermissionsOfARole(roleId: number):Observable<PermissionEnum[]>{
-    return this.rolesDialogPermissionsService.getAllPermissionsOfARole(roleId);
-  }
-
   getAllPermissions(): Observable<PermissionEnum[]>{
     return this.rolesDialogPermissionsService.getAllPermissions();
   }
@@ -84,15 +84,4 @@ export class RolesDialogComponent implements OnInit{
   deletePermissionFromRole(userId: number,role:Role,permission:PermissionEnum):Observable<PermissionEnum>{
     return this.rolesDialogPermissionsService.deletePermissionFromRole(userId,role,permission);
   }
-
-  getPermissionsOfRole(role: Role): PermissionEnum[] {
-    const rolePermissions = this.rolePermissionsMap[role.id];
-    return rolePermissions || [];
-  }
-
-  // Method to get the form group for a specific role
-  getFormGroupForRole(roleId: number): FormGroup {
-    return this.formGroupsMap[roleId];
-  }
-
 }
