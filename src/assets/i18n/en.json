@@ -11,7 +11,19 @@
     "LOGIN": "Login",
     "PASSWORD": "Password",
     "LOGINACC": "Log into your account",
-    "SIGNIN":"Sign up"
+    "SIGNIN":"Sign up",
+    "ROLES": "Edit Roles"
+  },
+
+  "ROLES": {
+    "NAME": "Name"
+  },
+  "PERMISSIONS": {
+    "GET": "Permissions",
+    "ADD": "Add",
+    "DELETE": "Delete",
+    "SELECT": "Select a permission",
+    "AVAILABLE": "Permissions available"
   },
 
   "CAMPAIGN": {
@@ -24,7 +36,8 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DETAILS": "Campaign Details",
-    "SEARCH": "Search"
+
+    "SEARCH": "Search",
 
 
   },
@@ -42,6 +55,35 @@
 
   }
 
+
+
+    "SEARCH": "Search",
+    "LOGIN": "Login",
+  },
+  "USER": {
+    "USER": "User",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "MOBILE_NUMBER": "Mobile Number",
+    "EMAIL": "Email",
+    "USERNAME": "Username",
+    "ROLES": "Roles",
+    "CAMPAIGNS": "Campaigns",
+    "NO_USERS_FOUND": "No users found.",
+    "SEARCH_KEYWORD": "Search keyword",
+    "CURRENT_PAGE_REPORT_TEMPLATE": "Showing {first} to {last} of {totalRecords} entries",
+    "NEW": "New user",
+    "EDIT": "Edit user",
+    "FIRST_NAME_REQUIRED": "First name is required",
+    "LAST_NAME_REQUIRED": "Last name is required",
+    "EMAIL_REQUIRED": "Email is required",
+    "SELECT_A_ROLE": "Select a role",
+    "SELECT_A_CAMPAIGN": "Select a campaign",
+    "PASSWORD": "Password",
+    "ACTIVATED": "Activated",
+    "DEACTIVATED": "Deactivated",
+    "PASSWORD_SHORT": "Parola prea scurta"
+  }
 
 }
 

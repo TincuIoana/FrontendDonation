@@ -24,6 +24,7 @@ export class TabMenuComponent implements OnInit {
       'MENU.DONORMANAGEMENT',
       'MENU.LOGOUT',
       'MENU.LOGIN',
+      'MENU.ROLES',
       'MENU.SIGNIN'
     ]).subscribe(translations => {
       // Assign the translations to the items array
@@ -33,6 +34,7 @@ export class TabMenuComponent implements OnInit {
         {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
         {label: translations['MENU.LOGOUT']},
         {label: translations['MENU.LOGIN'], routerLink: ['/login']},
+        {label: translations['MENU.ROLES'], routerLink: ['/roles-dialog']},
         {label: translations['MENU.SIGNIN'], routerLink: ['/signin']},
       ];
     });
