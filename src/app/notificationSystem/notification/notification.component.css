@@ -1,0 +1,7 @@
+:host ::ng-deep .bold-text {
+  font-weight: bold;
+}
+
+:host ::ng-deep .normal-text {
+  font-weight: normal;
+}

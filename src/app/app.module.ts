@@ -23,6 +23,11 @@ import {AppRoutingModule} from "./app-routing.module";
 import {Interceptor} from "./util/interceptors/interceptor";
 import {CookieService} from "ngx-cookie-service";
 import {ChipsModule} from "primeng/chips";
+import { NotificationComponent } from './notificationSystem/notification/notification.component';
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+import {SidebarModule} from "primeng/sidebar";
+import {CardModule} from "primeng/card";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,8 +70,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabMenuModule,
     RouterModule.forRoot([]),
     ChipsModule,
+    ToastModule,
+    SidebarModule,
+    CardModule,
   ],
-  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true}],
+  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

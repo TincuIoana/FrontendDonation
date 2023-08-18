@@ -1,0 +1,20 @@
+<p-toast position="top-right" (onClose)="handleToastClose($event)"></p-toast>
+<!-- Button to toggle the sidebar -->
+<button (click)="toggleSidebar()">Show Notifications</button>
+
+<!-- Sidebar -->
+<p-sidebar [(visible)]="displaySidebar" position="right" styleClass="notification-sidebar">
+  <h3>Notifications</h3>
+  <div *ngFor="let notification of inbox">
+    <!-- Card for each notification -->
+    <p-card [styleClass]="notification.isRead ? 'normal-text' : 'bold-text'">
+      <p-header>
+        {{ notification.type }}
+      </p-header>
+      <p>{{ notification.parameters.join(', ') }}</p>
+      <!-- Button to mark the notification as read -->
+      <button *ngIf="!notification.isRead" (click)="markAsRead(notification)">Mark as Read</button>
+
+    </p-card>
+  </div>
+</p-sidebar>
