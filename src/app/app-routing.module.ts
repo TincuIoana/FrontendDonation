@@ -22,6 +22,9 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
+    path:'roles-dialog',
+    loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m=>m.RolesDialogModule)
+
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then(m => m.SigninModule)
   },

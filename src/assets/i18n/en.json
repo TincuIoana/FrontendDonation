@@ -11,7 +11,18 @@
     "LOGIN": "Login",
     "PASSWORD": "Password",
     "LOGINACC": "Log into your account",
-    "SIGNIN":"Sign up"
+    "SIGNIN":"Sign up",
+    "ROLES": "Edit Roles"
+  },
+
+  "ROLES": {
+    "NAME": "Name"
+  },
+  "PERMISSIONS": {
+    "GET": "Permissions",
+    "ADD": "Add",
+    "DELETE": "Delete",
+    "SELECT": "Select a permission"
   },
 
   "CAMPAIGN": {
@@ -25,8 +36,6 @@
     "CANCEL": "Cancel",
     "DETAILS": "Campaign Details",
     "SEARCH": "Search"
-
-
   }
 
 }

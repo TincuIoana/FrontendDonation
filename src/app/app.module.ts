@@ -9,15 +9,26 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar';
 
 // ngx-translate imports
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {TabMenuComponent} from './tab-menu/tab-menu.component';
+import {LoginComponent} from './login/login/login.component';
+import {AppRoutingModule} from './app-routing.module';
+import {Interceptor} from './util/interceptors/interceptor';
+import {CookieService} from 'ngx-cookie-service';
+
+import {RolesDialogRoutingModule} from './roles-dialog/roles-dialog-routing.module';
 import {PanelModule} from "primeng/panel";
-import {RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular/router";
-import {ButtonModule} from "primeng/button";
-import {LoginComponent} from "./login/login/login.component";
 import {TabMenuModule} from "primeng/tabmenu";
+import {ButtonModule} from "primeng/button";
+
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {AutoComplete, AutoCompleteModule} from "primeng/autocomplete";
+import {ListboxModule} from "primeng/listbox";
+
+
 import {TabMenuComponent} from "./tab-menu/tab-menu.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {Interceptor} from "./util/interceptors/interceptor";
@@ -40,8 +51,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,27 +64,28 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+
 
     // PrimeNG modules
     DropdownModule,
-    ToolbarModule,
+    ButtonModule,
+    DynamicDialogModule,
+    ListboxModule,
 
     // ngx-translate setup
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
-    ReactiveFormsModule,
+    RolesDialogRoutingModule,
     PanelModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    ButtonModule,
     TabMenuModule,
+
     RouterModule.forRoot([]),
     ChipsModule,
     TableModule,
@@ -89,7 +99,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     RippleModule,
     InputTextareaModule,
   ],
-  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true}],
-  bootstrap: [AppComponent]
+  providers: [
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
