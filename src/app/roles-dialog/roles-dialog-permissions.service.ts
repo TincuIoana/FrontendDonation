@@ -42,15 +42,14 @@ export class RolesDialogPermissionsService {
   }
 
   getAllPermissionsOfARole(roleId: number): Observable<PermissionEnum[]> {
-    return this.http.post<PermissionEnum[]>(this.apiUrl + '{roleId}/all', roleId);
+    return this.http.get<PermissionEnum[]>(this.apiUrl + `${roleId}/all`);
   }
 
-  addPermissionToRole(userId: number,role:Role,permission:PermissionEnum): Observable<PermissionEnum>{
-    return this.http.post<PermissionEnum>(this.apiUrl+ '{userId}/add',permission);
+  addPermissionToRole(userId: number,roleId: number,permission:PermissionEnum){
+    this.http.post<PermissionEnum>(this.apiUrl+ `${roleId}/${userId}/add`,permission).subscribe(log=>console.log("added successfully"));
   }
 
-  deletePermissionFromRole(userId: number,role:Role,permission:PermissionEnum){
-    return this.http.delete<PermissionEnum>(this.apiUrl+ '/{userId}/delete');
-
+  deletePermissionFromRole(userId: number,roleId: number,permission:PermissionEnum){
+    this.http.delete<PermissionEnum>(this.apiUrl+ `${roleId}/${userId}/delete`).subscribe(log=>console.log("deleted successfully"));
   }
 }

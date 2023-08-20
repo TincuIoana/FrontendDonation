@@ -5,6 +5,7 @@ import {RolesDialogPermissionsService} from "./roles-dialog-permissions.service"
 import {PermissionEnum} from "./permission-enum";
 import {forkJoin, mergeMap, Observable, of} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {UserComponent} from "../user-administration/user/user.component";
 
 
 @Component({
@@ -19,6 +20,9 @@ export class RolesDialogComponent implements OnInit{
   p2!: PermissionEnum[];
   p3!: PermissionEnum[];
   p4!: PermissionEnum[];
+
+  userId1 : number = 2;  // am testat cu userId = 2, care are permisiunea sa modifice chestii
+  userId2 : number = 1;  // nu are permisiunea sa modifice rolurile
 
   permissionEnumValues = Object.values(PermissionEnum).filter(value => isNaN(Number(value)));
   @Output() editPermissions = new EventEmitter<Role>();
@@ -77,11 +81,11 @@ export class RolesDialogComponent implements OnInit{
   }
 
 
-  addPermissionToRole(userId: number,role:Role,permission:PermissionEnum):Observable<PermissionEnum> {
-    return this.rolesDialogPermissionsService.addPermissionToRole(userId,role,permission);
+  addPermissionToRole(userId: number,roleId: number,permission:PermissionEnum) {
+    return this.rolesDialogPermissionsService.addPermissionToRole(userId,roleId,permission);
   }
 
-  deletePermissionFromRole(userId: number,role:Role,permission:PermissionEnum):Observable<PermissionEnum>{
-    return this.rolesDialogPermissionsService.deletePermissionFromRole(userId,role,permission);
+  deletePermissionFromRole(userId: number,roleId: number,permission:PermissionEnum){
+    return this.rolesDialogPermissionsService.deletePermissionFromRole(userId,roleId,permission);
   }
 }
