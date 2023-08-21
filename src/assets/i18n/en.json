@@ -8,6 +8,17 @@
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
     "LOGOUT": "Logout",
+    "LOGIN": "Login"
+  },
+  "WELCOME_NEW_USER": {
+    "TITLE": "Welcome!",
+    "DETAILS": "Details: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Show Notifications",
+
+  "SIDEBAR": {
+    "TITLE": "Notifications",
+    "MARK_AS_READ": "Mark as Read",
     "LOGIN": "Login",
     "PASSWORD": "Password",
     "LOGINACC": "Log into your account",
@@ -37,9 +48,7 @@
     "CANCEL": "Cancel",
     "DETAILS": "Campaign Details",
 
-    "SEARCH": "Search",
-
-
+    "SEARCH": "Search"
   },
 
   "DONOR": {
@@ -51,15 +60,8 @@
     "MANAGE": "Manage donors",
     "DONORS": "donors",
     "DETAILS": "Donor detalis"
-
-
-  }
-
-
-
-    "SEARCH": "Search",
-    "LOGIN": "Login",
   },
+
   "USER": {
     "USER": "User",
     "FIRST_NAME": "First Name",

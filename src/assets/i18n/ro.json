@@ -8,6 +8,16 @@
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
+    "LOGIN" : "Logare"
+  },
+  "WELCOME_NEW_USER": {
+    "TITLE": "Bun venit!",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Afișează Notificările",
+  "SIDEBAR": {
+    "TITLE": "Notificări",
+    "MARK_AS_READ": "Marchează ca citit",
     "ROLES": "Editare Roluri",
     "LOGIN" : "Autentificare",
     "PASSWORD": "Parola",
@@ -38,7 +48,7 @@
     "CANCEL": "Anuleaza",
     "DETAILS": "Detaliile campaniilor",
 
-    "SEARCH": "Cauta",
+    "SEARCH": "Cauta"
 
   },
   "DONOR": {
@@ -49,12 +59,12 @@
     "MAIDENN": "Nume de fata",
     "MANAGE": "Manager donatori",
     "DONORS": "donatori",
-    "DETAILS": "Detaliile donatorului",
+    "DETAILS": "Detaliile donatorului"
 
 
 
 
- 
+
   },
   "USER": {
     "USER": "Utilizator",

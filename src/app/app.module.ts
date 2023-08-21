@@ -36,11 +36,20 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {RatingModule} from "primeng/rating";
 import {RippleModule} from "primeng/ripple";
 import {InputTextareaModule} from "primeng/inputtextarea";
-import {RouterModule} from "@angular/router";
 import {CheckboxModule} from "primeng/checkbox";
 import {MultiSelectModule} from "primeng/multiselect";
 import {RouterModule} from "@angular/router";
 import {ToolbarModule} from "primeng/toolbar";
+import {NotificationComponent} from "./notificationSystem/notification/notification.component";
+import {TabMenuComponent} from "./tab-menu/tab-menu.component";
+import {AppRoutingModule} from "./app-routing.module";
+import {SidebarModule} from "primeng/sidebar";
+import {CardModule} from "primeng/card";
+import {CookieService} from "ngx-cookie-service";
+import {Interceptor} from "./util/interceptors/interceptor";
+import {MessageService} from "primeng/api";
+import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
+import {NotificationGuard} from "./util/notification-guard";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -91,9 +100,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastModule,
     SidebarModule,
     CardModule,
-  ],
-  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService],
-  bootstrap: [AppComponent]
     TableModule,
     FileUploadModule,
     ToastModule,
@@ -109,6 +115,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MultiSelectModule,
     ToolbarModule
   ],
- 
+  providers: [CookieService, MessageService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, NotificationGuard],
+  bootstrap: [AppComponent],
+
 })
-export class AppModule {}
+export class AppModule {
+}
