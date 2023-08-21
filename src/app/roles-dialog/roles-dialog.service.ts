@@ -7,7 +7,7 @@ import {Role} from "./role";
   providedIn: 'root'
 })
 export class RolesDialogService {
-  apiUrl: string ="http://localhost:8080/roles-dialog";
+  apiUrl: string ="http://localhost:8080/roles-dialog/all";
   roles$: BehaviorSubject<Role[]> = new BehaviorSubject<Role[]>([]);
   constructor(private http: HttpClient) {}
 

@@ -3,6 +3,7 @@
     "TITLE": "Salut, Lume!",
     "SELECT": "Selectează Limba"
   },
+
   "MENU": {
     "USERADMINISTRATION": "Administrare Utilizatori",
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
@@ -37,8 +38,7 @@
     "SAVE": "Salveaza",
     "CANCEL": "Anuleaza",
     "DETAILS": "Detaliile campaniilor",
-
-    "SEARCH": "Cauta",
+    "SEARCH": "Cauta"
 
   },
   "DONOR": {
@@ -49,13 +49,9 @@
     "MAIDENN": "Nume de fata",
     "MANAGE": "Manager donatori",
     "DONORS": "donatori",
-    "DETAILS": "Detaliile donatorului",
-
-
-
-
- 
+    "DETAILS": "Detaliile donatorului"
   },
+
   "USER": {
     "USER": "Utilizator",
     "FIRST_NAME": "Prenume",
