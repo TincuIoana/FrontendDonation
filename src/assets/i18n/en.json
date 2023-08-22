@@ -78,5 +78,24 @@
   "SIDEBAR": {
     "TITLE": "Notifications",
     "MARK_AS_READ": "Mark as Read"
+  },
+  "USER_UPDATED": {
+    "TITLE": "Update Successful",
+    "DETAILS": "Old Details: {{oldDetails}}<br>Updated Details: {{updatedDetails}}"
+  },
+  "USER_DEACTIVATED_MANUAL": {
+    "TITLE": "Account Deactivation Notice",
+    "DETAILS": "Details: {{details}}"
+
+  },
+  "USER_DEACTIVATED_INCORRECT_PASSWORD": {
+    "TITLE": "Account Locked Due to Incorrect Password Attempts",
+    "DETAILS": "Details: {{details}}"
+
+  },
+  "DONATION_APPROVED": {
+    "TITLE": "Donation Approved",
+    "DETAILS": "Amount: {{details}}"
   }
 }
+

@@ -22,8 +22,8 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.isLoggedIn.subscribe(isLoggedIn => {
       if (isLoggedIn) {
-        const userId = +localStorage.getItem('id')!
 
+        const userId = +localStorage.getItem('id')!
         this.notificationService.pollForNotifications(userId).subscribe({
           next: (data) => {
             this.notifications = data
@@ -32,16 +32,16 @@ export class NotificationComponent implements OnInit {
           error: (error) => console.log('Error fetching notifications:', error)
         })
 
+
         this.notificationService.pollForAllNotifications(userId).subscribe({
           next: (data) => this.inbox = data,
           error: (error) => console.log('Error fetching all notifications:', error)
         });
       } else {
         this.notificationService.stopPollingForNotificationsMethod();
-        this.notificationService.stopPollingForAllNotificationsMethod();
+        this.notificationService.stopPollingForAllNotificationsMethod()
       }
-    });
-
+    })
   }
 
   showNotification(notification: NotificationDTO): void {
@@ -55,13 +55,13 @@ export class NotificationComponent implements OnInit {
     })
   }
 
-  handleToastClose(event: any): void {
-    const notificationId = event.message.data.id
-    this.notificationService.markNotificationAsRead(notificationId).subscribe({
-      next: () => console.log('Notification marked as read'),
-      error: (error) => console.log('Error marking notification as read:', error)
-    })
-  }
+  // handleToastClose(event: any): void {
+  //   const notificationId = event.message.data.id
+  //   this.notificationService.markNotificationAsRead(notificationId).subscribe({
+  //     next: () => console.log('Notification marked as read'),
+  //     error: (error) => console.log('Error marking notification as read:', error)
+  //   })
+  // }
 
   toggleSidebar(): void {
     this.messageService.clear()
