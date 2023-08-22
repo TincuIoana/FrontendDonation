@@ -8,27 +8,15 @@
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
-    "LOGIN" : "Logare"
-  },
-  "WELCOME_NEW_USER": {
-    "TITLE": "Bun venit!",
-    "DETAILS": "Detalii: {{details}}"
-  },
-  "BUTTON_SHOW_NOTIFICATIONS": "Afișează Notificările",
-  "SIDEBAR": {
-    "TITLE": "Notificări",
-    "MARK_AS_READ": "Marchează ca citit",
     "ROLES": "Editare Roluri",
-    "LOGIN" : "Autentificare",
+    "LOGIN": "Autentificare",
     "PASSWORD": "Parola",
     "LOGINACC": "Logheazate in contul tau",
-    "SIGNIN":"Inresgistrare"
+    "SIGNIN": "Inresgistrare"
   },
-
   "ROLES": {
     "NAME": "Nume"
   },
-
   "PERMISSIONS": {
     "GET": "Drepturi",
     "ADD": "Adaugare",
@@ -36,7 +24,6 @@
     "SELECT": "Alege un drept",
     "AVAILABLE": "Drepturi disponibile"
   },
-
   "CAMPAIGN": {
     "NAME": "Nume",
     "PURPOSE": "Scop",
@@ -47,9 +34,7 @@
     "SAVE": "Salveaza",
     "CANCEL": "Anuleaza",
     "DETAILS": "Detaliile campaniilor",
-
     "SEARCH": "Cauta"
-
   },
   "DONOR": {
     "DONOR": "Donator",
@@ -60,11 +45,6 @@
     "MANAGE": "Manager donatori",
     "DONORS": "donatori",
     "DETAILS": "Detaliile donatorului"
-
-
-
-
-
   },
   "USER": {
     "USER": "Utilizator",
@@ -75,7 +55,7 @@
     "USERNAME": "Nume Utilizator",
     "ROLES": "Roluri",
     "CAMPAIGNS": "Campanii",
-    "NO_USERS_FOUND" : "Nici un utilizator gasit.",
+    "NO_USERS_FOUND": "Nici un utilizator gasit.",
     "SEARCH_KEYWORD": "Cuvant cheie",
     "CURRENT_PAGE_REPORT_TEMPLATE": "Afisand {first} pana la {last} din {totalRecords} inregistrari",
     "NEW": "Utilizator nou",
@@ -89,5 +69,14 @@
     "ACTIVATED": "Activat",
     "DEACTIVATED": "Dezactivat",
     "PASSWORD_SHORT": "Parola prea scurta"
+  },
+  "WELCOME_NEW_USER": {
+    "TITLE": "Bun venit!",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Afișează Notificările",
+  "SIDEBAR": {
+    "TITLE": "Notificări",
+    "MARK_AS_READ": "Marchează ca citit"
   }
 }

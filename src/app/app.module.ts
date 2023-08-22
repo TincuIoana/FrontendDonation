@@ -40,8 +40,8 @@ import {CheckboxModule} from "primeng/checkbox";
 import {MultiSelectModule} from "primeng/multiselect";
 import {RouterModule} from "@angular/router";
 import {ToolbarModule} from "primeng/toolbar";
-import {NotificationComponent} from "./notificationSystem/notification/notification.component";
 import {TabMenuComponent} from "./tab-menu/tab-menu.component";
+import {NotificationComponent} from "./notificationSystem/notification/notification.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {SidebarModule} from "primeng/sidebar";
 import {CardModule} from "primeng/card";
@@ -49,7 +49,6 @@ import {CookieService} from "ngx-cookie-service";
 import {Interceptor} from "./util/interceptors/interceptor";
 import {MessageService} from "primeng/api";
 import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
-import {NotificationGuard} from "./util/notification-guard";
 
 
 export function HttpLoaderFactory(http: HttpClient) {

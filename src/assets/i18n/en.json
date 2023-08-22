@@ -8,24 +8,12 @@
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
     "LOGOUT": "Logout",
-    "LOGIN": "Login"
-  },
-  "WELCOME_NEW_USER": {
-    "TITLE": "Welcome!",
-    "DETAILS": "Details: {{details}}"
-  },
-  "BUTTON_SHOW_NOTIFICATIONS": "Show Notifications",
-
-  "SIDEBAR": {
-    "TITLE": "Notifications",
-    "MARK_AS_READ": "Mark as Read",
     "LOGIN": "Login",
     "PASSWORD": "Password",
     "LOGINACC": "Log into your account",
-    "SIGNIN":"Sign up",
+    "SIGNIN": "Sign up",
     "ROLES": "Edit Roles"
   },
-
   "ROLES": {
     "NAME": "Name"
   },
@@ -36,7 +24,6 @@
     "SELECT": "Select a permission",
     "AVAILABLE": "Permissions available"
   },
-
   "CAMPAIGN": {
     "NAME": "Name",
     "PURPOSE": "Purpose",
@@ -47,10 +34,8 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DETAILS": "Campaign Details",
-
     "SEARCH": "Search"
   },
-
   "DONOR": {
     "DONOR": "Donor",
     "FIRSTN": "First name",
@@ -61,7 +46,6 @@
     "DONORS": "donors",
     "DETAILS": "Donor detalis"
   },
-
   "USER": {
     "USER": "User",
     "FIRST_NAME": "First Name",
@@ -85,7 +69,14 @@
     "ACTIVATED": "Activated",
     "DEACTIVATED": "Deactivated",
     "PASSWORD_SHORT": "Parola prea scurta"
+  },
+  "WELCOME_NEW_USER": {
+    "TITLE": "Welcome!",
+    "DETAILS": "Details: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Show Notifications",
+  "SIDEBAR": {
+    "TITLE": "Notifications",
+    "MARK_AS_READ": "Mark as Read"
   }
-
 }
-
