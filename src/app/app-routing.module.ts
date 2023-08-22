@@ -9,16 +9,20 @@ const routes: Routes = [
     loadChildren: () => import('./user-administration/user-administration.module').then(m => m.UserAdministrationModule),
     canActivate: [Role_guards],
     data:{
-      roles:'ROLE_ADM'
+      roles:['ROLE_ADM']
     }
   },
   {
     path: 'donor-management',
-    loadChildren: () => import('./donor-management/donor-management.module').then(m => m.DonorManagementModule)
+    loadChildren: () => import('./donor-management/donor-management.module').then(m => m.DonorManagementModule),
+    canActivate: [Role_guards],
+    data:{
+      roles:['ROLE_ADM','ROLE_MGN','ROLE_CEN','ROLE_REP']
+    }
   },
   {
     path: '',
-    redirectTo: '/login', // or wherever you want the app to redirect by default
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
@@ -35,7 +39,11 @@ const routes: Routes = [
   },
   {
     path: 'campaign',
-    loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule)
+    loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule),
+    canActivate: [Role_guards],
+    data:{
+      roles:['ROLE_ADM','ROLE_MGN','ROLE_CEN','ROLE_REP']
+    }
   },
   {
     path: 'logout',
@@ -45,6 +53,7 @@ const routes: Routes = [
     path: 'change',
     loadChildren: () => import('./change-password/change.module').then(m=> m.ChangeModule)
   },
+
 ];
 
 @NgModule({

@@ -14,18 +14,19 @@ import {AuthService} from "../../auth/auth.service";
 export class LoginComponent implements OnInit{
   ngOnInit(): void {
     this.eroare=''
-    this.authService.setLoggedIn(true)
+    this.authService.setLoggedIn(false)
     console.log("ngOnInit", this.authService.isLoggedin())
 
 
   }
    raspuns:any
-
+  siteKey ='6LfPjccnAAAAABZq4S54-gUpnOnBg5PiaFgKihZA'
   eroare!:string;
 
   loginForm = this.fb.group({
     username : ['', Validators.required],
-    password : ['', Validators.required]
+    password : ['', Validators.required],
+    recaptcha: ['', Validators.required]
   });
   constructor(private fb : FormBuilder, private loginService: LoginService, private router: Router, private authService:AuthService) { }
 
@@ -65,6 +66,7 @@ export class LoginComponent implements OnInit{
 
 
   }
+
 
 
 }

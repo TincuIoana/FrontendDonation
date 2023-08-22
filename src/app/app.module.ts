@@ -51,6 +51,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { LogoutComponent } from './logout/logout/logout.component';
 import {Role_guards} from "./util/role_guards";
 import { ChangeComponent } from './change-password/change/change.component';
+import {NgxCaptchaModule} from "ngx-captcha";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -70,55 +71,56 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChangeComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
 
 
-    // PrimeNG modules
-    DropdownModule,
-    ButtonModule,
-    DynamicDialogModule,
-    ListboxModule,
+        // PrimeNG modules
+        DropdownModule,
+        ButtonModule,
+        DynamicDialogModule,
+        ListboxModule,
 
-    // ngx-translate setup
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-    RolesDialogRoutingModule,
-    PanelModule,
-    TabMenuModule,
+        // ngx-translate setup
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+        RolesDialogRoutingModule,
+        PanelModule,
+        TabMenuModule,
 
-    RouterModule.forRoot([]),
-    ChipsModule,
+        RouterModule.forRoot([]),
+        ChipsModule,
 
-    ToastModule,
-    SidebarModule,
-    CardModule,
+        ToastModule,
+        SidebarModule,
+        CardModule,
 
 
-    TableModule,
-    FileUploadModule,
-    ToastModule,
-    DialogModule,
-    RadioButtonModule,
-    PaginatorModule,
-    ConfirmDialogModule,
-    RatingModule,
-    RippleModule,
-    InputTextareaModule,
-    ToolbarModule,
-    CheckboxModule,
-    MultiSelectModule
-  ],
+        TableModule,
+        FileUploadModule,
+        ToastModule,
+        DialogModule,
+        RadioButtonModule,
+        PaginatorModule,
+        ConfirmDialogModule,
+        RatingModule,
+        RippleModule,
+        InputTextareaModule,
+        ToolbarModule,
+        CheckboxModule,
+        MultiSelectModule,
+        NgxCaptchaModule
+    ],
 providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
   bootstrap: [AppComponent]
 })

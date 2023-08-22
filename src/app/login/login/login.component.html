@@ -1,3 +1,7 @@
+
+<div class="login-container">
+  <div class="login-panel">
+
 <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
   <p-panel header="Login in your Account">
     <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
@@ -29,6 +33,14 @@
 
         </div>
       </div>
+
+      <ngx-recaptcha2 #captchaElem
+                      [siteKey]="siteKey"
+
+                      [useGlobalDomain]="false"
+                      formControlName="recaptcha">
+      </ngx-recaptcha2>
+
       <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div><br>
         <div class="ui-grid-col-6">
@@ -39,4 +51,5 @@
     </div>
   </p-panel>
 </form>
-
+</div>
+</div>
