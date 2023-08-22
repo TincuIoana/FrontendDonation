@@ -3,6 +3,7 @@
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"
   },
+
   "MENU": {
     "USERADMINISTRATION": "User Administration",
     "CAMPAIGNMANAGEMENT": "Campaign Management",
@@ -18,6 +19,7 @@
   "ROLES": {
     "NAME": "Name"
   },
+
   "PERMISSIONS": {
     "GET": "Permissions",
     "ADD": "Add",
@@ -36,9 +38,20 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DETAILS": "Campaign Details",
-    "SEARCH": "Search",
-    "LOGIN": "Login"
+    "SEARCH": "Search"
   },
+
+  "DONOR": {
+    "DONOR": "Donor",
+    "FIRSTN": "First name",
+    "LASTN": "Last Name",
+    "ADDITIONALN": "Additional name",
+    "MAIDENN": "Maiden name",
+    "MANAGE": "Manage donors",
+    "DONORS": "donors",
+    "DETAILS": "Donor detalis"
+  },
+
   "USER": {
     "USER": "User",
     "FIRST_NAME": "First Name",
@@ -63,5 +76,6 @@
     "DEACTIVATED": "Deactivated",
     "PASSWORD_SHORT": "Parola prea scurta"
   }
+
 }
 

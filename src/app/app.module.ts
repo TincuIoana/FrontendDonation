@@ -22,6 +22,8 @@ import {ButtonModule} from "primeng/button";
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ListboxModule} from "primeng/listbox";
 import {ChipsModule} from "primeng/chips";
+
+
 import {SigninComponent} from './signin/signin/signin.component';
 import {CampaignComponent} from './campaign-management/campaign/campaign.component';
 import {TableModule} from "primeng/table";
@@ -34,11 +36,19 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {RatingModule} from "primeng/rating";
 import {RippleModule} from "primeng/ripple";
 import {InputTextareaModule} from "primeng/inputtextarea";
-import {RouterModule} from "@angular/router";
 import {CheckboxModule} from "primeng/checkbox";
 import {MultiSelectModule} from "primeng/multiselect";
 import {RouterModule} from "@angular/router";
 import {ToolbarModule} from "primeng/toolbar";
+import {TabMenuComponent} from "./tab-menu/tab-menu.component";
+import {NotificationComponent} from "./notificationSystem/notification/notification.component";
+import {AppRoutingModule} from "./app-routing.module";
+import {SidebarModule} from "primeng/sidebar";
+import {CardModule} from "primeng/card";
+import {CookieService} from "ngx-cookie-service";
+import {Interceptor} from "./util/interceptors/interceptor";
+import {MessageService} from "primeng/api";
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -49,8 +59,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
+
+    NotificationComponent,
     SigninComponent,
     CampaignComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -81,6 +94,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     RouterModule.forRoot([]),
     ChipsModule,
+
+    ToastModule,
+    SidebarModule,
+    CardModule,
     TableModule,
     FileUploadModule,
     ToastModule,
@@ -93,13 +110,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputTextareaModule,
     ToolbarModule,
     CheckboxModule,
-    MultiSelectModule,
-    ToolbarModule
+    MultiSelectModule
   ],
-  providers: [
-    CookieService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-  ],
+  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

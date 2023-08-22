@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable, tap} from "rxjs";
+import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
 import {Campaign} from "./campaign";
 
 @Injectable({
@@ -10,10 +10,10 @@ export class CampaignService {
 
   constructor(private http:HttpClient) { }
 
-  url:string = "http://localhost:8080/campaign";
-  url1:string = "http://localhost:8080/campaign/5";
-  url2:string = "http://localhost:8080/campaign/5"; //dummy url-s  trebuie luat id-ul de la user
-  //atentie mare ca userul sa aiba CAMP_MANAGEMENT
+  url:string = "http://localhost:8080/campaign"; //atentie mare ca userul sa aiba CAMP_MANAGEMENT
+
+   userID= localStorage.getItem('id');
+
   campaignList$:BehaviorSubject<Campaign[]> = new BehaviorSubject<Campaign[]>([]);
   loadCampaigns(): Observable<Campaign[]>{
 
@@ -21,19 +21,31 @@ export class CampaignService {
   }
 
   getCampaigns():Observable<Campaign[]>{
+    console.log(this.userID)
+
     return this.campaignList$.asObservable();
-
   }
 
-  saveCampaignToDB(campaignRequest: Campaign ):void{
-    this.http.post(this.url1,campaignRequest).subscribe(log=>console.log("added successfully"))
+  saveCampaignToDB(campaignRequest: Campaign): void {
+    this.http.post(this.url+'/'+this.userID, campaignRequest).subscribe(
+      response => {
+        console.log('Added successfully:', response);
+      },
+      error => {
+      throw new Error(error.error.message)
+      }
+    );
   }
+
 
   deleteFromDB(id: string):void{
-    this.http.delete(this.url+id+"/5").subscribe(log=>console.log("deleted successfully"))
+    this.http.delete(this.url+'/'+id+"/" + this.userID).subscribe(log=>console.log("deleted successfully"))
   }
 
   updateCampaignFromDB(id: string, campaign: Campaign) {
-    this.http.put(this.url+"/"+id+"/5",campaign).subscribe(log=>console.log("updated successfully"))
+    this.http.put(this.url+"/"+id+"/" + this.userID,campaign).subscribe(log=>console.log("updated successfully"))
   }
+
+
+
 }
