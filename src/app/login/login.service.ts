@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "./LoginRequest";
 import {LoginResponse} from "./LoginResponse";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +10,32 @@ import {BehaviorSubject} from "rxjs";
 export class LoginService {
 
   url: string ="http://localhost:8080/auth/login"
+  // private loggedIn = false;
+
   // @ts-ignore
 
-  loginResponse:BehaviorSubject<LoginResponse> = new BehaviorSubject<LoginResponse>([])
+  loginResponseSubject  = new BehaviorSubject<LoginResponse>([])
+  loginResponse$: Observable<LoginResponse | null> = this.loginResponseSubject .asObservable();
+
+
+  // logResponse:LoginResponse=new LoginResponse()
   constructor(private http: HttpClient) { }
 
-  login(loginRequest : LoginRequest):void{
+  login(loginRequest : LoginRequest):Observable<LoginResponse>{
     console.log("aici")
 
-    this.http.post<LoginResponse>(this.url,loginRequest).subscribe(loginResponse =>{
-      localStorage.setItem("token",loginResponse.accessToken)
-      localStorage.setItem("id",String(loginResponse.id))
-      console.log(loginResponse.id)
-    })
+   return  this.http.post<LoginResponse>(this.url,loginRequest)
+
   }
+  setLoginResponse(loginResponse: LoginResponse) {
+    this.loginResponseSubject .next(loginResponse);
+  }
+
+  // setLoggedIn(value:boolean){
+  //   this.loggedIn = value;
+  //
+  // }
+  // isLoggedIn(){
+  //   return this.loggedIn;
+  // }
 }

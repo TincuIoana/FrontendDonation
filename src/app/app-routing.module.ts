@@ -1,11 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {Role_guards} from "./util/role_guards";
 
 // Lazy loading the modules. If you don't want lazy loading, import the components directly.
 const routes: Routes = [
   {
     path: 'user-administration',
-    loadChildren: () => import('./user-administration/user-administration.module').then(m => m.UserAdministrationModule)
+    loadChildren: () => import('./user-administration/user-administration.module').then(m => m.UserAdministrationModule),
+    canActivate: [Role_guards],
+    data:{
+      roles:'ROLE_ADM'
+    }
   },
   {
     path: 'donor-management',
@@ -35,7 +40,11 @@ const routes: Routes = [
   {
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then(m=> m.LogoutModule)
-  }
+  },
+  {
+    path: 'change',
+    loadChildren: () => import('./change-password/change.module').then(m=> m.ChangeModule)
+  },
 ];
 
 @NgModule({

@@ -6,10 +6,18 @@ import {Observable} from "rxjs";
 export class Role_guards implements CanActivate{
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const userRole = localStorage.getItem('role')
-    const receivedRole = route.data['role']
+    const storedRoles   = localStorage.getItem("roles")
+    const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) : [];
 
-    return (userRole===receivedRole)
+    const receivedRole = route.data['roles'] as Array<string>
+
+    console.log(userRoles)
+    console.log(receivedRole)
+
+
+    return !!userRoles.find(userRole => receivedRole.includes(userRole));
   }
+
+
 
 }

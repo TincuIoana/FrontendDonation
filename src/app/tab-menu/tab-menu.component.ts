@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {TranslateService} from "@ngx-translate/core";
 
+import {AuthService} from "../auth/auth.service";
+
 @Component({
   selector: 'app-tab-menu',
   templateUrl: './tab-menu.component.html',
@@ -12,12 +14,11 @@ export class TabMenuComponent implements OnInit {
   // @ts-ignore
   shouldDisplayTabMenu: true;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    // Fetch the translations for the keys
     this.translate.stream([
       'MENU.USERADMINISTRATION',
       'MENU.CAMPAIGNMANAGEMENT',
@@ -27,16 +28,22 @@ export class TabMenuComponent implements OnInit {
       'MENU.ROLES',
       'MENU.SIGNIN'
     ]).subscribe(translations => {
-      // Assign the translations to the items array
+      const loginLabel = translations['MENU.LOGIN'];
+      const logoutLabel = translations['MENU.LOGOUT'];
+      console.log("in tabmenu:",this.authService.isLoggedin())
+
+      // Determine the label for the login/logout button based on login status
+      const loginOrLogoutLabel = this.authService.isLoggedin() ? logoutLabel : loginLabel;
+
+      // Initialize menu items with login/logout button
       this.items = [
-        {label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration']},
-        {label: translations['MENU.CAMPAIGNMANAGEMENT'], routerLink: ['/campaign']},
-        {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
-        {label: translations['MENU.LOGOUT'], routerLink:['/logout']},
-        {label: translations['MENU.LOGIN'], routerLink: ['/login']},
-        {label: translations['MENU.ROLES'], routerLink: ['/roles-dialog']},
-        {label: translations['MENU.SIGNIN'], routerLink: ['/signin']},
+        { label: loginOrLogoutLabel, routerLink: this.authService.isLoggedin() ? ['/logout'] : ['/login'] },
+        { label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration'] },
+        { label: translations['MENU.CAMPAIGNMANAGEMENT'], routerLink: ['/campaign'] },
+        { label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management'] },
+        { label: translations['MENU.ROLES'], routerLink: ['/roles-dialog'] },
       ];
     });
   }
+
 }

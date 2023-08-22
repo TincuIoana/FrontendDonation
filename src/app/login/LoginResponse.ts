@@ -1,11 +1,25 @@
+import {Campaign} from "../campaign-management/campaign";
+import {Role} from "../roles-dialog/role";
+
 export class LoginResponse {
+  public accessToken?: string
+
   constructor(
-    public accessToken: string,
     public id: number,
-    public username: string,
-    public email:string,
-    public roles:string[],
-    public refreshToken: string
+    public firstLogin:boolean,
+
+    public firstName?: string,
+    public lastName?: string,
+    public mobileNumber?: string,
+    public username?: string,
+    public email?:string,
+    public password?: string,
+    public active?: boolean,
+    public retryCount?: number,
+    public roles?:Role[],
+    public campaigns?: Campaign[],
+    //
+    // public roles:string[]
 
 
   ) {

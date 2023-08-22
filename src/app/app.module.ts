@@ -49,6 +49,8 @@ import {Interceptor} from "./util/interceptors/interceptor";
 import {MessageService} from "primeng/api";
 import {AppRoutingModule} from "./app-routing.module";
 import { LogoutComponent } from './logout/logout/logout.component';
+import {Role_guards} from "./util/role_guards";
+import { ChangeComponent } from './change-password/change/change.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -65,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SigninComponent,
     CampaignComponent,
     LogoutComponent,
+    ChangeComponent,
 
   ],
   imports: [
@@ -117,7 +120,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MultiSelectModule,
     ToolbarModule
   ],
-providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService],
+providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
