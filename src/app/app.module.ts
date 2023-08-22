@@ -117,8 +117,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputTextareaModule,
     ToolbarModule,
     CheckboxModule,
-    MultiSelectModule,
-    ToolbarModule
+    MultiSelectModule
   ],
 providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
   bootstrap: [AppComponent]
