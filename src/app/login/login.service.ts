@@ -19,13 +19,11 @@ export class LoginService {
   public isLoggedIn: Observable<boolean> = this._isLoggedIn.asObservable();
 
   // @ts-ignore
-  loginResponse: BehaviorSubject<LoginResponse> = new BehaviorSubject<LoginResponse>([]);
 
   loginResponseSubject  = new BehaviorSubject<LoginResponse>([])
   loginResponse$: Observable<LoginResponse | null> = this.loginResponseSubject .asObservable();
 
 
-  // logResponse:LoginResponse=new LoginResponse()
 
   constructor(private http: HttpClient) {
     if (localStorage.getItem('token'))
