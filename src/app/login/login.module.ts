@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LoginRoutingModule} from "./login-routing.module";
+import {NgxCaptchaModule} from "ngx-captcha";
 
 
 
@@ -8,7 +9,9 @@ import {LoginRoutingModule} from "./login-routing.module";
   declarations: [],
   imports: [
     CommonModule,
-    LoginRoutingModule
-  ]
+    LoginRoutingModule,
+    NgxCaptchaModule  ],
+
+
 })
 export class LoginModule { }

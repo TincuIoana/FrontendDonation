@@ -12,7 +12,7 @@
     "LOGIN": "Login",
     "PASSWORD": "Password",
     "LOGINACC": "Log into your account",
-    "SIGNIN":"Sign up",
+    "SIGNIN": "Sign up",
     "ROLES": "Edit Roles"
   },
 
@@ -77,7 +77,6 @@
     "PASSWORD": "Password",
     "ACTIVATED": "Activated",
     "DEACTIVATED": "Deactivated",
-    "PASSWORD_SHORT": "Password is too short",
     "EMAIL_INVALID": "Invalid email",
     "MOBILE_NUMBER_INVALID": "Invalid mobile number",
     "EMAIL_IN_USE": "Email is already in use",
@@ -86,6 +85,34 @@
     "CREATED": "User created",
     "SUCCESS": "Success",
     "INFO": "Information"
+  },
+
+  "WELCOME_NEW_USER": {
+    "TITLE": "Welcome!",
+    "DETAILS": "Details: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Show Notifications",
+  "SIDEBAR": {
+    "TITLE": "Notifications",
+    "MARK_AS_READ": "Mark as Read"
+  },
+  "USER_UPDATED": {
+    "TITLE": "Update Successful",
+    "DETAILS": "Old Details: {{oldDetails}}<br>Updated Details: {{updatedDetails}}"
+  },
+  "USER_DEACTIVATED_MANUAL": {
+    "TITLE": "Account Deactivation Notice",
+    "DETAILS": "Details: {{details}}"
+
+  },
+  "USER_DEACTIVATED_INCORRECT_PASSWORD": {
+    "TITLE": "Account Locked Due to Incorrect Password Attempts",
+    "DETAILS": "Details: {{details}}"
+
+  },
+  "DONATION_APPROVED": {
+    "TITLE": "Donation Approved",
+    "DETAILS": "Amount: {{details}}"
   }
 }
 

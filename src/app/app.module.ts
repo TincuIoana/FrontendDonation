@@ -12,11 +12,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {AppComponent} from './app.component';
-import {TabMenuComponent} from './tab-menu/tab-menu.component';
 import {LoginComponent} from './login/login/login.component';
-import {AppRoutingModule} from './app-routing.module';
-import {Interceptor} from './util/interceptors/interceptor';
-import {CookieService} from 'ngx-cookie-service';
 
 import {RolesDialogRoutingModule} from './roles-dialog/roles-dialog-routing.module';
 import {PanelModule} from "primeng/panel";
@@ -26,6 +22,8 @@ import {ButtonModule} from "primeng/button";
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ListboxModule} from "primeng/listbox";
 import {ChipsModule} from "primeng/chips";
+
+
 import {SigninComponent} from './signin/signin/signin.component';
 import {CampaignComponent} from './campaign-management/campaign/campaign.component';
 import {TableModule} from "primeng/table";
@@ -42,10 +40,21 @@ import {CheckboxModule} from "primeng/checkbox";
 import {MultiSelectModule} from "primeng/multiselect";
 import {RouterModule} from "@angular/router";
 import {ToolbarModule} from "primeng/toolbar";
-import {MessageService} from "primeng/api";
+import {TabMenuComponent} from "./tab-menu/tab-menu.component";
 import {NotificationComponent} from "./notificationSystem/notification/notification.component";
+import {AppRoutingModule} from "./app-routing.module";
 import {SidebarModule} from "primeng/sidebar";
 import {CardModule} from "primeng/card";
+import {CookieService} from "ngx-cookie-service";
+import {Interceptor} from "./util/interceptors/interceptor";
+import {MessageService} from "primeng/api";
+import {LogoutComponent} from "./logout/logout/logout.component";
+import {ChangeComponent} from "./change-password/change/change.component";
+import {NgxCaptchaModule} from "ngx-captcha";
+
+import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
+import {NotificationGuard} from "./util/notification-guard";
+import {Role_guards} from "./util/role_guards";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -56,17 +65,20 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
+    NotificationComponent,
     SigninComponent,
     CampaignComponent,
-    NotificationComponent
+    LogoutComponent,
+    ChangeComponent,
+
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
 
 
     // PrimeNG modules
@@ -89,27 +101,28 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     RouterModule.forRoot([]),
     ChipsModule,
-    TableModule,
-    FileUploadModule,
-    ToastModule,
-    DialogModule,
-    RadioButtonModule,
-    PaginatorModule,
-    ConfirmDialogModule,
-    RatingModule,
-    RippleModule,
-    InputTextareaModule,
-    CheckboxModule,
-    MultiSelectModule,
-    ToolbarModule,
-    SidebarModule,
-    CardModule
-  ],
-  providers: [
-    CookieService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-    MessageService,
-  ],
-  bootstrap: [AppComponent],
+
+        ToastModule,
+        SidebarModule,
+        CardModule,
+
+
+        TableModule,
+        FileUploadModule,
+        ToastModule,
+        DialogModule,
+        RadioButtonModule,
+        PaginatorModule,
+        ConfirmDialogModule,
+        RatingModule,
+        RippleModule,
+        InputTextareaModule,
+        ToolbarModule,
+        CheckboxModule,
+        MultiSelectModule,
+        NgxCaptchaModule
+    ],
+providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

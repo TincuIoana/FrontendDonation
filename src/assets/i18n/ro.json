@@ -10,10 +10,10 @@
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
     "ROLES": "Editare Roluri",
-    "LOGIN" : "Autentificare",
+    "LOGIN": "Autentificare",
     "PASSWORD": "Parola",
     "LOGINACC": "Logheazate in contul tau",
-    "SIGNIN":"Inresgistrare"
+    "SIGNIN": "Inresgistrare"
   },
 
   "ROLES": {
@@ -61,7 +61,7 @@
     "USERNAME": "Nume Utilizator",
     "ROLES": "Roluri",
     "CAMPAIGNS": "Campanii",
-    "NO_USERS_FOUND" : "Nici un utilizator gasit.",
+    "NO_USERS_FOUND": "Nici un utilizator gasit.",
     "SEARCH_KEYWORD": "Cuvant cheie",
     "CURRENT_PAGE_REPORT_TEMPLATE": "Afisand {first} pana la {last} din {totalRecords} inregistrari",
     "NEW": "Nou",
@@ -77,7 +77,6 @@
     "PASSWORD": "Parola",
     "ACTIVATED": "Activat",
     "DEACTIVATED": "Dezactivat",
-    "PASSWORD_SHORT": "Parola este prea scurta",
     "EMAIL_INVALID": "Email invalid",
     "MOBILE_NUMBER_INVALID": "Numar mobil invalid",
     "EMAIL_IN_USE": "Email-ul este deja folosit",
@@ -86,5 +85,31 @@
     "CREATED": "Utilizator creat",
     "SUCCESS": "Succes",
     "INFO": "Informatie"
+  },
+
+  "WELCOME_NEW_USER": {
+    "TITLE": "Bun venit!",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Afișează Notificările",
+  "SIDEBAR": {
+    "TITLE": "Notificări",
+    "MARK_AS_READ": "Marchează ca citit"
+  },
+  "USER_UPDATED": {
+    "TITLE": "Actualizare reușită",
+    "DETAILS": "Detalii vechi: {{oldDetails}}<br>Detalii actualizate: {{updatedDetails}}"
+  },
+  "USER_DEACTIVATED_MANUAL": {
+    "TITLE": "Notificare de dezactivare a contului",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "USER_DEACTIVATED_INCORRECT_PASSWORD": {
+    "TITLE": "Cont blocat din cauza mai multor introduceri greșite ale parolei",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "DONATION_APPROVED": {
+    "TITLE": "Donație aprobată",
+    "DETAILS": "Sumă: {{details}}"
   }
 }

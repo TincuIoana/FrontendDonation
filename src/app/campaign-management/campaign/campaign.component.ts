@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Campaign} from "../campaign";
 import {CampaignService} from "../campaign.service";
 import {AbstractControl, ValidationErrors} from "@angular/forms";
+import {AuthService} from "../../auth/auth.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-campaign',
@@ -21,6 +23,7 @@ export class CampaignComponent implements OnInit {
   selectedCampaign: any;
 
   errorMessage:any
+  campaignErrors: { [campaignId: string]: string } = {};
 
 
 
@@ -41,7 +44,7 @@ export class CampaignComponent implements OnInit {
   submitted: boolean;
   Delete: any;
 
-  constructor(private campaignService: CampaignService) { }
+  constructor(private campaignService: CampaignService,private messageService: MessageService) { }
 
   ngOnInit() {
     console.log("start campaign manager")
@@ -80,7 +83,21 @@ export class CampaignComponent implements OnInit {
       const newCampaign = new Campaign(this.removeExcessiveWhitespace(this.campaign.name), this.removeExcessiveWhitespace(this.campaign.purpose))
 
 
-          this.campaignService.saveCampaignToDB(newCampaign);
+          this.campaignService.saveCampaignToDB(newCampaign).subscribe(
+            response => {
+              console.log('added successfully:', response);
+              window.location.reload()
+
+            },
+            error => {
+
+              console.error('Error adding campaign:', error.error);
+              const errorMessage = error.error.text;
+              this.showError(errorMessage.toString());
+
+
+            }
+          )
 
 
       this.campaignList = [...this.campaignList];
@@ -105,11 +122,25 @@ export class CampaignComponent implements OnInit {
     console.log(campaign.id)
     console.log(this.campaign.name)
     console.log(this.campaign.purpose)
-    this.campaignService.updateCampaignFromDB(campaign.id.toString(),this.campaign);
+
+    this.campaignService.updateCampaignFromDB(campaign.id.toString(),this.campaign).subscribe(
+      response => {
+        console.log('edited successfully:', response);
+        window.location.reload()
+
+      },
+      error => {
+
+        console.error('Error editing campaign:', error.error);
+        const errorMessage = error.error.text;
+        this.showError(errorMessage.toString());
+
+      }
+    )
+
     this.campaignDialog1 = false;
 
 
-    window.location.reload()
 
   }
 
@@ -117,8 +148,18 @@ export class CampaignComponent implements OnInit {
   deleteCampaign(campaign: any) {
     const id = campaign.id;
     console.log(id)
-    this.campaignService.deleteFromDB(id.toString())
-    window.location.reload()
+    this.campaignService.deleteFromDB(id.toString()).subscribe(
+      response => {
+        console.log('Deleted successfully:', response);
+        this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
+        window.location.reload()
+
+      },
+      error => {
+        this.campaignErrors[campaign.id] = error.error;
+        console.error('Error deleting campaign:', error.error);
+      }
+    );
 
 
   }
@@ -147,4 +188,21 @@ export class CampaignComponent implements OnInit {
   }
 
 
+  private showError(message:string) {
+    this.messageService.add({
+      severity: 'error', // Severity level for styling (success, info, warn, error)
+      summary: 'Error',
+      detail: message,
+      life: 5000 // Duration in milliseconds
+    });
+
+
+  }
+
+  checkIfCenzor():boolean{ //check if user is cenzor for restricted visualization
+    const storedRoles   = localStorage.getItem("roles")
+    const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) :[]
+    return userRoles.includes("ROLE_CEN") && userRoles.length === 1 || (userRoles.includes("ROLE_REP") && userRoles.includes("ROLE_CEN") && userRoles.length === 2);
+
+  }
 }

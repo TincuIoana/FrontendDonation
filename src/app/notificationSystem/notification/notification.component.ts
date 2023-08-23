@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from "../notification-service.service";
 import {MessageService} from "primeng/api";
 import {NotificationDTO} from "../NotificationDTO";
+import {LoginService} from "../../login/login.service";
 
 @Component({
   selector: 'app-notification',
@@ -13,44 +14,54 @@ export class NotificationComponent implements OnInit {
   inbox: NotificationDTO[] = []
   displaySidebar: boolean = false
 
-  constructor(private notificationService: NotificationService, private messageService: MessageService) {
+  constructor(private notificationService: NotificationService,
+              private messageService: MessageService,
+              private loginService: LoginService) {
   }
 
   ngOnInit(): void {
-    const userId = 2
-    this.notificationService.pollForNotifications(userId).subscribe({
-      next: (data) => {
-        this.notifications = data
-        this.notifications.forEach((notification: NotificationDTO) => this.showNotification(notification))
-      },
-      error: (error) => console.log('Error fetching notifications:', error)
+    this.loginService.isLoggedIn.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+
+        const userId = +localStorage.getItem('id')!
+        this.notificationService.pollForNotifications(userId).subscribe({
+          next: (data) => {
+            this.notifications = data
+            this.notifications.forEach((notification: NotificationDTO) => this.showNotification(notification))
+          },
+          error: (error) => console.log('Error fetching notifications:', error)
+        })
+
+
+        this.notificationService.pollForAllNotifications(userId).subscribe({
+          next: (data) => this.inbox = data,
+          error: (error) => console.log('Error fetching all notifications:', error)
+        });
+      } else {
+        this.notificationService.stopPollingForNotificationsMethod();
+        this.notificationService.stopPollingForAllNotificationsMethod()
+      }
     })
-
-
-    this.notificationService.pollForAllNotifications(userId).subscribe({
-      next: (data) => this.inbox = data,
-      error: (error) => console.log('Error fetching all notifications:', error)
-    });
   }
 
   showNotification(notification: NotificationDTO): void {
     this.messageService.add({
       severity: 'info',
-      summary: 'New Notification',
-      detail: `Type: ${notification.type}. Parameters: ${notification.parameters.join(', ')}`,
-      sticky: true, // Toast will stay on screen until user action
+      summary: `${notification.type}`,
+      detail: `Details: ${notification.parameters.join(', ')}`,
+      life: 3000, // Toast will stay on screen until user action
       closable: true,
       data: {id: notification.id}  // Store the notification ID here
     })
   }
 
-  handleToastClose(event: any): void {
-    const notificationId = event.message.data.id
-    this.notificationService.markNotificationAsRead(notificationId).subscribe({
-      next: () => console.log('Notification marked as read'),
-      error: (error) => console.log('Error marking notification as read:', error)
-    })
-  }
+  // handleToastClose(event: any): void {
+  //   const notificationId = event.message.data.id
+  //   this.notificationService.markNotificationAsRead(notificationId).subscribe({
+  //     next: () => console.log('Notification marked as read'),
+  //     error: (error) => console.log('Error marking notification as read:', error)
+  //   })
+  // }
 
   toggleSidebar(): void {
     this.messageService.clear()

@@ -18,7 +18,7 @@ export class DonorComponent implements OnInit {
 
 
 
-  // @ts-ignore
+    // @ts-ignore
   donorList : Donor[];
 
   // @ts-ignore
@@ -123,4 +123,6 @@ export class DonorComponent implements OnInit {
     this.donorDialog1 = true;
 
   }
+
+
 }
