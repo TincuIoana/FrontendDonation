@@ -46,8 +46,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import {SidebarModule} from "primeng/sidebar";
 import {CardModule} from "primeng/card";
 import {CookieService} from "ngx-cookie-service";
-import {Interceptor} from "./util/interceptors/interceptor";
 import {MessageService} from "primeng/api";
+import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
+import {NotificationGuard} from "./util/notification-guard";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -110,9 +111,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputTextareaModule,
     ToolbarModule,
     CheckboxModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ToolbarModule
   ],
-  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService],
+  providers: [CookieService, MessageService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, NotificationGuard],
   bootstrap: [AppComponent],
+
 })
-export class AppModule {}
+export class AppModule {
+}

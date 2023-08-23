@@ -3,23 +3,20 @@
     "TITLE": "Salut, Lume!",
     "SELECT": "Selectează Limba"
   },
-
   "MENU": {
     "USERADMINISTRATION": "Administrare Utilizatori",
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
     "ROLES": "Editare Roluri",
-    "LOGIN" : "Autentificare",
+    "LOGIN": "Autentificare",
     "PASSWORD": "Parola",
     "LOGINACC": "Logheazate in contul tau",
-    "SIGNIN":"Inresgistrare"
+    "SIGNIN": "Inresgistrare"
   },
-
   "ROLES": {
     "NAME": "Nume"
   },
-
   "PERMISSIONS": {
     "GET": "Drepturi",
     "ADD": "Adaugare",
@@ -27,7 +24,6 @@
     "SELECT": "Alege un drept",
     "AVAILABLE": "Drepturi disponibile"
   },
-
   "CAMPAIGN": {
     "NAME": "Nume",
     "PURPOSE": "Scop",
@@ -39,7 +35,6 @@
     "CANCEL": "Anuleaza",
     "DETAILS": "Detaliile campaniilor",
     "SEARCH": "Cauta"
-
   },
   "DONOR": {
     "DONOR": "Donator",
@@ -51,7 +46,6 @@
     "DONORS": "donatori",
     "DETAILS": "Detaliile donatorului"
   },
-
   "USER": {
     "USER": "Utilizator",
     "FIRST_NAME": "Prenume",
@@ -61,7 +55,7 @@
     "USERNAME": "Nume Utilizator",
     "ROLES": "Roluri",
     "CAMPAIGNS": "Campanii",
-    "NO_USERS_FOUND" : "Nici un utilizator gasit.",
+    "NO_USERS_FOUND": "Nici un utilizator gasit.",
     "SEARCH_KEYWORD": "Cuvant cheie",
     "CURRENT_PAGE_REPORT_TEMPLATE": "Afisand {first} pana la {last} din {totalRecords} inregistrari",
     "NEW": "Utilizator nou",
@@ -75,5 +69,32 @@
     "ACTIVATED": "Activat",
     "DEACTIVATED": "Dezactivat",
     "PASSWORD_SHORT": "Parola prea scurta"
+  },
+  "WELCOME_NEW_USER": {
+    "TITLE": "Bun venit!",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Afișează Notificările",
+  "SIDEBAR": {
+    "TITLE": "Notificări",
+    "MARK_AS_READ": "Marchează ca citit"
+  },
+  "USER_UPDATED": {
+    "TITLE": "Actualizare reușită",
+    "DETAILS": "Detalii vechi: {{oldDetails}}<br>Detalii actualizate: {{updatedDetails}}"
+  },
+  "USER_DEACTIVATED_MANUAL": {
+    "TITLE": "Notificare de dezactivare a contului",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "USER_DEACTIVATED_INCORRECT_PASSWORD": {
+    "TITLE": "Cont blocat din cauza mai multor introduceri greșite ale parolei",
+    "DETAILS": "Detalii: {{details}}"
+  },
+  "DONATION_APPROVED": {
+    "TITLE": "Donație aprobată",
+    "DETAILS": "Sumă: {{details}}"
   }
 }
+
+
