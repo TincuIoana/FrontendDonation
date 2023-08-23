@@ -1,8 +1,6 @@
 <div class="header-container">
-
   <div>
     <app-tab-menu></app-tab-menu>
-
     <p-dropdown
       [options]="languages"
       [(ngModel)]="selectedLanguage"
@@ -15,4 +13,6 @@
     </div>
   </div>
 </div>
+<p-toast></p-toast>
+
 <router-outlet></router-outlet>

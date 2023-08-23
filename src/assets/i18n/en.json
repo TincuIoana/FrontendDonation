@@ -49,7 +49,7 @@
     "MAIDENN": "Maiden name",
     "MANAGE": "Manage donors",
     "DONORS": "donors",
-    "DETAILS": "Donor detalis"
+    "DETAILS": "Donor details"
   },
 
   "USER": {
@@ -64,18 +64,28 @@
     "NO_USERS_FOUND": "No users found.",
     "SEARCH_KEYWORD": "Search keyword",
     "CURRENT_PAGE_REPORT_TEMPLATE": "Showing {first} to {last} of {totalRecords} entries",
-    "NEW": "New user",
-    "EDIT": "Edit user",
+    "NEW": "New",
+    "EDIT_USER": "Edit user",
+    "EDIT": "Edit",
     "FIRST_NAME_REQUIRED": "First name is required",
     "LAST_NAME_REQUIRED": "Last name is required",
     "EMAIL_REQUIRED": "Email is required",
+    "MOBILE_NUMBER_REQUIRED":  "Mobile number is required",
+    "ROLES_REQUIRED": "At least a role must be selected",
     "SELECT_A_ROLE": "Select a role",
     "SELECT_A_CAMPAIGN": "Select a campaign",
     "PASSWORD": "Password",
     "ACTIVATED": "Activated",
     "DEACTIVATED": "Deactivated",
-    "PASSWORD_SHORT": "Parola prea scurta"
+    "PASSWORD_SHORT": "Password is too short",
+    "EMAIL_INVALID": "Invalid email",
+    "MOBILE_NUMBER_INVALID": "Invalid mobile number",
+    "EMAIL_IN_USE": "Email is already in use",
+    "MOBILE_NUMBER_IN_USE": "Mobile number is already in use",
+    "MODIFIED": "User modified",
+    "CREATED": "User created",
+    "SUCCESS": "Success",
+    "INFO": "Information"
   }
-
 }
 

@@ -2,11 +2,7 @@
   width: 18%;
 }
 :host >>> .p-datatable .p-datatable-thead  tr th {
-  padding: 0.1rem 0.1rem;
-}
-
-:host >>> .p-column-filter-row .p-column-filter-menu-button, .p-column-filter-row .p-column-filter-clear-button {
-  display: none;
+  padding: 0.1rem 0.1rem 0.1rem 0.5rem;
 }
 
 :host >>> p-data {
@@ -22,3 +18,9 @@
   margin: auto;
   border: 0.01em solid grey;
 }
+
+#search-button {
+  display: flex;
+  align-items: center;
+}
+

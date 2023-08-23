@@ -36,17 +36,12 @@ export class UserService {
   //     tap(user => this.user$.next(user))
   //   )
   // }
-  updateUser(user:User):Observable<User> {
+  updateUser(user:User):Observable<any> {
     return this.http.put<User>(`${this.putUrl}/${user.id}`, user);
   }
 
   createUser(user:User):Observable<any> {
-    return this.http.post<User>(this.postUrl, user).pipe(
-      catchError((error) => {
-        return throwError(() => error);
-        }
-      )
-    )
+    return this.http.post<User>(this.postUrl, user);
   }
 
   constructor(
