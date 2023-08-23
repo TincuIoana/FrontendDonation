@@ -5,6 +5,7 @@ import {LoginService} from "../login.service";
 import {Router} from "@angular/router";
 
 import {AuthService} from "../../auth/auth.service";
+import {PermissionEnum} from "../../roles-dialog/permission-enum";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit{
   loginForm = this.fb.group({
     username : ['', Validators.required],
     password : ['', Validators.required],
-    recaptcha: ['', Validators.required]
+    // recaptcha: ['', Validators.required]
   });
   constructor(private fb : FormBuilder, private loginService: LoginService, private router: Router, private authService:AuthService) { }
 
@@ -46,8 +47,21 @@ export class LoginComponent implements OnInit{
       this.loginService.setLoginResponse(loginResponse)
       localStorage.setItem("token",<string>loginResponse.accessToken)
       localStorage.setItem("id",String(loginResponse.id))
-      localStorage.setItem("roles",JSON.stringify(loginResponse.roles))
 
+      localStorage.setItem("permissions",JSON.stringify(loginResponse.roles))
+        //@ts-ignore
+        // const permissions: PermissionEnum[] = [].concat(...loginResponse.roles.map(role => role.permissions));
+
+        // localStorage.setItem('permissions', JSON.stringify(permissions));
+
+        // const permissions: PermissionEnum[] = [];
+
+        // // @ts-ignore
+        // loginResponse.roles.forEach(role => {
+        //   permissions.push(...role.permissions);
+        // });
+        //
+        // localStorage.setItem('permissions', JSON.stringify(permissions));
 
       if(loginResponse.firstLogin) {
 

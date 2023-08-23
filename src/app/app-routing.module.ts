@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./user-administration/user-administration.module').then(m => m.UserAdministrationModule),
     canActivate: [Role_guards],
     data:{
-      roles:['ROLE_ADM']
+      permissions:['USER_MANAGEMENT']
     }
   },
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./donor-management/donor-management.module').then(m => m.DonorManagementModule),
     canActivate: [Role_guards],
     data:{
-      roles:['ROLE_ADM','ROLE_MGN','ROLE_CEN','ROLE_REP']
+      permissions:['BENEF_MANAGEMENT']
     }
   },
   {
@@ -42,7 +42,7 @@ const routes: Routes = [
     loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule),
     canActivate: [Role_guards],
     data:{
-      roles:['ROLE_ADM','ROLE_MGN','ROLE_CEN','ROLE_REP']
+      permissions:['CAMP_MANAGEMENT']
     }
   },
   {

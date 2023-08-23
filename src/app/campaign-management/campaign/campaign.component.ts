@@ -198,4 +198,11 @@ export class CampaignComponent implements OnInit {
 
 
   }
+
+  checkIfCenzor():boolean{ //check if user is cenzor for restricted visualization
+    const storedRoles   = localStorage.getItem("roles")
+    const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) :[]
+    return userRoles.includes("ROLE_CEN") && userRoles.length === 1 || (userRoles.includes("ROLE_REP") && userRoles.includes("ROLE_CEN") && userRoles.length === 2);
+
+  }
 }

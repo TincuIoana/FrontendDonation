@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   getUserRoles(): Observable<string[]>{
-    const storedRoles   = localStorage.getItem("roles")
+    const storedRoles   = localStorage.getItem("permissions")
     const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) : [];
     return of(userRoles)
   }

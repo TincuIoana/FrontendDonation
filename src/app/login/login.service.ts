@@ -28,7 +28,7 @@ export class LoginService {
 
   }
   setLoginResponse(loginResponse: LoginResponse) {
-    this.loginResponseSubject .next(loginResponse);
+    this.loginResponseSubject.next(loginResponse);
   }
 
   // setLoggedIn(value:boolean){
@@ -38,4 +38,8 @@ export class LoginService {
   // isLoggedIn(){
   //   return this.loggedIn;
   // }
+
+  getLoginResponse(){
+    return this.loginResponse$
+  }
 }

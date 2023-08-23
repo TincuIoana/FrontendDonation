@@ -1,5 +1,6 @@
 import {Campaign} from "../campaign-management/campaign";
 import {Role} from "../roles-dialog/role";
+import {PermissionEnum} from "../roles-dialog/permission-enum";
 
 export class LoginResponse {
   public accessToken?: string
@@ -17,6 +18,7 @@ export class LoginResponse {
     public active?: boolean,
     public retryCount?: number,
     public roles?:Role[],
+    public permission?:PermissionEnum,
     public campaigns?: Campaign[],
     //
     // public roles:string[]
