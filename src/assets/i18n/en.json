@@ -3,7 +3,6 @@
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"
   },
-
   "MENU": {
     "USERADMINISTRATION": "User Administration",
     "CAMPAIGNMANAGEMENT": "Campaign Management",
@@ -12,14 +11,12 @@
     "LOGIN": "Login",
     "PASSWORD": "Password",
     "LOGINACC": "Log into your account",
-    "SIGNIN":"Sign up",
+    "SIGNIN": "Sign up",
     "ROLES": "Edit Roles"
   },
-
   "ROLES": {
     "NAME": "Name"
   },
-
   "PERMISSIONS": {
     "GET": "Permissions",
     "ADD": "Add",
@@ -27,7 +24,6 @@
     "SELECT": "Select a permission",
     "AVAILABLE": "Permissions available"
   },
-
   "CAMPAIGN": {
     "NAME": "Name",
     "PURPOSE": "Purpose",
@@ -40,7 +36,6 @@
     "DETAILS": "Campaign Details",
     "SEARCH": "Search"
   },
-
   "DONOR": {
     "DONOR": "Donor",
     "FIRSTN": "First name",
@@ -51,7 +46,6 @@
     "DONORS": "donors",
     "DETAILS": "Donor detalis"
   },
-
   "USER": {
     "USER": "User",
     "FIRST_NAME": "First Name",
@@ -75,7 +69,33 @@
     "ACTIVATED": "Activated",
     "DEACTIVATED": "Deactivated",
     "PASSWORD_SHORT": "Parola prea scurta"
-  }
+  },
+  "WELCOME_NEW_USER": {
+    "TITLE": "Welcome!",
+    "DETAILS": "Details: {{details}}"
+  },
+  "BUTTON_SHOW_NOTIFICATIONS": "Show Notifications",
+  "SIDEBAR": {
+    "TITLE": "Notifications",
+    "MARK_AS_READ": "Mark as Read"
+  },
+  "USER_UPDATED": {
+    "TITLE": "Update Successful",
+    "DETAILS": "Old Details: {{oldDetails}}<br>Updated Details: {{updatedDetails}}"
+  },
+  "USER_DEACTIVATED_MANUAL": {
+    "TITLE": "Account Deactivation Notice",
+    "DETAILS": "Details: {{details}}"
 
+  },
+  "USER_DEACTIVATED_INCORRECT_PASSWORD": {
+    "TITLE": "Account Locked Due to Incorrect Password Attempts",
+    "DETAILS": "Details: {{details}}"
+
+  },
+  "DONATION_APPROVED": {
+    "TITLE": "Donation Approved",
+    "DETAILS": "Amount: {{details}}"
+  }
 }
 

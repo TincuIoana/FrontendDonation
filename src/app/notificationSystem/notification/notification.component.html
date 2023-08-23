@@ -1,20 +1,36 @@
-<p-toast position="top-right" (onClose)="handleToastClose($event)"></p-toast>
+<p-toast position="top-right"></p-toast>
+
 <!-- Button to toggle the sidebar -->
-<button (click)="toggleSidebar()">Show Notifications</button>
+<p-button label="{{'BUTTON_SHOW_NOTIFICATIONS'|translate}}" class="custom-font" (click)="toggleSidebar()"></p-button>
 
 <!-- Sidebar -->
 <p-sidebar [(visible)]="displaySidebar" position="right" styleClass="notification-sidebar">
-  <h3>Notifications</h3>
+
+  <!-- Using p-toolbar to replace h3 -->
+  <p-toolbar>
+    <div>{{'SIDEBAR.TITLE' | translate}}</div>
+  </p-toolbar>
+
   <div *ngFor="let notification of inbox">
     <!-- Card for each notification -->
     <p-card [styleClass]="notification.isRead ? 'normal-text' : 'bold-text'">
-      <p-header>
-        {{ notification.type }}
+      <p-header class="card-header-alt">
+        {{ notification.type + '.TITLE' | translate }}
       </p-header>
-      <p>{{ notification.parameters.join(', ') }}</p>
+      <ng-container *ngIf="notification.type === 'USER_UPDATED'">
+        <p [innerHTML]="notification.type + '.DETAILS' |
+                translate: {
+                    oldDetails: (notification.parameters | slice:0:5).join(', '),
+                    updatedDetails: (notification.parameters | slice:5:10).join(', ')
+                }">
+        </p>
+      </ng-container>
+      <ng-container *ngIf="notification.type !== 'USER_UPDATED'">
+        <p>{{ notification.type + '.DETAILS' | translate:{details: notification.parameters.join(', ')} }}</p>
+      </ng-container>
       <!-- Button to mark the notification as read -->
-      <button *ngIf="!notification.isRead" (click)="markAsRead(notification)">Mark as Read</button>
-
+      <p-button *ngIf="!notification.isRead" label="{{'SIDEBAR.MARK_AS_READ' | translate}}"
+                (click)="markAsRead(notification)"></p-button>
     </p-card>
   </div>
 </p-sidebar>

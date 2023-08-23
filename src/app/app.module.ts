@@ -40,19 +40,21 @@ import {CheckboxModule} from "primeng/checkbox";
 import {MultiSelectModule} from "primeng/multiselect";
 import {RouterModule} from "@angular/router";
 import {ToolbarModule} from "primeng/toolbar";
-import {SidebarModule} from "primeng/sidebar";
-import {CardModule} from "primeng/card";
 import {TabMenuComponent} from "./tab-menu/tab-menu.component";
 import {NotificationComponent} from "./notificationSystem/notification/notification.component";
+import {AppRoutingModule} from "./app-routing.module";
+import {SidebarModule} from "primeng/sidebar";
+import {CardModule} from "primeng/card";
 import {CookieService} from "ngx-cookie-service";
 import {Interceptor} from "./util/interceptors/interceptor";
 import {MessageService} from "primeng/api";
-import {AppRoutingModule} from "./app-routing.module";
-import { LogoutComponent } from './logout/logout/logout.component';
-import {Role_guards} from "./util/role_guards";
-import { ChangeComponent } from './change-password/change/change.component';
+import {LogoutComponent} from "./logout/logout/logout.component";
+import {ChangeComponent} from "./change-password/change/change.component";
 import {NgxCaptchaModule} from "ngx-captcha";
 
+import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
+import {NotificationGuard} from "./util/notification-guard";
+import {Role_guards} from "./util/role_guards";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -80,26 +82,26 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppRoutingModule,
 
 
-        // PrimeNG modules
-        DropdownModule,
-        ButtonModule,
-        DynamicDialogModule,
-        ListboxModule,
+    // PrimeNG modules
+    DropdownModule,
+    ButtonModule,
+    DynamicDialogModule,
+    ListboxModule,
 
-        // ngx-translate setup
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
-            },
-        }),
-        RolesDialogRoutingModule,
-        PanelModule,
-        TabMenuModule,
+    // ngx-translate setup
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    RolesDialogRoutingModule,
+    PanelModule,
+    TabMenuModule,
 
-        RouterModule.forRoot([]),
-        ChipsModule,
+    RouterModule.forRoot([]),
+    ChipsModule,
 
         ToastModule,
         SidebarModule,

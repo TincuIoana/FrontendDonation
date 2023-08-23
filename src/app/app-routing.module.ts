@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {Role_guards} from "./util/role_guards";
+import {NotificationComponent} from "./notificationSystem/notification/notification.component";
+import {NotificationGuard} from "./util/notification-guard";
 
 // Lazy loading the modules. If you don't want lazy loading, import the components directly.
 const routes: Routes = [
@@ -54,6 +56,10 @@ const routes: Routes = [
     loadChildren: () => import('./change-password/change.module').then(m=> m.ChangeModule)
   },
 
+  {
+    path: 'notifications',
+    component: NotificationComponent,
+  }
 ];
 
 @NgModule({
