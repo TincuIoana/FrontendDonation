@@ -115,7 +115,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarModule
   ],
   providers: [CookieService, MessageService,
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, NotificationGuard],
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent],
 
 })

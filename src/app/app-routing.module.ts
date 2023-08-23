@@ -33,11 +33,6 @@ const routes: Routes = [
   {
     path: 'campaign',
     loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule)
-  },
-  {
-    path: '',
-    component: NotificationComponent,
-    canActivate: [NotificationGuard]
   }
 ];
 
