@@ -26,24 +26,17 @@ export class CampaignService {
     return this.campaignList$.asObservable();
   }
 
-  saveCampaignToDB(campaignRequest: Campaign): void {
-    this.http.post(this.url+'/'+this.userID, campaignRequest).subscribe(
-      response => {
-        console.log('Added successfully:', response);
-      },
-      error => {
-      throw new Error(error.error.message)
-      }
-    );
+  saveCampaignToDB(campaignRequest: Campaign): Observable<any> {
+    return this.http.post(this.url+'/'+this.userID, campaignRequest);
   }
 
 
-  deleteFromDB(id: string):void{
-    this.http.delete(this.url+'/'+id+"/" + this.userID).subscribe(log=>console.log("deleted successfully"))
+  deleteFromDB(id: string):Observable<any>{
+    return  this.http.delete(this.url+'/'+id+"/" + this.userID)
   }
 
-  updateCampaignFromDB(id: string, campaign: Campaign) {
-    this.http.put(this.url+"/"+id+"/" + this.userID,campaign).subscribe(log=>console.log("updated successfully"))
+  updateCampaignFromDB(id: string, campaign: Campaign) :Observable<any>{
+    return this.http.put(this.url+"/"+id+"/" + this.userID,campaign)
   }
 
 

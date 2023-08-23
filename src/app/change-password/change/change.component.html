@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="changeForm">
+  <p-panel header="Login in your Account">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          New Password:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="password" formControlName="newPassword" class="form-control" name="newPassword">
+        </div>
+        <div class="ui-grid-col-4">
+          <div [hidden]="changeForm.controls['newPassword'].valid || !changeForm.controls['newPassword'].dirty" class="alert alert-danger">
+           New Password is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Repeat New Password:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="password" formControlName="repeatNewPassword" class="form-control" name="repeatNewPassword">
+        </div>
+        <div class="ui-grid-col-4">
+          <div [hidden]="changeForm.controls['repeatNewPassword'].valid || !changeForm.controls['repeatNewPassword'].dirty" class="alert alert-danger">
+            Password is required
+          </div>
+          <small style="color: red" class="error-message" *ngIf="eroare.length>0">{{eroare}}</small>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div><br>
+        <div class="ui-grid-col-6">
+          <button pButton type="submit" label="Submit" [disabled]="!changeForm.valid"></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+    </div>
+  </p-panel>
+</form>
+
