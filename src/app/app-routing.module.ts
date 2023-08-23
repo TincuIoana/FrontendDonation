@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {NotificationComponent} from "./notificationSystem/notification/notification.component";
+import {NotificationGuard} from "./util/notification-guard";
 
 // Lazy loading the modules. If you don't want lazy loading, import the components directly.
 const routes: Routes = [
@@ -31,6 +33,11 @@ const routes: Routes = [
   {
     path: 'campaign',
     loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule)
+  },
+  {
+    path: 'notifications',
+    component: NotificationComponent,
+    canActivate: [NotificationGuard]
   }
 ];
 
