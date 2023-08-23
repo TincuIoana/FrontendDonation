@@ -46,10 +46,15 @@ import {AppRoutingModule} from "./app-routing.module";
 import {SidebarModule} from "primeng/sidebar";
 import {CardModule} from "primeng/card";
 import {CookieService} from "ngx-cookie-service";
+import {Interceptor} from "./util/interceptors/interceptor";
 import {MessageService} from "primeng/api";
+import {LogoutComponent} from "./logout/logout/logout.component";
+import {ChangeComponent} from "./change-password/change/change.component";
+import {NgxCaptchaModule} from "ngx-captcha";
+
 import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
 import {NotificationGuard} from "./util/notification-guard";
-
+import {Role_guards} from "./util/role_guards";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -64,15 +69,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationComponent,
     SigninComponent,
     CampaignComponent,
+    LogoutComponent,
+    ChangeComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
 
 
     // PrimeNG modules
@@ -96,28 +103,27 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule.forRoot([]),
     ChipsModule,
 
-    ToastModule,
-    SidebarModule,
-    CardModule,
-    TableModule,
-    FileUploadModule,
-    ToastModule,
-    DialogModule,
-    RadioButtonModule,
-    PaginatorModule,
-    ConfirmDialogModule,
-    RatingModule,
-    RippleModule,
-    InputTextareaModule,
-    ToolbarModule,
-    CheckboxModule,
-    MultiSelectModule,
-    ToolbarModule
-  ],
-  providers: [CookieService, MessageService,
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, NotificationGuard],
-  bootstrap: [AppComponent],
+        ToastModule,
+        SidebarModule,
+        CardModule,
 
+
+        TableModule,
+        FileUploadModule,
+        ToastModule,
+        DialogModule,
+        RadioButtonModule,
+        PaginatorModule,
+        ConfirmDialogModule,
+        RatingModule,
+        RippleModule,
+        InputTextareaModule,
+        ToolbarModule,
+        CheckboxModule,
+        MultiSelectModule,
+        NgxCaptchaModule
+    ],
+providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

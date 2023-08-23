@@ -3,8 +3,8 @@
 <div class="card">
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
-      <button pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-      <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
+      <button *ngIf="!checkIfCenzor()" pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      <button *ngIf="!checkIfCenzor()"  pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
     </ng-template>
 
 
@@ -41,8 +41,10 @@
         <td>{{campaign.name}}</td>
         <td>{{campaign.purpose}}</td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
-          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
+          <button  *ngIf="!checkIfCenzor()"  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
+          <button  *ngIf="!checkIfCenzor()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
+          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>
+
         </td>
       </tr>
     </ng-template>
