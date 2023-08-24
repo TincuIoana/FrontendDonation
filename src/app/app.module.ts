@@ -72,8 +72,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CampaignComponent,
     LogoutComponent,
     ChangeComponent,
-
-    DonorComponent
   ],
   imports: [
     BrowserModule,
