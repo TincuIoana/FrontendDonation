@@ -8,6 +8,7 @@
     "USERADMINISTRATION": "User Administration",
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
+    "DONATIONMANAGEMENT": "Donation Management",
     "LOGOUT": "Logout",
     "LOGIN": "Login",
     "PASSWORD": "Password",
@@ -47,7 +48,19 @@
     "DETAILS": "Campaign Details",
     "SEARCH": "Search"
   },
-
+  "DONATION": {
+    "AMOUNT": "Amount",
+    "APPROVEDATE": "Approve Date",
+    "APPROVED": "Approved",
+    "CREATEDDATE": "Created Date",
+    "CURRENCY": "Currency",
+    "NOTES": "Notes",
+    "APPROVEDBY": "Approved By",
+    "CAMPAIGN": "Campaign",
+    "CREATEDBY": "Created By",
+    "DONOR": "Donor",
+    "MANAGE": "Manage Donations"
+  },
   "DONOR": {
     "DONOR": "Donor",
     "FIRSTN": "First name",

@@ -64,6 +64,7 @@ export class DonorComponent implements OnInit {
     this.submitted = true;
     if(this.donor.firstName && this.donor.lastName &&
       this.donor.firstName.replace(/\s/g, '').length>0 && this.donor.lastName.replace(/\s/g, '').length>0 ) {
+      // @ts-ignore
       const newDonor = new Donor(this.removeExcessiveWhitespace(this.donor.firstName),this.removeExcessiveWhitespace(this.donor.lastName),
         this.removeExcessiveWhitespace(this.donor.additionalName),this.removeExcessiveWhitespace(this.donor.maidenName))
 
@@ -110,6 +111,7 @@ export class DonorComponent implements OnInit {
       const id = donor.id;
       console.log(id);
 
+      // @ts-ignore
       this.donorService.deleteFromDB( id.toString())
     });
 
