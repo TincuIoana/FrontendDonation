@@ -2,30 +2,31 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
 import {Table} from "primeng/table";
+import {FilterService} from "primeng/api";
+import {Role} from "../../../roles-dialog/role";
+import {Campaign} from "../../../campaign-management/campaign";
 
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.css']
 })
-export class UserTableComponent implements OnInit{
+export class UserTableComponent implements OnInit {
   users!: User[];
-
-  // representatives!: Representative[];
-
-  statuses!: any[];
-
   loading: boolean = true;
 
-  activityValues: number[] = [0, 100];
-
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private filterService: FilterService) {
+  }
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => {
       this.users = users;
       this.loading = false;
     });
+
+    this.filterService.register('role-filter', (value: Role[], filter: string) => this.filterFunction(value, filter));
+    this.filterService.register('campaign-filter', (value: Campaign[], filter: string) => this.filterFunction(value, filter));
   }
 
   clear(table: Table) {
@@ -37,4 +38,14 @@ export class UserTableComponent implements OnInit{
   //
   //   })
   // }
+
+  filterFunction(array: Role[] | Campaign[], filter: string): boolean {
+    if (filter === undefined || filter == null || filter.length == 0) {
+      return true;
+    }
+    if (array === undefined || array === null) {
+      return false;
+    }
+    return array.some(value => value["name"].toLowerCase().includes(filter.toLowerCase()));
+  }
 }

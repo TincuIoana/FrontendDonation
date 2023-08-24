@@ -10,7 +10,6 @@ import {ChipsModule} from "primeng/chips";
 import {CheckboxModule} from "primeng/checkbox";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DialogService} from "primeng/dynamicdialog";
-import {MessageService} from "primeng/api";
 import {DialogModule} from "primeng/dialog";
 import {CampaignDialogComponent} from './components/campaign-dialog/campaign-dialog/campaign-dialog.component';
 import {RippleModule} from "primeng/ripple";
@@ -20,6 +19,7 @@ import {RoleDialogComponent} from "./components/role-dialog/role-dialog.componen
 import {MessagesModule} from "primeng/messages";
 import {UserEditDialogComponent} from "./components/user-edit-dialog/user-edit-dialog.component";
 import {ToggleButtonModule} from "primeng/togglebutton";
+import {PasswordModule} from "primeng/password";
 
 
 @NgModule({
@@ -47,12 +47,12 @@ import {ToggleButtonModule} from "primeng/togglebutton";
     ReactiveFormsModule,
     MessagesModule,
     ToggleButtonModule,
+    PasswordModule,
   ],
   exports: [
   ],
   providers: [
-    DialogService,
-    MessageService
+    DialogService
   ]
 })
 export class UserAdministrationModule { }
