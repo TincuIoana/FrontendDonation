@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import {Component, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
   languages!: any[];
   selectedLanguage: any;
+  username!: string;
+  id!: number;
+  permissions!: String[];
 
-  constructor(public translate: TranslateService) {}
+  constructor(public translate: TranslateService) {
+  }
 
   ngOnInit(): void {
     this.translate.addLangs(['en', 'ro']);
@@ -20,8 +24,8 @@ export class AppComponent implements OnInit {
     this.translate.use(browserLang.match(/en|ro/) ? browserLang : 'en');
 
     this.languages = [
-      { label: 'EN', code: 'en' },
-      { label: 'RO', code: 'ro' }
+      {label: 'EN', code: 'en'},
+      {label: 'RO', code: 'ro'}
     ];
 
     this.selectedLanguage = this.languages.find(lang => lang.code === this.translate.currentLang);

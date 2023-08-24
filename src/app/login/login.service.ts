@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "./LoginRequest";
 import {LoginResponse} from "./LoginResponse";
 import {BehaviorSubject, Observable} from "rxjs";
+import jwtDecode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class LoginService {
 
 
   constructor(private http: HttpClient) {
-    if (localStorage.getItem('token'))
+    if (sessionStorage.getItem("token"))
       this._isLoggedIn.next(true)
   }
 
@@ -44,5 +45,20 @@ export class LoginService {
 
   setLoggedIn(): void{
     this._isLoggedIn.next(true)
+  }
+
+  getLoggedUserId(){
+    // @ts-ignore
+    return jwtDecode(sessionStorage.getItem("token")!).id;
+  }
+
+  getLoggedUserUsername(){
+    // @ts-ignore
+    return jwtDecode(sessionStorage.getItem("token")!).username;
+  }
+
+  getLoggedUserPermissions(){
+    // @ts-ignore
+    return jwtDecode(sessionStorage.getItem("token")!).permissions;
   }
 }

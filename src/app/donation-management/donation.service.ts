@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import {Donation} from "./donation";
+import {LoginService} from "../login/login.service";
 
 
 
@@ -12,11 +13,13 @@ export class DonationService {
 
   url:string = "http://localhost:8080/donation";
 
-  userId = localStorage.getItem('id');
+  userId = this.loginService.getLoggedUserId();
 
   donationList$: BehaviorSubject<Donation[]> = new BehaviorSubject<Donation[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private loginService: LoginService
+  ) { }
 
   loadDonations(): Observable<Donation[]> {
     return this.http.get<Donation[]>(this.url).pipe(tap(donation => this.donationList$.next(donation)));
@@ -34,14 +37,15 @@ export class DonationService {
     console.log(campaignId);
     console.log(donorId);
     console.log(donationRequest);
-    this.http.post(this.url+'/'+donorId+'/'+campaignId+'/'+this.userId, donationRequest).subscribe(
+    console.log(this.userId);
+    this.http.post(this.url+'/'+donorId+'/'+campaignId+'/'+ this.userId, donationRequest).subscribe(
        response => {
          console.log('Added successfully: ', response);
        },
        error => {
          console.log(error.status);
          console.log(error.message);
-         throw new Error(error.error.status);
+         throw new Error(error.message);
        }
      );
   }

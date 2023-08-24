@@ -1,17 +1,21 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, tap} from "rxjs";
-import {Campaign} from "../campaign-management/campaign";
 import {Donor} from "./Donor";
+import {LoginService} from "../login/login.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DonorService {
+
   url:string = "http://localhost:8080/donator";
 
-  userID= localStorage.getItem('id');
-  constructor(private http:HttpClient) { }
+  userID= this.loginService.getLoggedUserId();
+  constructor(
+    private http:HttpClient,
+    private loginService: LoginService
+  ) { }
 
   donorList$:BehaviorSubject<Donor[]> = new BehaviorSubject<Donor[]>([]);
   loadDonors(): Observable<Donor[]>{

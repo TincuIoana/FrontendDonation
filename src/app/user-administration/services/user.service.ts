@@ -19,7 +19,7 @@ export class UserService {
     // const header = {
     //   headers: new HttpHeaders()
     //
-    //     .set("Authorization", localStorage.getItem("token")?? '')
+    //     .set("Authorization", sessionStorage.getItem("token")?? '')
     // }
     return this.http.get<User[]>(this.getUrl).pipe(
       tap(users => this.userList$.next(users)),

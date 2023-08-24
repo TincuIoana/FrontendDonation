@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Role} from "../../../roles-dialog/role";
+import {Role} from "../../models/role";
+
 
 @Component({
   selector: 'app-role-dialog',
