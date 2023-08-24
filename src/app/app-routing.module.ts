@@ -40,7 +40,7 @@ const routes: Routes = [
     path: 'roles-dialog',
     loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m => m.RolesDialogModule),
     canActivate: [Role_guards],
-    data: {permission: PermissionEnum.PERMISSION_MANAGEMENT}
+    data: {permissions: ['PERMISSION_MANAGEMENT']}
   },
   {
     path: 'signin',

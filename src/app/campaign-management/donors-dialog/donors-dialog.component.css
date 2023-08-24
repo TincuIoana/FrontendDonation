@@ -5,9 +5,37 @@
 
 
 .skill-item {
-  padding: 10px;
+  padding: 60px;
   border-radius: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
 
+.donation-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.donation-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.donation-table td:not(:last-child) {
+  border-right: none;
+}
+
+.donation-table tr:not(:last-child) td {
+  border-bottom: none;
+}
+
+.skill-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0; /* Add padding to create space between labels */
+}
+
+.skill-item {
+  flex: 1;
+  text-align: center;
 }

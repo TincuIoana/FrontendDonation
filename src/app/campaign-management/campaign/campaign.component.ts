@@ -6,6 +6,7 @@ import {AuthService} from "../../auth/auth.service";
 import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
 import {Donor} from "../../donor-management/Donor";
+import {Donation} from "../../donation-management/donation";
 
 @Component({
   selector: 'app-campaign',
@@ -35,6 +36,9 @@ export class CampaignComponent implements OnInit {
 
   // @ts-ignore
   donorList: Donor[];
+
+  // @ts-ignore
+  donationsList: Donation[];
 
   // @ts-ignore
   selectedCampaigns: Campaign[];
@@ -215,11 +219,17 @@ export class CampaignComponent implements OnInit {
 
   }
 
-  checkIfCenzor():boolean{ //check if user is cenzor for restricted visualization
+  checkIfReporter():boolean{ //check if user is cenzor for restricted visualization
     const storedPermissions   = localStorage.getItem("permissions")
     const userPermissions: Array<string> = storedPermissions ? JSON.parse(storedPermissions) :[]
     return userPermissions.includes("CAMP_REPORT_RESTRICTED") && userPermissions.length === 1 ;
 
+  }
+
+  campaignDonations(id:number):Donation[]{
+    this.campaignService.loadDonations(id.toString()).subscribe(donations=>this.donationsList=donations);
+    console.log("donations added")
+    return this.donationsList;
   }
 
 

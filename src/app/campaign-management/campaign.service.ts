@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
 import {Campaign} from "./campaign";
 import {Donor} from "../donor-management/Donor";
+import {Donation} from "../donation-management/donation";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CampaignService {
 
   url:string = "http://localhost:8080/campaign"; //atentie mare ca userul sa aiba CAMP_MANAGEMENT
 
-  url2:string ="http://localhost:8080/donation";
+  url2:string ="http://localhost:8080/donation/camp";
 
   url3:string="http://localhost:8080/donator/camp";
 
@@ -21,6 +22,7 @@ export class CampaignService {
 
   campaignList$:BehaviorSubject<Campaign[]> = new BehaviorSubject<Campaign[]>([]);
   donorList$:BehaviorSubject<Donor[]> = new BehaviorSubject<Donor[]>([]);
+  donationList$:BehaviorSubject<Donation[]> = new BehaviorSubject<Donation[]>([]);
   loadCampaigns(): Observable<Campaign[]>{
 
     return this.http.get<Campaign[]>(this.url).pipe(tap(camp=>this.campaignList$.next(camp)));
@@ -28,6 +30,11 @@ export class CampaignService {
 
   loadDonators(id:string): Observable<Donor[]>{
     return this.http.get<Donor[]>(this.url3+'/'+id).pipe(tap(don=>this.donorList$.next(don)));
+
+  }
+
+  loadDonations(id:string):Observable<Donation[]>{
+    return this.http.get<Donation[]>(this.url2+'/'+id).pipe(tap(don=>this.donationList$.next(don)));
 
   }
 

@@ -24,9 +24,10 @@ import {TranslateModule} from "@ngx-translate/core";
     TableModule,
     TranslateModule
   ],
-    exports: [
-        DonorsDialogComponent
-    ],
+  exports: [
+    DonorsDialogComponent,
+    DonationsDialogComponent
+  ],
     providers: [MessageService, ConfirmationService]   //le-am importat odata si acum nu mai compileaza fara ele desi nu-s folosite
 })
 export class CampaignModule { }
