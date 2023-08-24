@@ -4,6 +4,8 @@ import {CampaignService} from "../campaign.service";
 import {AbstractControl, ValidationErrors} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
 import {MessageService} from "primeng/api";
+import {Router} from "@angular/router";
+import {Donor} from "../../donor-management/Donor";
 
 @Component({
   selector: 'app-campaign',
@@ -32,6 +34,9 @@ export class CampaignComponent implements OnInit {
   campaignList : Campaign[];
 
   // @ts-ignore
+  donorList: Donor[];
+
+  // @ts-ignore
   selectedCampaigns: Campaign[];
 
   // campaign: Campaign;
@@ -44,13 +49,15 @@ export class CampaignComponent implements OnInit {
   submitted: boolean;
   Delete: any;
 
-  constructor(private campaignService: CampaignService,private messageService: MessageService) { }
+  constructor(private campaignService: CampaignService,private messageService: MessageService, private router:Router) { }
 
   ngOnInit() {
     console.log("start campaign manager")
     this.campaignService.loadCampaigns().subscribe();
     this.campaignService.getCampaigns().subscribe((campaigns) => this.campaignList = campaigns);
     console.log("no error")
+
+
   }
 
   openNew() {
@@ -204,5 +211,12 @@ export class CampaignComponent implements OnInit {
     const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) :[]
     return userRoles.includes("ROLE_CEN") && userRoles.length === 1 || (userRoles.includes("ROLE_REP") && userRoles.includes("ROLE_CEN") && userRoles.length === 2);
 
+  }
+
+
+  campaignDonors(id : number):Donor[] {
+    this.campaignService.loadDonators(id.toString()).subscribe(donors=> this.donorList=donors);
+    console.log("donors added")
+    return this.donorList
   }
 }

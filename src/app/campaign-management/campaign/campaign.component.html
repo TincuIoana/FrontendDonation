@@ -29,6 +29,7 @@
         </th>
         <th pSortableColumn="name">{{'CAMPAIGN.NAME' | translate}} <p-sortIcon field="name"></p-sortIcon></th>
         <th pSortableColumn="purpose">{{'CAMPAIGN.PURPOSE' | translate}} <p-sortIcon field="purpose"></p-sortIcon></th>
+        <th pSortableColumn="donors">Donors <p-sortIcon field="donors"></p-sortIcon></th>
         <th></th>
       </tr>
     </ng-template>
@@ -40,6 +41,10 @@
         </td>
         <td>{{campaign.name}}</td>
         <td>{{campaign.purpose}}</td>
+
+        <td>
+          <app-donors-dialog (click)="campaignDonors(campaign.id)" [donors]="donorList"></app-donors-dialog>
+        </td>
         <td>
           <button  *ngIf="!checkIfCenzor()"  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
           <button  *ngIf="!checkIfCenzor()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>

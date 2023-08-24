@@ -1,0 +1,13 @@
+.skill-list{
+  display : flex;
+  justify-content: space-between;
+}
+
+
+.skill-item {
+  padding: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}

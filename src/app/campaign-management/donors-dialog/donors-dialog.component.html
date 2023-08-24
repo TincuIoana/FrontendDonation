@@ -1,0 +1,32 @@
+<div class="card flex justify-content-center">
+  <p-button label="Donors" class="p-button-success p-mr-2" (click)="showCampaigns()"></p-button>
+  <p-dialog [(visible)]="showDialog" [style]="{width: '950px'}" header="Donors" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="header">
+
+    </ng-template>
+    <ng-template pTemplate="body">
+      <div class="skill-list">
+        <div class="skill-item">Firstname</div>
+        <div class="skill-item">Lastname</div>
+        <div class="skill-item">Additionalname</div>
+        <div class="skill-item">Maidenname</div>
+      </div>
+
+      <div class="skill-list">
+
+        <div class="skill-item" *ngFor="let donor of donors">
+          {{ truncateText(donor.firstName) }}
+        </div>
+        <div class="skill-item" *ngFor="let donor of donors">
+          {{ truncateText(donor.lastName) }}
+        </div>
+        <div class="skill-item" *ngFor="let donor of donors">
+          {{ truncateText(donor.additionalName) }}
+        </div>
+        <div class="skill-item" *ngFor="let donor of donors">
+          {{ truncateText(donor.maidenName) }}
+        </div>
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

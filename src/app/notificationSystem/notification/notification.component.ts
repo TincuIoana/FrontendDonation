@@ -22,7 +22,7 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.isLoggedIn.subscribe(isLoggedIn => {
       if (isLoggedIn) {
-
+      console.log("in notification")
         const userId = +localStorage.getItem('id')!
         this.notificationService.pollForNotifications(userId).subscribe({
           next: (data) => {

@@ -55,6 +55,7 @@ import {NgxCaptchaModule} from "ngx-captcha";
 import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
 import {NotificationGuard} from "./util/notification-guard";
 import {Role_guards} from "./util/role_guards";
+import {CampaignModule} from "./campaign-management/campaign.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -82,26 +83,26 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppRoutingModule,
 
 
-    // PrimeNG modules
-    DropdownModule,
-    ButtonModule,
-    DynamicDialogModule,
-    ListboxModule,
+        // PrimeNG modules
+        DropdownModule,
+        ButtonModule,
+        DynamicDialogModule,
+        ListboxModule,
 
-    // ngx-translate setup
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-    RolesDialogRoutingModule,
-    PanelModule,
-    TabMenuModule,
+        // ngx-translate setup
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+        RolesDialogRoutingModule,
+        PanelModule,
+        TabMenuModule,
 
-    RouterModule.forRoot([]),
-    ChipsModule,
+        RouterModule.forRoot([]),
+        ChipsModule,
 
         ToastModule,
         SidebarModule,
@@ -121,7 +122,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ToolbarModule,
         CheckboxModule,
         MultiSelectModule,
-        NgxCaptchaModule
+        NgxCaptchaModule,
+        CampaignModule
     ],
 providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
   bootstrap: [AppComponent]

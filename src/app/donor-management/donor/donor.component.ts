@@ -15,8 +15,8 @@ export class DonorComponent implements OnInit {
 
   selectedDonor: any;
 
-
-
+  // @ts-ignore
+  donorListFromCampaign: Donor[]
 
     // @ts-ignore
   donorList : Donor[];
@@ -38,8 +38,14 @@ export class DonorComponent implements OnInit {
 
   ngOnInit() {
     console.log("start donor manager")
-    this.donorService.loadDonors().subscribe()
-    this.donorService.getDonors().subscribe(don=> this.donorList=don)
+
+
+    this.donorListFromCampaign = history.state.donorListToCampaign;
+    console.log(this.donorListFromCampaign)
+
+      this.donorService.loadDonors().subscribe()
+      this.donorService.getDonors().subscribe(don=> this.donorList=don)
+
 
   }
 
