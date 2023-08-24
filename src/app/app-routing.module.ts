@@ -47,7 +47,7 @@ const routes: Routes = [
     loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule),
     canActivate: [Role_guards],
     data:{
-      permissions:['CAMP_MANAGEMENT']
+      permissions:['CAMP_MANAGEMENT','CAMP_REPORT_RESTRICTED']
     }
   },
   {

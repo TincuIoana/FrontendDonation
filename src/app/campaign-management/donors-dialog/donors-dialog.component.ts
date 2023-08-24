@@ -25,6 +25,17 @@ export class DonorsDialogComponent {
 
   fullTextMap: Record<string, boolean> = {};
 
+  toggleFullText(donor: any, field: string): void {
+    this.fullTextMap[field] = !this.fullTextMap[field];
+  }
+
+  getDisplayText(text: string): string {
+    const maxLength = 12; // Adjust as needed
+    if (text.length > maxLength && !this.fullTextMap[text]) {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+    return text;
+  }
 
 
 }

@@ -40,6 +40,10 @@
         <td>
           <p-tableCheckbox [value]="donor"></p-tableCheckbox>
         </td>
+<!--        <td (click)="toggleFullText(donor,donor.firstName)">{{getDisplayText(donor.name)}}</td>-->
+<!--        <td (click)="toggleFullText(donor,donor.lastName)">{{getDisplayText(donor.lastName)}}</td>-->
+<!--        <td (click)="toggleFullText(donor,donor.additionalName)">{{getDisplayText(donor.additionalName)}}</td>-->
+<!--        <td (click)="toggleFullText(donor,donor.maidenName)">{{getDisplayText(donor.maidenName)}}</td>-->
         <td>{{donor.firstName}}</td>
         <td>{{donor.lastName}}</td>
         <td>{{donor.additionalName}}</td>
@@ -119,7 +123,7 @@
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
     <button pButton pRipple label="Save changes" icon="pi pi-check" class="p-button-text" (click)="editDonor()"></button>
   </ng-template>
 </p-dialog>

@@ -20,7 +20,7 @@ export class RolesDialogComponent implements OnInit {
   p2!: PermissionEnum[];
   p3!: PermissionEnum[];
   p4!: PermissionEnum[];
-  user1String = localStorage.getItem("id");
+  user1String = parseInt(localStorage.getItem("id"));
   //userId1 = parseInt(this.user1String,10);
   userId1: number = 2;    // userul are permisiunea de a edita
   userId2: number = 1;  // nu are permisiunea sa modifice rolurile

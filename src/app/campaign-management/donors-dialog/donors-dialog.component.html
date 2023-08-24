@@ -15,16 +15,16 @@
       <div class="skill-list">
 
         <div class="skill-item" *ngFor="let donor of donors">
-          {{ truncateText(donor.firstName) }}
+          <p (click)="toggleFullText(donor, donor.firstName)">{{ getDisplayText(donor.firstName) }}</p>
         </div>
         <div class="skill-item" *ngFor="let donor of donors">
-          {{ truncateText(donor.lastName) }}
+          <p (click)="toggleFullText(donor, donor.lastName)">{{ getDisplayText(donor.lastName) }}</p>
         </div>
         <div class="skill-item" *ngFor="let donor of donors">
-          {{ truncateText(donor.additionalName) }}
+          <p (click)="toggleFullText(donor, donor.additionalName)">{{ getDisplayText(donor.additionalName) }}</p>
         </div>
         <div class="skill-item" *ngFor="let donor of donors">
-          {{ truncateText(donor.maidenName) }}
+          <p (click)="toggleFullText(donor, donor.maidenName)">{{ getDisplayText(donor.maidenName) }}</p>
         </div>
       </div>
     </ng-template>

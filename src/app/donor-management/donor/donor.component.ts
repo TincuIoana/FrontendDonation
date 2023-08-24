@@ -40,12 +40,11 @@ export class DonorComponent implements OnInit {
     console.log("start donor manager")
 
 
-    this.donorListFromCampaign = history.state.donorListToCampaign;
-    console.log(this.donorListFromCampaign)
+
 
       this.donorService.loadDonors().subscribe()
       this.donorService.getDonors().subscribe(don=> this.donorList=don)
-
+      console.log(this.donorList)
 
   }
 
@@ -58,6 +57,11 @@ export class DonorComponent implements OnInit {
   hideDialog() {
     this.donorDialog = false;
     this.submitted = false;
+  }
+  hideDialog1() {
+    this.donorDialog1 = false;
+    this.submitted = false;
+    window.location.reload()
   }
 
 
@@ -104,7 +108,7 @@ export class DonorComponent implements OnInit {
   deleteDonor(donor: any) {
     console.log(donor.id)
     this.donorService.deleteFromDB(donor.id.toString())
-    window.location.reload()
+    // window.location.reload()
 
 
   }
@@ -129,6 +133,21 @@ export class DonorComponent implements OnInit {
     this.donorDialog1 = true;
 
   }
+
+  fullTextMap: Record<string, boolean> = {};
+
+  toggleFullText(donor: any, field: string): void {
+    this.fullTextMap[field] = !this.fullTextMap[field];
+  }
+
+  getDisplayText(text: string): string {
+    const maxLength = 12; // Adjust as needed
+    if (text.length > maxLength && !this.fullTextMap[text]) {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+    return text;
+  }
+
 
 
 }

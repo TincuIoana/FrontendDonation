@@ -65,9 +65,18 @@ export class CampaignComponent implements OnInit {
     this.submitted = false;
     this.campaignDialog = true;
   }
+  hideDialog1() {
+    this.campaignDialog1 = false;
+    this.submitted = false;
+    this.campaign = {id: 0, name: '', purpose: ''}
+    window.location.reload()
+    return false
+  }
   hideDialog() {
     this.campaignDialog = false;
     this.submitted = false;
+    this.campaign = {id: 0, name: '', purpose: ''}
+
 
   }
 
@@ -163,7 +172,7 @@ export class CampaignComponent implements OnInit {
 
       },
       error => {
-        this.campaignErrors[campaign.id] = error.error;
+        this.campaignErrors[campaign.id] = error.error.text;
         console.error('Error deleting campaign:', error.error);
       }
     );
@@ -178,7 +187,7 @@ export class CampaignComponent implements OnInit {
       const id = campaign.id;
       console.log(id);
 
-      this.campaignService.deleteFromDB(id.toString())
+      this.campaignService.deleteFromDB(id.toString()).subscribe()
     });
 
     window.location.reload();
@@ -207,9 +216,9 @@ export class CampaignComponent implements OnInit {
   }
 
   checkIfCenzor():boolean{ //check if user is cenzor for restricted visualization
-    const storedRoles   = localStorage.getItem("roles")
-    const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) :[]
-    return userRoles.includes("ROLE_CEN") && userRoles.length === 1 || (userRoles.includes("ROLE_REP") && userRoles.includes("ROLE_CEN") && userRoles.length === 2);
+    const storedPermissions   = localStorage.getItem("permissions")
+    const userPermissions: Array<string> = storedPermissions ? JSON.parse(storedPermissions) :[]
+    return userPermissions.includes("CAMP_REPORT_RESTRICTED") && userPermissions.length === 1 ;
 
   }
 
@@ -218,5 +227,19 @@ export class CampaignComponent implements OnInit {
     this.campaignService.loadDonators(id.toString()).subscribe(donors=> this.donorList=donors);
     console.log("donors added")
     return this.donorList
+  }
+
+
+  fullTextMap: Record<string, boolean> = {};  //daca textul e full sau truncat
+  toggleFullText(donor: any, field: string): void {
+    this.fullTextMap[field] = !this.fullTextMap[field];
+  }
+
+  getDisplayText(text: string): string {
+    const maxLength = 12; // Adjust as needed
+    if (text.length > maxLength && !this.fullTextMap[text]) {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+    return text;
   }
 }
