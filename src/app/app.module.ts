@@ -50,13 +50,13 @@ import {Interceptor} from "./util/interceptors/interceptor";
 import {MessageService} from "primeng/api";
 import {LogoutComponent} from "./logout/logout/logout.component";
 import {ChangeComponent} from "./change-password/change/change.component";
+import {NgxCaptchaModule} from "ngx-captcha";
 
 import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
 import {NotificationGuard} from "./util/notification-guard";
 import {DonorComponent} from "./donor-management/donor/donor.component";
 
 import {Role_guards} from "./util/role_guards";
-import {NgxCaptchaModule} from "ngx-captcha";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -103,27 +103,31 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule.forRoot([]),
     ChipsModule,
 
-        ToastModule,
-        SidebarModule,
-        CardModule,
+    ToastModule,
+    SidebarModule,
+    CardModule,
 
 
-        TableModule,
-        FileUploadModule,
-        ToastModule,
-        DialogModule,
-        RadioButtonModule,
-        PaginatorModule,
-        ConfirmDialogModule,
-        RatingModule,
-        RippleModule,
-        InputTextareaModule,
-        ToolbarModule,
-        CheckboxModule,
-        MultiSelectModule,
-        NgxCaptchaModule
-    ],
-providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
+    TableModule,
+    FileUploadModule,
+    ToastModule,
+    DialogModule,
+    RadioButtonModule,
+    PaginatorModule,
+    ConfirmDialogModule,
+    RatingModule,
+    RippleModule,
+    InputTextareaModule,
+    ToolbarModule,
+    CheckboxModule,
+    MultiSelectModule,
+    NgxCaptchaModule
+  ],
+  providers: [CookieService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi: true
+  }, MessageService, Role_guards, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

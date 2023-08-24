@@ -57,11 +57,6 @@ const routes: Routes = [
   {
     path: 'change',
     loadChildren: () => import('./change-password/change.module').then(m=> m.ChangeModule)
-  },
-
-  {
-    path: 'notifications',
-    component: NotificationComponent,
   }
 ];
 

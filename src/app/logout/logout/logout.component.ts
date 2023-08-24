@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {LoginService} from "../../login/login.service";
 
 
 
@@ -9,10 +10,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit{
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {
     localStorage.clear()
+    this.loginService.logout()
     // window.location.reload();
     this.router.navigate(['/login']);
 
