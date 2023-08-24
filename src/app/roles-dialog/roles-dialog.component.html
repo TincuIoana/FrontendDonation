@@ -20,28 +20,31 @@
           <ng-container *ngSwitchCase="1">
             <ul>
               <li *ngFor="let permission of p1">
-                {{ permission.toString() }}
+                <!--{{ JSON.stringify(getTypeFromPermission(permission))}}-->
+                <!--{{JSON.stringify(permission)}}-->
+                {{permission}}
+                <!--{{permission.type}}-->
               </li>
             </ul>
           </ng-container>
           <ng-container *ngSwitchCase="2">
             <ul>
               <li *ngFor="let permission of p2">
-                {{ permission.toString() }}
+                {{permission}}
               </li>
             </ul>
           </ng-container>
           <ng-container *ngSwitchCase="3">
             <ul>
               <li *ngFor="let permission of p3">
-                {{ permission.toString() }}
+                {{permission}}
               </li>
             </ul>
           </ng-container>
           <ng-container *ngSwitchCase="4">
             <ul>
               <li *ngFor="let permission of p4">
-                {{ permission.toString() }}
+                {{permission}}
               </li>
             </ul>
           </ng-container>
@@ -49,37 +52,57 @@
       </td>
       <td>
         <ng-container [ngSwitch]="role.id">
-        <ng-container *ngSwitchCase="1">
-          <select [(ngModel)]="selectedPermission1" class="spaced-select custom-select">
-            <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
-          </select>
-          <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
-          &nbsp; <!-- Non-breaking space for adding a gap -->
-          <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
-        </ng-container>
+          <ng-container *ngSwitchCase="1">
+            <select [(ngModel)]="selectedPermission1" class="spaced-select custom-select">
+              <option *ngFor="let permission of permissions" [value]="permission">{{ permission }}</option>
+            </select>
+
+            <p-toast></p-toast>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                    (click)="addPermissionToRole(userId1,role.id,selectedPermission1,'!')"></button>
+            &nbsp; <!-- Non-breaking space for adding a gap -->
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission1, '!')"></button>
+
+          </ng-container>
           <ng-container *ngSwitchCase="2">
             <select [(ngModel)]="selectedPermission2" class="spaced-select custom-select">
-              <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
+              <option *ngFor="let permission of permissions" [value]="permission">{{ permission }}</option>
             </select>
-            <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
+
+            <p-toast></p-toast>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                    (click)="addPermissionToRole(userId1,role.id,selectedPermission2,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
-            <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission2,'!')"></button>
+
           </ng-container>
           <ng-container *ngSwitchCase="3">
             <select [(ngModel)]="selectedPermission3" class="spaced-select custom-select">
-              <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
+              <option *ngFor="let permission of permissions" [value]="permission">{{ permission }}</option>
             </select>
-            <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
+
+            <p-toast></p-toast>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                    (click)="addPermissionToRole(userId1,role.id,selectedPermission3,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
-            <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission3,'!')"></button>
+
           </ng-container>
           <ng-container *ngSwitchCase="4">
             <select [(ngModel)]="selectedPermission4" class="spaced-select custom-select">
-              <option *ngFor="let permission of permissionEnumValues" [value]="permission">{{ permission }}</option>
+              <option *ngFor="let permission of permissions" [value]="permission">{{ permission }}</option>
             </select>
-            <button pButton pRipple label="Add" class="p-button-success smaller-button"></button>
+
+            <p-toast></p-toast>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                    (click)="addPermissionToRole(userId1,role.id,selectedPermission4,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
-            <p-button label="Delete" styleClass="p-button-danger smaller-button"></p-button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission4,'!')"></button>
+
           </ng-container>
         </ng-container>
       </td>
