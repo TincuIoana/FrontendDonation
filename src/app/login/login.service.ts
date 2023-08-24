@@ -31,7 +31,6 @@ export class LoginService {
   }
 
   login(loginRequest : LoginRequest):Observable<LoginResponse>{
-    this._isLoggedIn.next(true);
    return  this.http.post<LoginResponse>(this.url,loginRequest)
 
   }
@@ -39,4 +38,11 @@ export class LoginService {
     this.loginResponseSubject.next(loginResponse);
   }
 
+  logout(): void{
+    this._isLoggedIn.next(false)
+  }
+
+  setLoggedIn(): void{
+    this._isLoggedIn.next(true)
+  }
 }
