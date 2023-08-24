@@ -3,10 +3,10 @@
     "TITLE": "Salut, Lume!",
     "SELECT": "Selectează Limba"
   },
-
   "MENU": {
     "USERADMINISTRATION": "Administrare Utilizatori",
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
+    "DONATIONMANAGEMENT": "Administrare Donatii",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
     "ROLES": "Editare Roluri",
@@ -48,6 +48,21 @@
     "SEARCH": "Cauta"
 
   },
+
+  "DONATION": {
+    "AMOUNT": "Valoare",
+    "APPROVEDATE": "Data Aprobare",
+    "APPROVED": "Aprobat",
+    "CREATEDDATE": "Data creare",
+    "CURRENCY": "Valuta",
+    "NOTES": "Notite",
+    "APPROVEDBY": "Aprobata de",
+    "CAMPAIGN": "Campanie",
+    "CREATEDBY": "Creata de",
+    "DONOR": "Donator",
+    "MANAGE": "Administrare Donatii"
+  },
+
   "DONOR": {
     "DONOR": "Donator",
     "FIRSTN": "Prenume",

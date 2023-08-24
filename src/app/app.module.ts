@@ -51,6 +51,7 @@ import {MessageService} from "primeng/api";
 import {LogoutComponent} from "./logout/logout/logout.component";
 import {ChangeComponent} from "./change-password/change/change.component";
 import {NgxCaptchaModule} from "ngx-captcha";
+import {DonationComponent} from "./donation-management/donation/donation.component";
 
 import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
 import {NotificationGuard} from "./util/notification-guard";
@@ -68,21 +69,20 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
-
     NotificationComponent,
     SigninComponent,
     CampaignComponent,
     LogoutComponent,
     ChangeComponent,
-
+    DonationComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
 
 
     // PrimeNG modules

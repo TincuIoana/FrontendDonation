@@ -16,6 +16,10 @@ const routes: Routes = [
     }
   },
   {
+    path: 'donation-management',
+    loadChildren: () => import('./donation-management/donation.module').then(m => m.DonationModule)
+  },
+  {
     path: 'donor-management',
     loadChildren: () => import('./donor-management/donor-management.module').then(m => m.DonorManagementModule),
     canActivate: [Role_guards],
@@ -35,8 +39,8 @@ const routes: Routes = [
   {
     path: 'roles-dialog',
     loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m => m.RolesDialogModule),
-    //canActivate: [PermissionGuard],
-    //data: {permission: PermissionEnum.PERMISSION_MANAGEMENT}
+    canActivate: [Role_guards],
+    data: {permission: PermissionEnum.PERMISSION_MANAGEMENT}
   },
   {
     path: 'signin',
