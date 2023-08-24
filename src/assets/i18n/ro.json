@@ -25,7 +25,14 @@
     "ADD": "Adaugare",
     "DELETE": "Stergere",
     "SELECT": "Alege un drept",
-    "AVAILABLE": "Drepturi disponibile"
+    "AVAILABLE": "Drepturi disponibile",
+    "Permission_to_add_cannot_be_null.":  "Trebuie selectat un drept.",
+    "Permission_already_exists.": "Dreptul deja exista.",
+    "User_not_found_or_permission_not_available_to_edit_roles.": "Utilizatorul nu a fost gasit sau dreptul de a edita rolurile nu este disponibil.",
+    "Permission_to_delete_cannot_be_null.": "Trebuie selectat un drept.",
+    "Permission_to_delete_does_not_exist.": "Dreptul nu exista.",
+    "Added_successfully": "Adaugare reusita.",
+    "Deleted_successfully": "Stergere reusita."
   },
 
   "CAMPAIGN": {

@@ -50,11 +50,13 @@ import {Interceptor} from "./util/interceptors/interceptor";
 import {MessageService} from "primeng/api";
 import {LogoutComponent} from "./logout/logout/logout.component";
 import {ChangeComponent} from "./change-password/change/change.component";
-import {NgxCaptchaModule} from "ngx-captcha";
 
 import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
 import {NotificationGuard} from "./util/notification-guard";
+import {DonorComponent} from "./donor-management/donor/donor.component";
+
 import {Role_guards} from "./util/role_guards";
+import {NgxCaptchaModule} from "ngx-captcha";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -71,14 +73,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     LogoutComponent,
     ChangeComponent,
 
+    DonorComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
 
 
     // PrimeNG modules
@@ -125,4 +128,5 @@ export function HttpLoaderFactory(http: HttpClient) {
 providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

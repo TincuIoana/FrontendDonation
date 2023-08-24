@@ -12,6 +12,7 @@ import {AutoCompleteModule} from "primeng/autocomplete";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CascadeSelectModule} from "primeng/cascadeselect";
 import {RippleModule} from "primeng/ripple";
+import {MessageService} from "primeng/api";
 
 
 @NgModule({
@@ -33,7 +34,6 @@ import {RippleModule} from "primeng/ripple";
     RippleModule
   ],
   providers: [
-    RolesDialogService
-  ]
+    RolesDialogService]
 })
 export class RolesDialogModule { }
