@@ -67,14 +67,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
-
     NotificationComponent,
     SigninComponent,
     CampaignComponent,
     LogoutComponent,
     ChangeComponent,
-
-    DonorComponent
   ],
   imports: [
     BrowserModule,

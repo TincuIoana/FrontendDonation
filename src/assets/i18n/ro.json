@@ -3,6 +3,7 @@
     "TITLE": "Salut, Lume!",
     "SELECT": "Selectează Limba"
   },
+
   "MENU": {
     "USERADMINISTRATION": "Administrare Utilizatori",
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
@@ -14,9 +15,11 @@
     "LOGINACC": "Logheazate in contul tau",
     "SIGNIN": "Inresgistrare"
   },
+
   "ROLES": {
     "NAME": "Nume"
   },
+
   "PERMISSIONS": {
     "GET": "Drepturi",
     "ADD": "Adaugare",
@@ -31,6 +34,7 @@
     "Added_successfully": "Adaugare reusita.",
     "Deleted_successfully": "Stergere reusita."
   },
+
   "CAMPAIGN": {
     "NAME": "Nume",
     "PURPOSE": "Scop",
@@ -42,6 +46,7 @@
     "CANCEL": "Anuleaza",
     "DETAILS": "Detaliile campaniilor",
     "SEARCH": "Cauta"
+
   },
   "DONOR": {
     "DONOR": "Donator",
@@ -53,6 +58,7 @@
     "DONORS": "donatori",
     "DETAILS": "Detaliile donatorului"
   },
+
   "USER": {
     "USER": "Utilizator",
     "FIRST_NAME": "Prenume",
@@ -65,18 +71,29 @@
     "NO_USERS_FOUND": "Nici un utilizator gasit.",
     "SEARCH_KEYWORD": "Cuvant cheie",
     "CURRENT_PAGE_REPORT_TEMPLATE": "Afisand {first} pana la {last} din {totalRecords} inregistrari",
-    "NEW": "Utilizator nou",
-    "EDIT": "Modificare utilizator",
+    "NEW": "Nou",
+    "EDIT_USER": "Modificare utilizator",
+    "EDIT": "Modificare",
     "FIRST_NAME_REQUIRED": "Prenumele este obligatoriu",
     "LAST_NAME_REQUIRED": "Numele de familie este obligatoriu",
     "EMAIL_REQUIRED": "Email-ul este obligatoriu",
+    "ROLES_REQUIRED": "Cel putin un rol trebuie selectat",
+    "MOBILE_NUMBER_REQUIRED": "Numarul mobil este obligatoriu",
     "SELECT_A_ROLE": "Selectati un rol",
     "SELECT_A_CAMPAIGN": "Selectati o campanie",
     "PASSWORD": "Parola",
     "ACTIVATED": "Activat",
     "DEACTIVATED": "Dezactivat",
-    "PASSWORD_SHORT": "Parola prea scurta"
+    "EMAIL_INVALID": "Email invalid",
+    "MOBILE_NUMBER_INVALID": "Numar mobil invalid",
+    "EMAIL_IN_USE": "Email-ul este deja folosit",
+    "MOBILE_NUMBER_IN_USE": "Numarul de telefon este deja folosit",
+    "MODIFIED": "Utilizator modificat",
+    "CREATED": "Utilizator creat",
+    "SUCCESS": "Succes",
+    "INFO": "Informatie"
   },
+
   "WELCOME_NEW_USER": {
     "TITLE": "Bun venit!",
     "DETAILS": "Detalii: {{details}}"
@@ -103,5 +120,3 @@
     "DETAILS": "Sumă: {{details}}"
   }
 }
-
-
