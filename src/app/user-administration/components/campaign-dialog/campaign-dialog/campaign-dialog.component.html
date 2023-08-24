@@ -1,11 +1,16 @@
 <div class="card flex justify-content-center">
-  <p-button label="{{'USER.CAMPAIGNS' | translate}}" class="p-button-success p-mr-2" (click)="showCampaigns()"></p-button>
-  <p-dialog [(visible)]="showDialog" [style]="{width: '450px'}" header="{{'USER.CAMPAIGNS' | translate}}" [modal]="true" styleClass="p-fluid">
+  <button pButton label="{{'USER.CAMPAIGNS' | translate}}" class="p-button-success p-mr-2" (click)="showCampaigns()"></button>
+  <p-dialog [(visible)]="showDialog" [draggable]="false" [style]="{width: '450px'}" header="{{'USER.CAMPAIGNS' | translate}}" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
       <div>
-        <ul *ngFor="let campaign of campaigns">
-          <li>{{campaign.name}}</li>
-        </ul>
+        <tr>
+          <th>
+            {{"CAMPAIGN.NAME" | translate}}
+          </th>
+        </tr>
+        <tr *ngFor="let campaign of campaigns">
+          <td>{{campaign.name}}</td>
+        </tr>
       </div>
     </ng-template>
   </p-dialog>

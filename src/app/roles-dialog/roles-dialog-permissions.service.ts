@@ -42,15 +42,17 @@ export class RolesDialogPermissionsService {
   }
 
   getAllPermissionsOfARole(roleId: number): Observable<PermissionEnum[]> {
-    return this.http.post<PermissionEnum[]>(this.apiUrl + '{roleId}/all', roleId);
+    return this.http.get<PermissionEnum[]>(this.apiUrl + `${roleId}/all`);
   }
 
-  addPermissionToRole(userId: number,role:Role,permission:PermissionEnum): Observable<PermissionEnum>{
-    return this.http.post<PermissionEnum>(this.apiUrl+ '{userId}/add',permission);
+  addPermissionToRole(userId: number,roleId: number,permission:PermissionEnum):Observable<any>{
+    return this.http.post<Role>(this.apiUrl+roleId+'/'+userId+'/add',{type:permission});
   }
 
-  deletePermissionFromRole(userId: number,role:Role,permission:PermissionEnum){
-    return this.http.delete<PermissionEnum>(this.apiUrl+ '/{userId}/delete');
-
+  deletePermissionFromRole(userId: number,roleId: number,permission:PermissionEnum):Observable<any>{
+    const options = {
+      body: { type: permission } // Assuming your API requires the permission type in the request body
+    };
+    return this.http.delete<Role>(this.apiUrl+roleId+'/'+userId+'/delete',options);
   }
 }

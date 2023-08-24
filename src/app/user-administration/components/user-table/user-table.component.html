@@ -10,18 +10,21 @@
     [paginator]="true"
     currentPageReportTemplate="{{'USER.CURRENT_PAGE_REPORT_TEMPLATE' | translate}}"
     [globalFilterFields]="[ 'firstName', 'lastName', 'mobileNumber',
-     'email', 'username', 'role.name', 'campaign.name']"
+     'email', 'username', 'user.roles', 'user.campaigns']"
     [tableStyle]="{ 'min-width': '75rem'}"
   >
     <ng-template pTemplate="caption">
-      <div class="flex">
-                <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText #textInput type="text" (input)="dt2.filterGlobal(textInput.value, 'contains')" placeholder="{{'USER.SEARCH_KEYWORD' | translate}}" />
-                </span>
+      <div class="flex" id="search-button">
+          <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input pInputText #textInput type="text" (input)="dt2.filterGlobal(textInput.value, 'contains')"
+                     placeholder="{{'USER.SEARCH_KEYWORD' | translate}}"/>
+          </span>
+          <app-user-new-dialog></app-user-new-dialog>
+
       </div>
     </ng-template>
-    <ng-template class="justify-content-center" pTemplate="header" >
+    <ng-template class="justify-content-center" pTemplate="header">
       <tr>
         <th>{{"USER.FIRST_NAME" | translate}}</th>
         <th>{{"USER.LAST_NAME" | translate}}</th>
@@ -30,29 +33,29 @@
         <th>{{"USER.USERNAME" | translate}}</th>
         <th>{{"USER.ROLES" | translate}}</th>
         <th>{{"USER.CAMPAIGNS" | translate}}</th>
-        <th>Editing</th>
+        <th>{{"USER.EDIT" | translate}}</th>
       </tr>
       <tr>
         <th>
-          <p-columnFilter matchMode="contains"  type="text" field="firstName"></p-columnFilter>
+          <p-columnFilter [showMenu]="false" matchMode="contains" type="text" field="firstName"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="lastName"></p-columnFilter>
+          <p-columnFilter [showMenu]="false" matchMode="contains" type="text" field="lastName"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="mobileNumber"></p-columnFilter>
+          <p-columnFilter [showMenu]="false" matchMode="contains" type="text" field="mobileNumber"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="email"></p-columnFilter>
+          <p-columnFilter [showMenu]="false" matchMode="contains" type="text" field="email"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="username"></p-columnFilter>
+          <p-columnFilter [showMenu]="false" matchMode="contains" type="text" field="username"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="roles"></p-columnFilter>
+          <p-columnFilter [showMenu]="false" matchMode="role-filter" type="text" field="roles"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="campaigns"></p-columnFilter>
+          <p-columnFilter [showMenu]="false" matchMode="campaign-filter" type="text" field="campaigns"></p-columnFilter>
         </th>
         <th>
         </th>
@@ -92,5 +95,5 @@
     </ng-template>
   </p-table>
 
-  <app-user-new-dialog></app-user-new-dialog>
+
 </div>

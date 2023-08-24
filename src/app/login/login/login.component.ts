@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit{
       localStorage.setItem("id",String(loginResponse.id))
 
       localStorage.setItem("permissions",JSON.stringify(loginResponse.roles))
+      this.loginService.setLoggedIn()
         //@ts-ignore
         // const permissions: PermissionEnum[] = [].concat(...loginResponse.roles.map(role => role.permissions));
 

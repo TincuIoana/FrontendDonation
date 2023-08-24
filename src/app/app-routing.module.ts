@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {Role_guards} from "./util/role_guards";
 import {NotificationComponent} from "./notificationSystem/notification/notification.component";
 import {NotificationGuard} from "./util/notification-guard";
+import {PermissionEnum} from "./roles-dialog/permission-enum";
 
 // Lazy loading the modules. If you don't want lazy loading, import the components directly.
 const routes: Routes = [
@@ -33,7 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'roles-dialog',
-    loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m => m.RolesDialogModule)
+    loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m => m.RolesDialogModule),
+    //canActivate: [PermissionGuard],
+    //data: {permission: PermissionEnum.PERMISSION_MANAGEMENT}
   },
   {
     path: 'signin',
@@ -54,11 +57,6 @@ const routes: Routes = [
   {
     path: 'change',
     loadChildren: () => import('./change-password/change.module').then(m=> m.ChangeModule)
-  },
-
-  {
-    path: 'notifications',
-    component: NotificationComponent,
   }
 ];
 

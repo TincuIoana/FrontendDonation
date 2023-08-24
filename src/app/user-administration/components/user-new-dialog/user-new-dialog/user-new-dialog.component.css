@@ -5,3 +5,7 @@ div {
 #firstNameDiv {
   padding-top: 30px;
 }
+
+small {
+  color: red;
+}

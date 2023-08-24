@@ -1,32 +1,34 @@
 <div class="card flex justify-content-center">
-  <button pButton pRipple label="{{'USER.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-  <p-dialog  [(visible)]="showDialog" [draggable]="false" [style]="{width: '450px'}" header="{{'USER.USER' | translate}}" [modal]="true" styleClass="p-fluid">
+  <button pButton pRipple label="{{'USER.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()" ></button>
+  <p-dialog  [(visible)]="showDialog" [draggable]="false" [style]="{width: '450px'}" header="{{'USER.USER' | translate}}" [modal]="true" styleClass="p-fluid" (onHide)="clearForm()">
     <ng-template pTemplate="content">
       <form [formGroup]="registerForm">
         <div class="p-field">
           <label for="firstName">{{"USER.FIRST_NAME" | translate}}*</label>
-          <input pInputText id="firstName" formControlName="firstName" required autofocus />
-          <small *ngIf="(submitted) && !user.firstName">{{"USER.FIRST_NAME_REQUIRED" | translate}}</small>
+          <input pInputText id="firstName" formControlName="firstName" required />
+          <small *ngIf="this.registerForm.controls.firstName.value === '' && this.registerForm.controls.firstName.dirty">{{"USER.FIRST_NAME_REQUIRED" | translate}}</small>
         </div>
         <div class="p-field">
           <label for="lastName">{{"USER.LAST_NAME" | translate}}*</label>
-          <input type="text" pInputText id="lastName" formControlName="lastName"  required autofocus />
-          <small class="p-invalid" *ngIf="(submitted) && !user.lastName">{{"USER.LAST_NAME_REQUIRED" | translate}}</small>
+          <input type="text" pInputText id="lastName" formControlName="lastName" required  />
+          <small class="p-invalid" *ngIf="this.registerForm.controls.lastName.value === '' && this.registerForm.controls.lastName.dirty">{{"USER.LAST_NAME_REQUIRED" | translate}}</small>
         </div>
         <div class="p-field">
           <label for="email">{{"USER.EMAIL" | translate}}*</label>
-          <input type="text" pInputText id="email" formControlName="email"  required autofocus />
-          <small class="p-invalid" *ngIf="(submitted) && !user.email">{{"USER.EMAIL_REQUIRED" | translate}}</small>
+          <input type="text" pInputText id="email" formControlName="email" (input)="changeMessage()" />
+          <small class="p-invalid" *ngIf="this.registerForm.controls.email.invalid || (this.registerForm.controls.email.value === '' && this.registerForm.controls.email.dirty) || this.backendEmailError">{{emailMessage}}</small>
         </div>
         <div class="card">
           <label for="mobileNumber">{{"USER.MOBILE_NUMBER" | translate}}*</label>
-          <input type="text" pInputText id="mobileNumber" formControlName="mobileNumber" autofocus />
-          <small class="p-invalid" *ngIf="(submitted) && !user.mobileNumber">{{errorMessage}}</small>
+          <input type="text" pInputText id="mobileNumber" formControlName="mobileNumber" (input)="changeMessage()" required  />
+          <small class="ng-invalid" *ngIf="(this.registerForm.controls.mobileNumber.invalid || this.registerForm.controls.mobileNumber.value === '') && this.registerForm.controls.mobileNumber.dirty || this.backendMobileNumberError">{{mobileNumberMessage}}</small>
         </div>
         <div class="card flex justify-content-center">
           <h5>{{"USER.ROLES" | translate}}*</h5>
-          <p-multiSelect id="roles" formControlName="roles" [options]="allRoles" appendTo="body" placeholder="{{'USER.SELECT_A_ROLE' | translate}}"
+          <p-multiSelect id="roles" formControlName="roles" [options]="allRoles" appendTo="body" required
+                         placeholder="{{'USER.SELECT_A_ROLE' | translate}}"
                          [filter]="true" optionLabel="name"></p-multiSelect>
+          <small class="ng-invalid" *ngIf="Array.isArray(this.registerForm.controls.roles.value) && this.registerForm.controls.roles.value?.length === 0 && this.registerForm.controls.roles.dirty">{{"USER.ROLES_REQUIRED" | translate}}</small>
         </div>
         <div class="card flex justify-content-center">
           <h5>{{"USER.CAMPAIGNS" | translate}}</h5>
@@ -38,7 +40,7 @@
     </ng-template>
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="createUser()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="createUser()" [disabled]="!registerForm.valid"></button>
     </ng-template>
   </p-dialog>
 </div>

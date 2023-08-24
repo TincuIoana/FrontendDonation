@@ -54,6 +54,8 @@ import {NgxCaptchaModule} from "ngx-captcha";
 
 import {JwtInterceptor} from "./util/interceptors/JwtInterceptor";
 import {NotificationGuard} from "./util/notification-guard";
+import {DonorComponent} from "./donor-management/donor/donor.component";
+
 import {Role_guards} from "./util/role_guards";
 import {CampaignModule} from "./campaign-management/campaign.module";
 
@@ -83,49 +85,54 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppRoutingModule,
 
 
-        // PrimeNG modules
-        DropdownModule,
-        ButtonModule,
-        DynamicDialogModule,
-        ListboxModule,
+    // PrimeNG modules
+    DropdownModule,
+    ButtonModule,
+    DynamicDialogModule,
+    ListboxModule,
 
-        // ngx-translate setup
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
-            },
-        }),
-        RolesDialogRoutingModule,
-        PanelModule,
-        TabMenuModule,
+    // ngx-translate setup
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    RolesDialogRoutingModule,
+    PanelModule,
+    TabMenuModule,
 
-        RouterModule.forRoot([]),
-        ChipsModule,
+    RouterModule.forRoot([]),
+    ChipsModule,
 
-        ToastModule,
-        SidebarModule,
-        CardModule,
+    ToastModule,
+    SidebarModule,
+    CardModule,
 
 
-        TableModule,
-        FileUploadModule,
-        ToastModule,
-        DialogModule,
-        RadioButtonModule,
-        PaginatorModule,
-        ConfirmDialogModule,
-        RatingModule,
-        RippleModule,
-        InputTextareaModule,
-        ToolbarModule,
-        CheckboxModule,
-        MultiSelectModule,
-        NgxCaptchaModule,
-        CampaignModule
-    ],
-providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass: Interceptor,multi: true},MessageService,Role_guards,LoginComponent],
+    TableModule,
+    FileUploadModule,
+    ToastModule,
+    DialogModule,
+    RadioButtonModule,
+    PaginatorModule,
+    ConfirmDialogModule,
+    RatingModule,
+    RippleModule,
+    InputTextareaModule,
+    ToolbarModule,
+    CheckboxModule,
+    MultiSelectModule,
+    NgxCaptchaModule,
+      CampaignModule
+  ],
+  providers: [CookieService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi: true
+  }, MessageService, Role_guards, LoginComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

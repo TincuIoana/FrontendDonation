@@ -12,12 +12,18 @@
 .card-header-alt {
   font-weight: bold;
   color: #4CAF50; /* Green text */
-  background-color: #f2f2f2; /* Light gray background */
+  /*background-color: #f2f2f2; !* Light gray background *!*/
   padding: 10px;
   border-bottom: 2px solid #4CAF50; /* Green border at the bottom */
   text-align: center; /* Center the text */
+  top: 10px;
+  position: relative;
 }
 
 p-toolbar {
   margin-bottom: 20px; /* Adjust the value as needed */
+}
+
+.p-card-header {
+  height: 43px;
 }
