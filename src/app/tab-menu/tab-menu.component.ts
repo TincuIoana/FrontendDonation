@@ -23,10 +23,12 @@ export class TabMenuComponent implements OnInit {
   private loggedInSubscription: Subscription | undefined;
 
   ngOnInit() {
+    // Fetch the translations for the keys
     this.translate.stream([
       'MENU.USERADMINISTRATION',
       'MENU.CAMPAIGNMANAGEMENT',
       'MENU.DONORMANAGEMENT',
+      'MENU.DONATIONMANAGEMENT',
       'MENU.LOGOUT',
       'MENU.LOGIN',
       'MENU.ROLES',
@@ -41,11 +43,11 @@ export class TabMenuComponent implements OnInit {
 
       const loginOrLogoutLabel = loggedIn || isLoggedin ? logoutLabel : loginLabel;
 
-
       this.items = [
         { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
         { label: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
         { label: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
+        {label: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management']},
         { label: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
       ];
 
@@ -63,50 +65,5 @@ export class TabMenuComponent implements OnInit {
         });
       });
     });
-
   }
-
-
-  // ngOnInit() {
-  //   this.translate.stream([
-  //     'MENU.USERADMINISTRATION',
-  //     'MENU.CAMPAIGNMANAGEMENT',
-  //     'MENU.DONORMANAGEMENT',
-  //     'MENU.LOGOUT',
-  //     'MENU.LOGIN',
-  //     'MENU.ROLES',
-  //     'MENU.SIGNIN'
-  //   ]).subscribe(translations => {
-  //     const loginLabel = translations['MENU.LOGIN'];
-  //     const logoutLabel = translations['MENU.LOGOUT'];
-  //     const token = localStorage.getItem("token")
-  //     let isLoggedin = false
-  //     isLoggedin = !!token;
-  //     const loginOrLogoutLabel = isLoggedin ? logoutLabel : loginLabel;
-  //
-  //     // Initialize menu items with login/logout button
-  //     this.items = [
-  //       {label: loginOrLogoutLabel, routerLink: isLoggedin ? ['/logout'] : ['/login']},
-  //       // {label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration']},
-  //       {label: translations['MENU.CAMPAIGNMANAGEMENT'], routerLink: ['/campaign']},
-  //       {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
-  //       {label: translations['MENU.ROLES'], routerLink: ['/roles-dialog']},
-  //     ];
-  //
-  //     this.authService.getUserRoles().subscribe(roles => {
-  //       // Check if user has the admin role
-  //       if (roles.includes('ROLE_ADM')) {
-  //         // Add the "User Administration" menu item
-  //         // @ts-ignore
-  //         this.items.splice(1, 0, {
-  //           label: this.translate.instant('MENU.USERADMINISTRATION'),
-  //           routerLink: ['/user-administration']
-  //         });
-  //       }
-  //     });
-  //
-  //   })
-  //
-  // }
-
 }
