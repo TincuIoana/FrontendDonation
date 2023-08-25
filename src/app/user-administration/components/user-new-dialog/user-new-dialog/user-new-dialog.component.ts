@@ -4,12 +4,12 @@ import {User} from "../../../models/user";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {UserService} from "../../../services/user.service";
-import {Role} from "../../../../roles-dialog/role";
 import {Campaign} from "../../../../campaign-management/campaign";
 import {CampaignService} from "../../../../campaign-management/campaign.service";
 import {RolesDialogService} from "../../../../roles-dialog/roles-dialog.service";
 import {tap} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
+import {Role} from "../../../models/role";
 
 @Component({
   selector: 'app-user-new-dialog',
@@ -55,6 +55,7 @@ export class UserNewDialogComponent implements OnInit {
     });
 
     this.roleService.loadRoles().subscribe(roles => {
+      roles.forEach(role => role.permissions = [])
       this.allRoles = roles;
     });
   }
@@ -74,9 +75,10 @@ export class UserNewDialogComponent implements OnInit {
     this.user.lastName = this.registerForm.value.lastName;
     this.user.email = this.registerForm.value.email;
     this.user.mobileNumber = this.registerForm.value.mobileNumber;
-    this.user.roles = this.registerForm.controls.roles.value;
+    this.user.roles = this.registerForm.controls.roles.value
     this.user.campaigns = this.registerForm.controls.campaigns.value;
     this.user.password = "test";
+    console.log(this.user)
 
     this.userService.createUser(this.user)
       .pipe(tap(

@@ -74,16 +74,15 @@ export class DonorComponent implements OnInit {
     this.submitted = true;
     if(this.donor.firstName && this.donor.lastName &&
       this.donor.firstName.replace(/\s/g, '').length>0 && this.donor.lastName.replace(/\s/g, '').length>0 ) {
-      // @ts-ignore
-      const newDonor = new Donor(this.removeExcessiveWhitespace(this.donor.firstName),this.removeExcessiveWhitespace(this.donor.lastName),
-        this.removeExcessiveWhitespace(this.donor.additionalName),this.removeExcessiveWhitespace(this.donor.maidenName))
+      const newDonor = {firstName: this.removeExcessiveWhitespace(this.donor.firstName), lastName: this.removeExcessiveWhitespace(this.donor.lastName),
+        additionalName: this.removeExcessiveWhitespace(this.donor.additionalName), maidenName: this.removeExcessiveWhitespace(this.donor.maidenName)}
 
       this.donorService.saveDonorToDB(newDonor)
 
       this.donorList = [...this.donorList]
       this.donorDialog = false
       this.donor = {id: 0, firstName: '', lastName: '', additionalName: '', maidenName: ''}
-      window.location.reload()
+      // window.location.reload()
 
 
     }else{

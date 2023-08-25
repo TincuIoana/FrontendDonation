@@ -17,6 +17,7 @@
 .center {
   margin: auto;
   border: 0.01em solid grey;
+  width: 90%;
 }
 
 #search-button {

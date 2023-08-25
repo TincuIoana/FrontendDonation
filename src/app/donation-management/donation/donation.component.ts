@@ -5,12 +5,9 @@ import {DonationService} from "../donation.service";
 import {User} from "../../user-administration/models/user";
 import {Campaign} from "../../campaign-management/campaign";
 import {Donor} from "../../donor-management/Donor";
-import {Role} from "../../roles-dialog/role";
-import {ERole} from "../../roles-dialog/erole";
-import {PermissionEnum} from "../../roles-dialog/permission-enum";
 import {CampaignService} from "../../campaign-management/campaign.service";
-import {BehaviorSubject} from "rxjs";
 import {DonorService} from "../../donor-management/donor.service";
+import {LoginService} from "../../login/login.service";
 
 @Component({
   selector: 'app-donation',
@@ -68,7 +65,7 @@ export class DonationComponent implements OnInit {
     //approvedBy: User = {},
     campaign: this.selectedCampaign,
     createdBy: this.goodUser(),
-    //createdBy: User = {id: parseInt(localStorage.getItem('id'))},
+    //createdBy: User = {id: parseInt(sessionStorage.getItem('id'))},
     donor: this.selectedDonor, // those are empty objects
     //donor: Donor = {},
     approveDate: null
@@ -77,11 +74,14 @@ export class DonationComponent implements OnInit {
   // @ts-ignore
   submitted: boolean;
   delete: any
+  userId: number = parseInt(this.loginService.getLoggedUserId());
 
 
   constructor (private donationService: DonationService,
                private campaignService: CampaignService,
-               private donorService: DonorService) {
+               private donorService: DonorService,
+               private loginService: LoginService
+  ) {
   }
 
   ngOnInit(): void {
@@ -114,7 +114,7 @@ export class DonationComponent implements OnInit {
   approveDonation(donation: any) {
     const id = donation.id;
     this.donationService.approveDonationDB(donation.id.toString(), donation);
-    window.location.reload();
+    // window.location.reload();
   }
 
   deleteDonation(donation: any) {
@@ -149,7 +149,7 @@ export class DonationComponent implements OnInit {
 
     this.donationService.updateDonationDB(donation.id.toString(), this.donation);
     this.updateDonationDialog = false;
-    window.location.reload();
+    // window.location.reload();
   }
 
   // saveDonation() {
@@ -228,6 +228,7 @@ export class DonationComponent implements OnInit {
     this.donation.campaign.id = this.selectedCampaign.id;
     this.donation.donor.id = this.selectedDonor.id;
     this.donation.currency = this.selectedCurrency.name;
+    this.donation.createdBy.id = this.userId;
     console.log(this.donation.campaign.id);
     console.log(this.donation.donor.id);
     let camp = new Campaign(this.donation.campaign.name, this.donation.campaign.purpose);
@@ -270,7 +271,8 @@ export class DonationComponent implements OnInit {
       this.donationList = [...this.donationList];
       this.donationDialog = false;
       this.clearDonationForm();
-      window.location.reload();
+      // window.location.reload();
+
       // Call the service to save the donation
     //   this.donationService.saveDonationDB(
     //     this.donation.campaign.id,
@@ -328,7 +330,7 @@ export class DonationComponent implements OnInit {
 
   goodUser(): User {
     return {
-      id: parseInt(localStorage.getItem('id')),
+      id: parseInt(sessionStorage.getItem('id')),
       // firstName: '',
       // lastName: '',
       // mobileNumber: '',

@@ -4,9 +4,8 @@ import {CampaignService} from "../campaign.service";
 import {AbstractControl, ValidationErrors} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
 import {MessageService} from "primeng/api";
-import {Router} from "@angular/router";
-import {Donor} from "../../donor-management/Donor";
 import {Donation} from "../../donation-management/donation";
+import {Donor} from "../../donor-management/Donor";
 
 @Component({
   selector: 'app-campaign',

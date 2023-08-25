@@ -3,13 +3,13 @@ import {Component, Input, OnInit} from "@angular/core";
 import {User} from "../../models/user";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
-import {Role} from "../../../roles-dialog/role";
 import {Campaign} from "../../../campaign-management/campaign";
 import {CampaignService} from "../../../campaign-management/campaign.service";
 import {RolesDialogService} from "../../../roles-dialog/roles-dialog.service";
 import {MessageService} from "primeng/api";
 import {tap} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
+import {Role} from "../../models/role";
 
 
 @Component({
@@ -58,8 +58,11 @@ export class UserEditDialogComponent implements OnInit {
       this.allCampaigns = campaigns;
     });
     this.roleService.getRoles().subscribe(roles => {
+      roles.forEach(role => role.permissions = [])
       this.allRoles = roles;
     });
+
+    this.userFromDB.roles?.forEach(role => role.permissions = [])
 
     this.initializeForm()
   }
@@ -85,7 +88,7 @@ export class UserEditDialogComponent implements OnInit {
     if (this.registerForm.controls.mobileNumber.dirty)
       this.user.mobileNumber = this.registerForm.value.mobileNumber;
     if (this.registerForm.controls.roles.dirty)
-      this.user.roles = this.registerForm.controls.roles.value;
+      this.user.roles = this.registerForm.controls.roles.value
     if (this.registerForm.controls.campaigns.dirty)
       this.user.campaigns = this.registerForm.controls.campaigns.value;
     if (this.registerForm.controls.password.dirty)
@@ -157,6 +160,7 @@ export class UserEditDialogComponent implements OnInit {
     this.registerForm.get("email").setValue(this.userFromDB.email);
     this.registerForm.get("mobileNumber").setValue(this.userFromDB.mobileNumber);
     this.registerForm.get("roles").setValue(this.userFromDB.roles);
+    console.log(this.registerForm.get("roles"))
     this.registerForm.get("campaigns").setValue(this.userFromDB.campaigns);
     this.registerForm.get("active").setValue(this.userFromDB.active);
   }

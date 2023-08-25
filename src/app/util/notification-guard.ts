@@ -9,7 +9,7 @@ export class NotificationGuard {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
-    const isLoggedIn = localStorage.getItem('token');
+    const isLoggedIn = sessionStorage.getItem("token");
 
     if (!isLoggedIn) {
       this.router.navigate(['/login']).then(() => {
