@@ -6,8 +6,9 @@ import {RolesDialogPermissionsService} from "./roles-dialog-permissions.service"
 import {PermissionEnum} from "./permission-enum";
 import {Observable, tap} from "rxjs";
 import {FormBuilder} from "@angular/forms";
-import {MessageService, ConfirmEventType} from 'primeng/api';
+import {MessageService} from 'primeng/api';
 import {TranslateService} from "@ngx-translate/core";
+import {LoginService} from "../login/login.service";
 
 @Component({
   selector: 'app-roles-dialog',
@@ -20,11 +21,11 @@ export class RolesDialogComponent implements OnInit {
   p2!: PermissionEnum[];
   p3!: PermissionEnum[];
   p4!: PermissionEnum[];
-  user1String = localStorage.getItem("id");
+  loggedUserId = this.loginService.getLoggedUserId();
   //userId1 = parseInt(this.user1String,10);
   userId1: number = 2;    // userul are permisiunea de a edita
   userId2: number = 1;  // nu are permisiunea sa modifice rolurile
-  //userId = localStorage.getItem("id");
+  //userId = sessionStorage.getItem("id");
   //error! : string;
 
   summary2!: string;  // save the translation key for successful insertion to permissionList
@@ -45,7 +46,9 @@ export class RolesDialogComponent implements OnInit {
               private rolesDialogService: RolesDialogService,
               private rolesDialogPermissionsService: RolesDialogPermissionsService,
               private messageService: MessageService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private loginService: LoginService
+              ) {
   }
 
   ngOnInit(): void {

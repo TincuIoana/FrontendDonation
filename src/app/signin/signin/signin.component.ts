@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {LoginService} from "../../login/login.service";
-import {LoginRequest} from "../../login/LoginRequest";
 import {SigninService} from "../signin.service";
 import {SigninRequest} from "../SigninRequest";
 
@@ -35,7 +33,7 @@ export class SigninComponent {
     console.log(mobileNumber)
     console.log(email)
     // const loginRequest = new LoginRequest(username,password);
-    // localStorage.setItem("role","admin")
+    // sessionStorage.setItem("role","admin")
     const signinRequest = new SigninRequest(firstName,lastName,mobileNumber,email)
     this.signinService.signin(signinRequest)
   }

@@ -1,17 +1,20 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from "@angular/router";
 import {Observable} from "rxjs";
+import {LoginService} from "../login/login.service";
 
 @Injectable()
 export class Role_guards implements CanActivate {
+  constructor(
+    private loginService: LoginService
+  ) {
+  }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const storedPermissions = localStorage.getItem("permissions")
-    const userPermissions: Array<string> = storedPermissions ? JSON.parse(storedPermissions) : [];
+    const userPermissions: Array<string> = this.loginService.getLoggedUserPermissions();
 
     const receivedPermissions = route.data['permissions'] as Array<string>
 
-    console.log(storedPermissions)
     console.log(receivedPermissions)
 
 // Check if any userPermission matches with receivedPermissions

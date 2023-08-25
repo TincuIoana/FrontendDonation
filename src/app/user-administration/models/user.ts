@@ -1,5 +1,6 @@
-import {Role} from "../../roles-dialog/role";
+
 import {Campaign} from "../../campaign-management/campaign";
+import {Role} from "./role";
 
 export interface User {
   id?: number;
