@@ -58,6 +58,7 @@ import {NotificationGuard} from "./util/notification-guard";
 import {DonorComponent} from "./donor-management/donor/donor.component";
 
 import {Role_guards} from "./util/role_guards";
+import {CampaignModule} from "./campaign-management/campaign.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -68,7 +69,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
-
     NotificationComponent,
     SigninComponent,
     CampaignComponent,
@@ -124,7 +124,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarModule,
     CheckboxModule,
     MultiSelectModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+      CampaignModule
   ],
   providers: [CookieService, {
     provide: HTTP_INTERCEPTORS,

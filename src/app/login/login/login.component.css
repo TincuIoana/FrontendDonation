@@ -9,10 +9,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Adjust this value to control vertical centering */
+  height: 100vh;
 }
 .login-panel {
-  max-width: 400px; /* Adjust this value as needed */
+  max-width: 400px;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;

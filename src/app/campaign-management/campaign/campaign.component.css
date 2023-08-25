@@ -79,3 +79,6 @@
     margin-top: 0.5rem;
   }
 }
+:host ::ng-deep .no-close-button-dialog .ui-dialog-titlebar-close {
+  display: none;
+}

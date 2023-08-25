@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, catchError, Observable, of} from "rxjs";
 import {LoginService} from "../login/login.service";
 
 @Injectable({
@@ -14,7 +14,15 @@ export class AuthService {
   private loggedInSubject = new BehaviorSubject<boolean>(false);
 
   setLoggedIn(value: boolean) {
-    this.loggedInSubject.next(value);
+
+    try {
+      this.loggedInSubject.next(value);
+    }catch(ERROR){
+      console.error('amn error has occured', ERROR)
+    }
+
+
+
   }
 
   isLoggedin() {

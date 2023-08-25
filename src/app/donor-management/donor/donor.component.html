@@ -40,10 +40,14 @@
         <td>
           <p-tableCheckbox [value]="donor"></p-tableCheckbox>
         </td>
-        <td>{{donor.firstName}}</td>
-        <td>{{donor.lastName}}</td>
-        <td>{{donor.additionalName}}</td>
-        <td>{{donor.maidenName}}</td>
+        <td (click)="toggleFullText(donor,donor.firstName)">{{getDisplayText(donor.firstName)}}</td>
+        <td (click)="toggleFullText(donor,donor.lastName)">{{getDisplayText(donor.lastName)}}</td>
+        <td (click)="toggleFullText(donor,donor.additionalName)">{{getDisplayText(donor.additionalName)}}</td>
+        <td (click)="toggleFullText(donor,donor.maidenName)">{{getDisplayText(donor.maidenName)}}</td>
+<!--        <td>{{donor.firstName}}</td>-->
+<!--        <td>{{donor.lastName}}</td>-->
+<!--        <td>{{donor.additionalName}}</td>-->
+<!--        <td>{{donor.maidenName}}</td>-->
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(donor)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteDonor(donor)"></button>
@@ -119,7 +123,7 @@
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
     <button pButton pRipple label="Save changes" icon="pi pi-check" class="p-button-text" (click)="editDonor()"></button>
   </ng-template>
 </p-dialog>

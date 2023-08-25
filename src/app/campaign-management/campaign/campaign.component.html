@@ -3,8 +3,8 @@
 <div class="card">
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
-      <button  pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-      <button  pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
+      <button *ngIf="!checkIfReporter()" pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      <button *ngIf="!checkIfReporter()"  pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
     </ng-template>
 
 
@@ -29,6 +29,8 @@
         </th>
         <th pSortableColumn="name">{{'CAMPAIGN.NAME' | translate}} <p-sortIcon field="name"></p-sortIcon></th>
         <th pSortableColumn="purpose">{{'CAMPAIGN.PURPOSE' | translate}} <p-sortIcon field="purpose"></p-sortIcon></th>
+        <th pSortableColumn="donors">Donors <p-sortIcon field="donors"></p-sortIcon></th>
+        <th pSortableColumn="donations">Donations <p-sortIcon field="donations"></p-sortIcon></th>
         <th></th>
       </tr>
     </ng-template>
@@ -38,12 +40,19 @@
         <td>
           <p-tableCheckbox [value]="campaign"></p-tableCheckbox>
         </td>
-        <td>{{campaign.name}}</td>
-        <td>{{campaign.purpose}}</td>
+        <td (click)="toggleFullText(campaign,campaign.name)">{{getDisplayText(campaign.name)}}</td>
+        <td (click)="toggleFullText(campaign,campaign.purpose)">{{getDisplayText(campaign.purpose)}}</td>
+
         <td>
-          <button  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
-          <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
-          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>
+          <app-donors-dialog (click)="campaignDonors(campaign.id)" [donors]="donorList"></app-donors-dialog>
+        </td>
+        <td>
+          <app-donations-dialog (click)="campaignDonations(campaign.id)" [donations]="donationsList"></app-donations-dialog>
+        </td>
+        <td>
+          <button  *ngIf="!checkIfReporter()"  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
+          <button  *ngIf="!checkIfReporter()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
+<!--          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>-->
 
         </td>
       </tr>
@@ -57,7 +66,7 @@
   </p-table>
 </div>
 
-<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
       <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>
@@ -84,7 +93,7 @@
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
 
-<p-dialog [(visible)]="campaignDialog1" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="campaignDialog1" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [closable]="false" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content1">
     <div class="p-field">
       <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>
@@ -102,7 +111,7 @@
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
     <button pButton pRipple label="Save changes" icon="pi pi-check" class="p-button-text" [disabled]="!campaign.name || !campaign.purpose" (click)="editCampaign()"></button>
   </ng-template>
 </p-dialog>

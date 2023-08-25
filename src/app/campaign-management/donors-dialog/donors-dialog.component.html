@@ -1,0 +1,61 @@
+<!--<div class="card flex justify-content-center">-->
+<!--  <p-button label="Donors" class="p-button-success p-mr-2" (click)="showCampaigns()"></p-button>-->
+<!--  <p-dialog [(visible)]="showDialog" [style]="{width: '950px'}" header="Donors" [modal]="true" styleClass="p-fluid">-->
+<!--    <ng-template pTemplate="header">-->
+
+<!--    </ng-template>-->
+<!--    <ng-template pTemplate="body">-->
+<!--      <div class="skill-list">-->
+<!--        <div class="skill-item">Firstname</div>-->
+<!--        <div class="skill-item">Lastname</div>-->
+<!--        <div class="skill-item">Additionalname</div>-->
+<!--        <div class="skill-item">Maidenname</div>-->
+<!--      </div>-->
+
+<!--      <div class="skill-list">-->
+
+<!--        <div class="skill-item" *ngFor="let donor of donors">-->
+<!--          <p (click)="toggleFullText(donor, donor.firstName)">{{ getDisplayText(donor.firstName) }}</p>-->
+<!--        </div>-->
+<!--        <div class="skill-item" *ngFor="let donor of donors">-->
+<!--          <p (click)="toggleFullText(donor, donor.lastName)">{{ getDisplayText(donor.lastName) }}</p>-->
+<!--        </div>-->
+<!--        <div class="skill-item" *ngFor="let donor of donors">-->
+<!--          <p (click)="toggleFullText(donor, donor.additionalName)">{{ getDisplayText(donor.additionalName) }}</p>-->
+<!--        </div>-->
+<!--        <div class="skill-item" *ngFor="let donor of donors">-->
+<!--          <p (click)="toggleFullText(donor, donor.maidenName)">{{ getDisplayText(donor.maidenName) }}</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </ng-template>-->
+<!--  </p-dialog>-->
+<!--</div>-->
+
+<div class="card flex justify-content-center">
+  <p-button label="Donors" class="p-button-success p-mr-2" (click)="showCampaigns()"></p-button>
+  <p-dialog [(visible)]="showDialog" [style]="{width: '950px'}" header="Donors" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="header">
+      <div class="skill-list">
+        <div class="skill-item">First Name</div>
+        <div class="skill-item">Last Name</div>
+        <div class="skill-item">Additional Name</div>
+        <div class="skill-item">Maiden Name</div>
+
+      </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+      <table class="donation-table">
+        <tbody>
+        <tr *ngFor="let donor of donors">
+          <td (click)="toggleFullText(donor, donor.firstName)">{{ getDisplayText(donor.firstName) }}</td>
+          <td (click)="toggleFullText(donor, donor.lastName)">{{ getDisplayText(donor.lastName) }}</td>
+          <td (click)="toggleFullText(donor, donor.additionalName)">{{ getDisplayText(donor.additionalName) }}</td>
+          <td (click)="toggleFullText(donor, donor.maidenName)">{{ getDisplayText(donor.maidenName) }}</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </p-dialog>
+</div>
+

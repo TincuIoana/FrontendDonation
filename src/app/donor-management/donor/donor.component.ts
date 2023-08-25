@@ -15,8 +15,8 @@ export class DonorComponent implements OnInit {
 
   selectedDonor: any;
 
-
-
+  // @ts-ignore
+  donorListFromCampaign: Donor[]
 
     // @ts-ignore
   donorList : Donor[];
@@ -38,8 +38,13 @@ export class DonorComponent implements OnInit {
 
   ngOnInit() {
     console.log("start donor manager")
-    this.donorService.loadDonors().subscribe()
-    this.donorService.getDonors().subscribe(don=> this.donorList=don)
+
+
+
+
+      this.donorService.loadDonors().subscribe()
+      this.donorService.getDonors().subscribe(don=> this.donorList=don)
+      console.log(this.donorList)
 
   }
 
@@ -52,6 +57,11 @@ export class DonorComponent implements OnInit {
   hideDialog() {
     this.donorDialog = false;
     this.submitted = false;
+  }
+  hideDialog1() {
+    this.donorDialog1 = false;
+    this.submitted = false;
+    window.location.reload()
   }
 
 
@@ -72,7 +82,7 @@ export class DonorComponent implements OnInit {
       this.donorList = [...this.donorList]
       this.donorDialog = false
       this.donor = {id: 0, firstName: '', lastName: '', additionalName: '', maidenName: ''}
-      // window.location.reload()
+      window.location.reload()
 
 
     }else{
@@ -114,7 +124,7 @@ export class DonorComponent implements OnInit {
       this.donorService.deleteFromDB( id.toString())
     });
 
-    // Refresh the page after deleting all campaigns
+
     window.location.reload();
   }
   openEdit(donor: any) {
@@ -124,6 +134,21 @@ export class DonorComponent implements OnInit {
     this.donorDialog1 = true;
 
   }
+
+  fullTextMap: Record<string, boolean> = {};
+
+  toggleFullText(donor: any, field: string): void {
+    this.fullTextMap[field] = !this.fullTextMap[field];
+  }
+
+  getDisplayText(text: string): string {
+    const maxLength = 12; // Adjust as needed
+    if (text.length > maxLength && !this.fullTextMap[text]) {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+    return text;
+  }
+
 
 
 }
