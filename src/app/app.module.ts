@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TooltipModule} from "primeng/tooltip";
 
 // PrimeNG imports
 import {DropdownModule} from 'primeng/dropdown';
@@ -58,6 +59,9 @@ import {NotificationGuard} from "./util/notification-guard";
 import {DonorComponent} from "./donor-management/donor/donor.component";
 
 import {Role_guards} from "./util/role_guards";
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { WelcomePageRoutingModule } from './welcome-page/welcome-page-routing.module';
+import {ImageModule} from "primeng/image";
 import {CampaignModule} from "./campaign-management/campaign.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -69,12 +73,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TabMenuComponent,
     LoginComponent,
+
     NotificationComponent,
     SigninComponent,
     CampaignComponent,
     LogoutComponent,
     ChangeComponent,
-    DonationComponent
+    DonationComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ButtonModule,
     DynamicDialogModule,
     ListboxModule,
+    TooltipModule,
 
     // ngx-translate setup
     TranslateModule.forRoot({
@@ -125,7 +132,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CheckboxModule,
     MultiSelectModule,
     NgxCaptchaModule,
-      CampaignModule
+    WelcomePageRoutingModule,
+    ImageModule,
+    CampaignModule
   ],
   providers: [CookieService, {
     provide: HTTP_INTERCEPTORS,
