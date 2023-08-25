@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -58,6 +58,10 @@ const routes: Routes = [
   {
     path: 'change',
     loadChildren: () => import('./change-password/change.module').then(m=> m.ChangeModule)
+  },
+  {
+    path:'welcome-page',
+    loadChildren: () => import('./welcome-page/welcome-page.module').then(m=> m.WelcomePageModule)
   }
 ];
 
