@@ -1,14 +1,15 @@
 <div class="header-container">
   <div>
     <app-tab-menu></app-tab-menu>
-    <p-dropdown
-      [options]="languages"
-      [(ngModel)]="selectedLanguage"
-      optionLabel="label"
-      (onChange)="changeLanguage($event.value.code)">
-    </p-dropdown>
 
-    <div>
+
+    <div class="top-right-corner">
+      <p-dropdown
+        [options]="languages"
+        [(ngModel)]="selectedLanguage"
+        optionLabel="label"
+        (onChange)="changeLanguage($event.value.code)">
+      </p-dropdown>
       <app-notification></app-notification>
     </div>
   </div>

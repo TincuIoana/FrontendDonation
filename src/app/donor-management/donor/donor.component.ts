@@ -82,7 +82,7 @@ export class DonorComponent implements OnInit {
       this.donorList = [...this.donorList]
       this.donorDialog = false
       this.donor = {id: 0, firstName: '', lastName: '', additionalName: '', maidenName: ''}
-      // window.location.reload()
+      window.location.reload()
 
 
     }else{
@@ -108,7 +108,7 @@ export class DonorComponent implements OnInit {
   deleteDonor(donor: any) {
     console.log(donor.id)
     this.donorService.deleteFromDB(donor.id.toString())
-    // window.location.reload()
+    window.location.reload()
 
 
   }
@@ -124,7 +124,7 @@ export class DonorComponent implements OnInit {
       this.donorService.deleteFromDB( id.toString())
     });
 
-    // Refresh the page after deleting all campaigns
+
     window.location.reload();
   }
   openEdit(donor: any) {

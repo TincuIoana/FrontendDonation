@@ -32,7 +32,7 @@
 .skill-list {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0; /* Add padding to create space between labels */
+  padding: 10px 0;
 }
 
 .skill-item {

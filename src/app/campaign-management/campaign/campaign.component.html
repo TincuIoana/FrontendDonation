@@ -52,7 +52,7 @@
         <td>
           <button  *ngIf="!checkIfReporter()"  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
           <button  *ngIf="!checkIfReporter()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
-          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>
+<!--          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>-->
 
         </td>
       </tr>
@@ -66,7 +66,7 @@
   </p-table>
 </div>
 
-<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
       <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>
@@ -93,7 +93,7 @@
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
 
-<p-dialog [(visible)]="campaignDialog1" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="campaignDialog1" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [closable]="false" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content1">
     <div class="p-field">
       <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>

@@ -42,10 +42,7 @@ const routes: Routes = [
     canActivate: [Role_guards],
     data: {permissions: ['PERMISSION_MANAGEMENT']}
   },
-  {
-    path: 'signin',
-    loadChildren: () => import('./signin/signin.module').then(m => m.SigninModule)
-  },
+
   {
     path: 'campaign',
     loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule),
