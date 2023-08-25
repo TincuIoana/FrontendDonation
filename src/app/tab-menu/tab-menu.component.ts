@@ -14,6 +14,8 @@ import {LoginService} from "../login/login.service";
 })
 export class TabMenuComponent implements OnInit {
   items: MenuItem[] | undefined;
+  sDelay = 3000;
+  hDelay = 3000;
   loginItem: MenuItem[] | undefined;
 
   // @ts-ignore
@@ -54,12 +56,33 @@ export class TabMenuComponent implements OnInit {
 
       const loginOrLogoutLabel = loggedIn  ? logoutLabel : loginLabel;
 
+      // this.items = [
+      //   { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
+      //   { label: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
+      //   { label: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
+      //   { label: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management']},
+      //   { label: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
+      // ];
+
+
+      const labelForLogIn = 'pi pi-sign-in';
+      const labelForLogOut = 'pi pi-sign-out';
+      const logInOrLogOut = loggedIn || isLoggedin ? labelForLogOut : labelForLogIn;
+      // adaugat de mine pentru icons
+      // this.items = [
+      //   { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
+      //   { icon: 'pi pi-megaphone', tooltip: 'Campaign Management', routerLink: ['/campaign'] },
+      //   { icon: 'pi pi-id-card', routerLink: ['/donor-management'] },
+      //   { icon: 'pi pi-wallet', routerLink: ['/donation-management']},
+      //   { icon: 'pi pi-lock', routerLink: ['/roles-dialog'] },
+      // ];
+
       this.items = [
-        { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
-        { label: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
-        { label: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
-        { label: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management']},
-        { label: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
+        { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
+        { icon: 'pi pi-megaphone', tooltip: 'Campaign Management', routerLink: ['/campaign'] },
+        { icon: 'pi pi-id-card', tooltip: 'Donor Management', routerLink: ['/donor-management'] },
+        { icon: 'pi pi-wallet', tooltip: 'Donation Management', routerLink: ['/donation-management'] },
+        { icon: 'pi pi-lock', tooltip: 'Roles', routerLink: ['/roles-dialog'] },
       ];
       this.loginItem=[ { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },]
 
@@ -69,7 +92,9 @@ export class TabMenuComponent implements OnInit {
           // Add the "User Administration" menu item
           // @ts-ignore
           this.items.splice(1, 0, {
-            label: this.translate.instant('MENU.USERADMINISTRATION'),
+            // label: this.translate.instant('MENU.USERADMINISTRATION'),
+            icon: 'pi pi-users',
+            tooltip: 'User Management',
             routerLink: ['/user-administration']
           }
           );
@@ -81,6 +106,46 @@ export class TabMenuComponent implements OnInit {
   }
 
 
-
+  // ngOnInit() {
+  //   this.translate.stream([
+  //     'MENU.USERADMINISTRATION',
+  //     'MENU.CAMPAIGNMANAGEMENT',
+  //     'MENU.DONORMANAGEMENT',
+  //     'MENU.LOGOUT',
+  //     'MENU.LOGIN',
+  //     'MENU.ROLES',
+  //     'MENU.SIGNIN'
+  //   ]).subscribe(translations => {
+  //     const loginLabel = translations['MENU.LOGIN'];
+  //     const logoutLabel = translations['MENU.LOGOUT'];
+  //     const token = sessionStorage.getItem("token")
+  //     let isLoggedin = false
+  //     isLoggedin = !!token;
+  //     const loginOrLogoutLabel = isLoggedin ? logoutLabel : loginLabel;
+  //
+  //     // Initialize menu items with login/logout button
+  //     this.items = [
+  //       {label: loginOrLogoutLabel, routerLink: isLoggedin ? ['/logout'] : ['/login']},
+  //       // {label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration']},
+  //       {label: translations['MENU.CAMPAIGNMANAGEMENT'], routerLink: ['/campaign']},
+  //       {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
+  //       {label: translations['MENU.ROLES'], routerLink: ['/roles-dialog']},
+  //     ];
+  //
+  //     this.authService.getUserRoles().subscribe(roles => {
+  //       // Check if user has the admin role
+  //       if (roles.includes('ROLE_ADM')) {
+  //         // Add the "User Administration" menu item
+  //         // @ts-ignore
+  //         this.items.splice(1, 0, {
+  //           label: this.translate.instant('MENU.USERADMINISTRATION'),
+  //           routerLink: ['/user-administration']
+  //         });
+  //       }
+  //     });
+  //
+  //   })
+  //
+  // }
 
 }

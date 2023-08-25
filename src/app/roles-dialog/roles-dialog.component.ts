@@ -191,7 +191,7 @@ export class RolesDialogComponent implements OnInit {
     ]).subscribe(translations => {
       this.summary2 = translations["PERMISSIONS.Added_successfully"];
     });
-    this.messageService.add({ severity: 'success', summary: this.summary2})
+    this.messageService.add({ severity: 'success', detail: this.summary2})
   }
 
   showSuccessDelete(){
@@ -201,6 +201,6 @@ export class RolesDialogComponent implements OnInit {
     ]).subscribe(translations => {
       this.summary3 = translations["PERMISSIONS.Deleted_successfully"];
     });
-    this.messageService.add({ severity: 'success', summary: this.summary3})
+    this.messageService.add({ severity: 'success', detail: this.summary3})
   }
 }

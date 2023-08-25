@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit{
         this.router.navigate(['/change'], { state: { loginResponse } })
       }else{
 
-        this.router.navigate(['/campaign'])
+        this.router.navigate(['/welcome-page'])
       }
     },
       error => {
