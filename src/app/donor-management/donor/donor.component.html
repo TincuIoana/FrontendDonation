@@ -84,6 +84,7 @@
       <label for="maidenName">{{'DONOR.MAIDENN'|translate}}</label>
       <textarea id="maidenName" pInputTextarea [(ngModel)]="donor.maidenName" required rows="3" cols="20"></textarea>
     </div>
+    <small style="color: red" class="p-invalid"  *ngIf="submitted ">{{errorMessage}}</small>
 
 
   </ng-template>

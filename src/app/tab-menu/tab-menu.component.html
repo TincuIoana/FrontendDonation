@@ -1,6 +1,10 @@
 <!--<div class="card" >-->
 <!--  <p-tabMenu [model]="items"></p-tabMenu>-->
 <!--</div>-->
+<!--<div class="top-right-corner">-->
+<!--  <p-tabMenu [model]="loginItem"></p-tabMenu>-->
+
+<!--</div>-->
 
 <!--<ul>-->
 <!--  <li *ngFor="let item of items">-->
@@ -19,14 +23,6 @@
       </div>
     </ng-template>
 
-    <p-tabMenu [model]="loginItem">
-      <ng-template pTemplate="item" let-item>
 
-      <div class="p-d-flex pi-align-right">
-        <i [class]="item.icon"></i>
-        <span class="p-ml-2">{{ item.label }}</span>
-      </div>
-      </ng-template>
-    </p-tabMenu>
   </p-tabMenu>
 </div>
