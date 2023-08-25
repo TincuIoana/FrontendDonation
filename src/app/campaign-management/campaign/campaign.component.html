@@ -49,15 +49,16 @@
           <app-donors-dialog (click)="campaignDonors(campaign.id)" [donors]="donorList"></app-donors-dialog>
         </td>
         <td>
-          <button  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
-          &nbsp;
-          <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCampaign(campaign)"></button>
-          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>
+<!--          <button  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>-->
+<!--          &nbsp;-->
+<!--          <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCampaign(campaign)"></button>-->
+<!--          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>-->
           <app-donations-dialog (click)="campaignDonations(campaign.id)" [donations]="donationsList"></app-donations-dialog>
         </td>
         <td>
           <button  *ngIf="!checkIfReporter()"  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(campaign)"></button>
-          <button  *ngIf="!checkIfReporter()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
+          &nbsp;
+          <button  *ngIf="!checkIfReporter()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCampaign(campaign)"></button>
 <!--          <small style="color: red" class="error-message" *ngIf="campaignErrors[campaign.id]">{{ campaignErrors[campaign.id] }}</small>-->
 
         </td>
