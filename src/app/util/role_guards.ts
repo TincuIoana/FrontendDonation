@@ -12,6 +12,7 @@ export class Role_guards implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     const userPermissions: Array<string> = this.loginService.getLoggedUserPermissions();
+    console.log(this.loginService.getLoggedUserPermissions());
 
     const receivedPermissions = route.data['permissions'] as Array<string>
 

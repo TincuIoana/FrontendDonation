@@ -24,7 +24,7 @@ export class NotificationService {
   }
 
   pollForNotifications(userId: number): Observable<NotificationDTO[]> {
-    return timer(0, 60000).pipe(
+    return timer(0, 2000).pipe(
       takeUntil(this.stopPollingForNotifications),
       switchMap(() => this.getNotificationsNotAppearedOnView(userId)),
       retry({
@@ -41,11 +41,12 @@ export class NotificationService {
   }
 
   getAllNotifications(userId: number): Observable<NotificationDTO[]> {
+    console.log(userId)
     return this.http.get<NotificationDTO[]>(`http://localhost:8080/api/inbox/${userId}`);
   }
 
   pollForAllNotifications(userId: number): Observable<NotificationDTO[]> {
-    return timer(0, 5000).pipe(
+    return timer(0, 2000).pipe(
       takeUntil(this.stopPollingForAllNotifications),
       switchMap(() => this.getAllNotifications(userId)),
       retry({

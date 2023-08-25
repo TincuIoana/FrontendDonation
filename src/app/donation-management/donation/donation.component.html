@@ -5,6 +5,8 @@
     <ng-template pTemplate="left">
       <button pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
       <button pButton pRipple [label]="delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonations()" [disabled]="!selectedDonations || !selectedDonations.length"></button>
+      <button pButton pRipple label="Export to CSV" (click)="exportViewToCSV()"></button>
+
     </ng-template>
   </p-toolbar>
 

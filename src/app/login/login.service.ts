@@ -49,6 +49,10 @@ export class LoginService {
 
   getLoggedUserId(){
     // @ts-ignore
+
+    console.log(jwtDecode(sessionStorage.getItem("token")!).id)
+    // @ts-ignore
+
     return jwtDecode(sessionStorage.getItem("token")!).id;
   }
 
