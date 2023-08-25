@@ -46,26 +46,14 @@ export class LoginComponent implements OnInit{
       this.loginService.setLoginResponse(loginResponse)
       sessionStorage.setItem("token",<string>loginResponse.accessToken)
       this.loginService.setLoggedIn()
-        //@ts-ignore
-        // const permissions: PermissionEnum[] = [].concat(...loginResponse.roles.map(role => role.permissions));
 
-        // sessionStorage.setItem('permissions', JSON.stringify(permissions));
-
-        // const permissions: PermissionEnum[] = [];
-
-        // // @ts-ignore
-        // loginResponse.roles.forEach(role => {
-        //   permissions.push(...role.permissions);
-        // });
-        //
-        // sessionStorage.setItem('permissions', JSON.stringify(permissions));
 
       if(loginResponse.firstLogin) {
 
         this.router.navigate(['/change'], { state: { loginResponse } })
       }else{
 
-        this.router.navigate(['/campaign'])
+        this.router.navigate(['/welcome-page'])
       }
     },
       error => {

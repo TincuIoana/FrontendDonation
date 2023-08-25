@@ -9,3 +9,11 @@
   align-items: center; /* To align menu and dropdown vertically */
   gap: 20px; /* Add some spacing between the menu and the dropdown */
 }
+.top-right-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px; /* Optional: Add padding for spacing */
+
+  gap: 20px;
+}

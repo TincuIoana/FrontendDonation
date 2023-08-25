@@ -59,6 +59,10 @@ import {NotificationGuard} from "./util/notification-guard";
 import {DonorComponent} from "./donor-management/donor/donor.component";
 
 import {Role_guards} from "./util/role_guards";
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { WelcomePageRoutingModule } from './welcome-page/welcome-page-routing.module';
+import {ImageModule} from "primeng/image";
+import {CampaignModule} from "./campaign-management/campaign.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -76,7 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LogoutComponent,
     ChangeComponent,
     DonationComponent,
-
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +131,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarModule,
     CheckboxModule,
     MultiSelectModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    WelcomePageRoutingModule,
+    ImageModule,
+    CampaignModule
   ],
   providers: [CookieService, {
     provide: HTTP_INTERCEPTORS,

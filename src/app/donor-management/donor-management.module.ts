@@ -21,22 +21,21 @@ import {ToolbarModule} from "primeng/toolbar";
   declarations: [
     DonorComponent
   ],
-    imports: [
-        CommonModule,
-        DonorManagementRoutingModule,
-        TranslateModule,
-        ButtonModule,
-        ConfirmDialogModule,
-        DialogModule,
-        InputTextModule,
-        InputTextareaModule,
-        PaginatorModule,
-        RippleModule,
-        SharedModule,
-        TableModule,
-        ToastModule,
-        ToolbarModule
-    ],
+  imports: [
+    CommonModule,
+    DonorManagementRoutingModule,
+    TranslateModule,
+    ConfirmDialogModule,
+    DialogModule,
+    InputTextModule,
+    InputTextareaModule,
+    PaginatorModule,
+    RippleModule,
+    SharedModule,
+    TableModule,
+    ToolbarModule,
+    ToastModule
+  ],
   providers :[MessageService,ConfirmationService]   //le-am importat odata si acum nu mai compileaza fara ele desi nu-s folosite
 
 })

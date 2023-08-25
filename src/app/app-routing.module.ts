@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {Role_guards} from "./util/role_guards";
+import {NotificationComponent} from "./notificationSystem/notification/notification.component";
+import {NotificationGuard} from "./util/notification-guard";
+import {PermissionEnum} from "./roles-dialog/permission-enum";
 
 // Lazy loading the modules. If you don't want lazy loading, import the components directly.
 const routes: Routes = [
@@ -26,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -37,20 +40,15 @@ const routes: Routes = [
     path: 'roles-dialog',
     loadChildren: () => import('./roles-dialog/roles-dialog.module').then(m => m.RolesDialogModule),
     canActivate: [Role_guards],
-    data: {
-      permissions: ["PERMISSION_MANAGEMENT"]
-    }
+    data: {permissions: ['PERMISSION_MANAGEMENT']}
   },
-  {
-    path: 'signin',
-    loadChildren: () => import('./signin/signin.module').then(m => m.SigninModule)
-  },
+
   {
     path: 'campaign',
     loadChildren: () => import('./campaign-management/campaign.module').then(m=> m.CampaignModule),
     canActivate: [Role_guards],
     data:{
-      permissions:['CAMP_MANAGEMENT']
+      permissions:['CAMP_MANAGEMENT','CAMP_REPORT_RESTRICTED']
     }
   },
   {
@@ -60,6 +58,10 @@ const routes: Routes = [
   {
     path: 'change',
     loadChildren: () => import('./change-password/change.module').then(m=> m.ChangeModule)
+  },
+  {
+    path:'welcome-page',
+    loadChildren: () => import('./welcome-page/welcome-page.module').then(m=> m.WelcomePageModule)
   }
 ];
 

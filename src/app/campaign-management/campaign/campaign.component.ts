@@ -1,7 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Campaign} from "../campaign";
 import {CampaignService} from "../campaign.service";
+import {AbstractControl, ValidationErrors} from "@angular/forms";
+import {AuthService} from "../../auth/auth.service";
 import {MessageService} from "primeng/api";
+import {Donation} from "../../donation-management/donation";
+import {Donor} from "../../donor-management/Donor";
+import {Router} from "@angular/router";
+import {tap} from "rxjs";
+import {TranslateService} from "@ngx-translate/core";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-campaign',
@@ -30,11 +38,18 @@ export class CampaignComponent implements OnInit {
   campaignList : Campaign[];
 
   // @ts-ignore
+  donorList: Donor[];
+
+  // @ts-ignore
+  donationsList: Donation[];
+
+  // @ts-ignore
   selectedCampaigns: Campaign[];
 
   // campaign: Campaign;
 
   campaign:{id:number,name:string, purpose:string} ={id:0,name: '', purpose:''}
+  auxcampaign:{id:number,name:string, purpose:string} ={id:0,name: '', purpose:''}
 
 
 
@@ -42,13 +57,16 @@ export class CampaignComponent implements OnInit {
   submitted: boolean;
   Delete: any;
 
-  constructor(private campaignService: CampaignService,private messageService: MessageService) { }
+  constructor(private campaignService: CampaignService,private messageService: MessageService, private router:Router,private translate: TranslateService
+              ,private cdr: ChangeDetectorRef,private http: HttpClient) { }
 
   ngOnInit() {
     console.log("start campaign manager")
     this.campaignService.loadCampaigns().subscribe();
     this.campaignService.getCampaigns().subscribe((campaigns) => this.campaignList = campaigns);
     console.log("no error")
+
+
   }
 
   openNew() {
@@ -56,9 +74,18 @@ export class CampaignComponent implements OnInit {
     this.submitted = false;
     this.campaignDialog = true;
   }
+  hideDialog1() {
+    this.campaignDialog1 = false;
+    this.submitted = false;
+    this.campaign = {id: 0, name: '', purpose: ''}
+    window.location.reload()
+    return false
+  }
   hideDialog() {
     this.campaignDialog = false;
     this.submitted = false;
+    this.campaign = {id: 0, name: '', purpose: ''}
+
 
   }
 
@@ -70,47 +97,52 @@ export class CampaignComponent implements OnInit {
 
 
 
+  campnerror! : string;
 
 
   saveCampaign() {
     this.submitted = true;
-    console.log(this.campaign.name)
-    console.log(this.campaign.purpose)
-    if(this.campaign.name && this.campaign.purpose && this.campaign.name.replace(/\s/g, '').length>0 ) {
+    console.log(this.campaign.name);
+    console.log(this.campaign.purpose);
 
-      const newCampaign = new Campaign(this.removeExcessiveWhitespace(this.campaign.name), this.removeExcessiveWhitespace(this.campaign.purpose))
+    if (this.campaign.name && this.campaign.purpose && this.campaign.name.replace(/\s/g, '').length > 0) {
+      const newCampaign = new Campaign(
+        this.removeExcessiveWhitespace(this.campaign.name),
+        this.removeExcessiveWhitespace(this.campaign.purpose)
+      );
 
+      this.campaignService.saveCampaignToDB(newCampaign).subscribe(
+        response => {
+          console.log('added successfully:', response);
 
-          this.campaignService.saveCampaignToDB(newCampaign).subscribe(
-            response => {
-              console.log('added successfully:', response);
-              window.location.reload()
-
-            },
-            error => {
-
-              console.error('Error adding campaign:', error.error);
-              const errorMessage = error.error.text;
-              this.showError(errorMessage.toString());
-
-
-            }
-          )
-
-
-      this.campaignList = [...this.campaignList];
-      this.campaignDialog = false;
-      this.campaign = {id: 0, name: '', purpose: ''}
-
-
-      // window.location.reload()
-    }else {
+          // Update campaignList with the newly added campaign
+          this.campaignList.push(response); // Assuming response is the newly added campaign object
+          this.campaignList = [...this.campaignList]; // Try assigning to a new reference
+          this.cdr.detectChanges();
+          this.campaignDialog = false;
+          this.campaign = { id: 0, name: '', purpose: '' };
+        },
+        error => {
+          console.error('Error adding campaign:', error.error);
+          const errorMessage = error.error.text;
+          this.showError(errorMessage.toString());
+        }
+      );
+    } else {
       console.warn('Campaign name or purpose cannot be empty.');
-      this.errorMessage="Campaign name or purpose cannot be empty."
+      this.errorMessage = "Campaign name or purpose cannot be empty.";
     }
+  }
+  openEdit(campaign: any) {
+    this.selectedCampaign = campaign;
+    this.auxcampaign=Object.assign({}, this.selectedCampaign);
+    console.log(this.auxcampaign)
+    this.campaign=campaign
+    console.log(this.selectedCampaign.id)
+    this.submitted = false;
+    this.campaignDialog1 = true;
 
-    }
-
+  }
 
   editCampaign() {
     this.submitted = true;
@@ -121,10 +153,11 @@ export class CampaignComponent implements OnInit {
     console.log(this.campaign.name)
     console.log(this.campaign.purpose)
 
-    this.campaignService.updateCampaignFromDB(campaign.id.toString(),this.campaign).subscribe(
+    this.campaignService.updateCampaignFromDB(this.selectedCampaign.id.toString(),this.selectedCampaign).subscribe(
       response => {
         console.log('edited successfully:', response);
         window.location.reload()
+        this.campaignDialog1 = false;
 
       },
       error => {
@@ -136,7 +169,7 @@ export class CampaignComponent implements OnInit {
       }
     )
 
-    this.campaignDialog1 = false;
+
 
 
 
@@ -154,8 +187,9 @@ export class CampaignComponent implements OnInit {
 
       },
       error => {
-        this.campaignErrors[campaign.id] = error.error;
+        this.campaignErrors[campaign.id] = error.error.text;
         console.error('Error deleting campaign:', error.error);
+        this.showError(error.error.text)
       }
     );
 
@@ -169,21 +203,14 @@ export class CampaignComponent implements OnInit {
       const id = campaign.id;
       console.log(id);
 
-      this.campaignService.deleteFromDB(id.toString())
+      this.campaignService.deleteFromDB(id.toString()).subscribe()
     });
 
     window.location.reload();
   }
 
 
-  openEdit(campaign: any) {
-    this.selectedCampaign = campaign;
-    this.campaign=campaign
-    console.log(this.selectedCampaign.id)
-    this.submitted = false;
-    this.campaignDialog1 = true;
 
-  }
 
 
   private showError(message:string) {
@@ -197,9 +224,40 @@ export class CampaignComponent implements OnInit {
 
   }
 
-  // checkIfCenzor():boolean{ //check if user is cenzor for restricted visualization
-  //   const storedRoles   = sessionStorage.getItem("roles")
-  //   const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) :[]
-  //   return userRoles.includes("ROLE_CEN") && userRoles.length === 1 || (userRoles.includes("ROLE_REP") && userRoles.includes("ROLE_CEN") && userRoles.length === 2);
-  // }
+  checkIfReporter():boolean{ //check if user is cenzor for restricted visualization
+    const storedPermissions   = localStorage.getItem("permissions")
+    const userPermissions: Array<string> = storedPermissions ? JSON.parse(storedPermissions) :[]
+    return userPermissions.includes("CAMP_REPORT_RESTRICTED") && userPermissions.length === 1 ;
+
+  }
+
+  campaignDonations(id:number):Donation[]{
+    this.campaignService.loadDonations(id.toString()).subscribe(donations=>this.donationsList=donations);
+    console.log("donations added")
+    return this.donationsList;
+  }
+
+
+  campaignDonors(id : number):Donor[] {
+    this.campaignService.loadDonators(id.toString()).subscribe(donors=> this.donorList=donors);
+    console.log("donors added")
+    return this.donorList
+  }
+
+
+  fullTextMap: Record<string, boolean> = {};  //daca textul e full sau truncat
+  toggleFullText(donor: any, field: string): void {
+    this.fullTextMap[field] = !this.fullTextMap[field];
+  }
+
+  getDisplayText(text: string): string {
+    const maxLength = 12; // Adjust as needed
+    if (text.length > maxLength && !this.fullTextMap[text]) {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+    return text;
+  }
+
+
+
 }

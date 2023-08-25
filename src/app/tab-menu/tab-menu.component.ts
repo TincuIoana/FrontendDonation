@@ -15,6 +15,8 @@ export class TabMenuComponent implements OnInit {
   items: MenuItem[] | undefined;
   sDelay = 3000;
   hDelay = 3000;
+  loginItem: MenuItem[] | undefined;
+
   // @ts-ignore
   shouldDisplayTabMenu: true;
 
@@ -73,7 +75,7 @@ export class TabMenuComponent implements OnInit {
         { icon: 'pi pi-wallet', tooltip: 'Donation Management', routerLink: ['/donation-management'] },
         { icon: 'pi pi-lock', tooltip: 'Roles', routerLink: ['/roles-dialog'] },
       ];
-
+      this.loginItem=[ { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },]
 
       this.authService.getUserPermissions().subscribe(permissions => {
         // Check if user has the admin role
@@ -91,6 +93,7 @@ export class TabMenuComponent implements OnInit {
         });
       });
     });
+
   }
 
 

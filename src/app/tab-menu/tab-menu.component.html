@@ -1,13 +1,3 @@
-<!--<div class="card" >-->
-<!--  <p-tabMenu [model]="items"></p-tabMenu>-->
-<!--</div>-->
-
-<!--<ul>-->
-<!--  <li *ngFor="let item of items">-->
-<!--    <a *ngIf="item.routerLink" [routerLink]="item.routerLink">{{ item.label }}</a>-->
-<!--    <span *ngIf="!item.routerLink">{{ item.label }}</span>-->
-<!--  </li>-->
-<!--</ul>-->
 
 <div class="card">
   <p-tabMenu [model]="items">
@@ -17,5 +7,15 @@
         <span class="p-ml-2">{{ item.label }}</span>
       </div>
     </ng-template>
+
+    <p-tabMenu [model]="loginItem">
+      <ng-template pTemplate="item" let-item>
+
+      <div class="p-d-flex pi-align-right">
+        <i [class]="item.icon"></i>
+        <span class="p-ml-2">{{ item.label }}</span>
+      </div>
+      </ng-template>
+    </p-tabMenu>
   </p-tabMenu>
 </div>
