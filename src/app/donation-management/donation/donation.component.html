@@ -44,9 +44,9 @@
         <td>
           <p-tableCheckbox [value]="donation"></p-tableCheckbox>
         </td>
-        <td>{{donation.amount}}</td>
-        <td>{{donation.approveDate}}</td>
-        <td>
+        <td style="text-align: center">{{donation.amount}}</td>
+        <td style="text-align: center">{{donation.approveDate}}</td>
+        <td style="text-align: center">
           <ng-container *ngIf="donation.approved; else failedIcon">
             <i class="pi pi-check-circle green-icon"></i>
           </ng-container>
@@ -54,13 +54,13 @@
             <i class="pi pi-times-circle red-icon"></i>
           </ng-template>
         </td>
-        <td>{{donation.createdDate}}</td>
-        <td>{{donation.currency}}</td>
-        <td>{{donation.notes}}</td>
-        <td>{{donation.approvedBy?.username}}</td>
-        <td>{{donation.campaign.name}}</td>
-        <td>{{donation.createdBy.username}}</td>
-        <td>{{donation.donor.firstName}} {{donation.donor.lastName}}</td>
+        <td style="text-align: center">{{donation.createdDate}}</td>
+        <td style="text-align: center">{{donation.currency}}</td>
+        <td style="text-align: center">{{donation.notes}}</td>
+        <td style="text-align: center">{{donation.approvedBy?.username}}</td>
+        <td style="text-align: center">{{donation.campaign.name}}</td>
+        <td style="text-align: center">{{donation.createdBy.username}}</td>
+        <td style="text-align: center">{{donation.donor.firstName}} {{donation.donor.lastName}}</td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(donation)"></button>
           &nbsp;

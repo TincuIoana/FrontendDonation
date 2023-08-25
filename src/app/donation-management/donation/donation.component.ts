@@ -271,6 +271,9 @@ export class DonationComponent implements OnInit {
       this.donationDialog = false;
       this.clearDonationForm();
       window.location.reload();
+
+
+
       // Call the service to save the donation
     //   this.donationService.saveDonationDB(
     //     this.donation.campaign.id,
