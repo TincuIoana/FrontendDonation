@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
+import {LoginService} from "../login/login.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  constructor(
+    private loginService: LoginService
+  ) {
+  }
 
   private loggedInSubject = new BehaviorSubject<boolean>(false);
 
@@ -17,9 +22,8 @@ export class AuthService {
     return this.loggedInSubject.asObservable();
   }
 
-  getUserRoles(): Observable<string[]>{
-    const storedRoles   = localStorage.getItem("permissions")
-    const userRoles: Array<string> = storedRoles ? JSON.parse(storedRoles) : [];
-    return of(userRoles)
+  getUserPermissions(): Observable<string[]>{
+    const userPermissions = this.loginService.getLoggedUserPermissions()
+    return of(userPermissions)
   }
 }

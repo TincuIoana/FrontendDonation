@@ -59,10 +59,10 @@
 
             <p-toast></p-toast>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                    (click)="addPermissionToRole(userId1,role.id,selectedPermission1,'!')"></button>
+                    (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission1,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission1, '!')"></button>
+                    (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission1, '!')"></button>
 
           </ng-container>
           <ng-container *ngSwitchCase="2">
@@ -72,10 +72,10 @@
 
             <p-toast></p-toast>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                    (click)="addPermissionToRole(userId1,role.id,selectedPermission2,'!')"></button>
+                    (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission2,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission2,'!')"></button>
+                    (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission2,'!')"></button>
 
           </ng-container>
           <ng-container *ngSwitchCase="3">
@@ -85,10 +85,10 @@
 
             <p-toast></p-toast>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                    (click)="addPermissionToRole(userId1,role.id,selectedPermission3,'!')"></button>
+                    (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission3,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission3,'!')"></button>
+                    (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission3,'!')"></button>
 
           </ng-container>
           <ng-container *ngSwitchCase="4">
@@ -98,10 +98,10 @@
 
             <p-toast></p-toast>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                    (click)="addPermissionToRole(userId1,role.id,selectedPermission4,'!')"></button>
+                    (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission4,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deletePermissionFromRole(userId1,role.id,selectedPermission4,'!')"></button>
+                    (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission4,'!')"></button>
 
           </ng-container>
         </ng-container>

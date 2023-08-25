@@ -23,7 +23,7 @@ export class NotificationComponent implements OnInit {
     this.loginService.isLoggedIn.subscribe(isLoggedIn => {
       if (isLoggedIn) {
 
-        const userId = +localStorage.getItem('id')!
+        const userId = this.loginService.getLoggedUserId();
         this.notificationService.pollForNotifications(userId).subscribe({
           next: (data) => {
             this.notifications = data

@@ -3,8 +3,9 @@ import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
 import {Table} from "primeng/table";
 import {FilterService} from "primeng/api";
-import {Role} from "../../../roles-dialog/role";
+
 import {Campaign} from "../../../campaign-management/campaign";
+import {Role} from "../../models/role";
 
 @Component({
   selector: 'app-user-table',

@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {LoginRequest} from "../LoginRequest";
 import {LoginService} from "../login.service";
 import {Router} from "@angular/router";
 
 import {AuthService} from "../../auth/auth.service";
-import {PermissionEnum} from "../../roles-dialog/permission-enum";
 
 @Component({
   selector: 'app-login',
@@ -45,15 +44,12 @@ export class LoginComponent implements OnInit{
      this.raspuns = this.loginService.login(loginRequest)
     this.loginService.login(loginRequest).subscribe(loginResponse =>{
       this.loginService.setLoginResponse(loginResponse)
-      localStorage.setItem("token",<string>loginResponse.accessToken)
-      localStorage.setItem("id",String(loginResponse.id))
-
-      localStorage.setItem("permissions",JSON.stringify(loginResponse.roles))
+      sessionStorage.setItem("token",<string>loginResponse.accessToken)
       this.loginService.setLoggedIn()
         //@ts-ignore
         // const permissions: PermissionEnum[] = [].concat(...loginResponse.roles.map(role => role.permissions));
 
-        // localStorage.setItem('permissions', JSON.stringify(permissions));
+        // sessionStorage.setItem('permissions', JSON.stringify(permissions));
 
         // const permissions: PermissionEnum[] = [];
 
@@ -62,7 +58,7 @@ export class LoginComponent implements OnInit{
         //   permissions.push(...role.permissions);
         // });
         //
-        // localStorage.setItem('permissions', JSON.stringify(permissions));
+        // sessionStorage.setItem('permissions', JSON.stringify(permissions));
 
       if(loginResponse.firstLogin) {
 
@@ -73,7 +69,6 @@ export class LoginComponent implements OnInit{
       }
     },
       error => {
-      console.log(error.error)
         this.eroare=error.error
       }
     )
