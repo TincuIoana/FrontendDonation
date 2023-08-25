@@ -114,7 +114,7 @@ export class DonationComponent implements OnInit {
   approveDonation(donation: any) {
     const id = donation.id;
     this.donationService.approveDonationDB(donation.id.toString(), donation);
-    // window.location.reload();
+    window.location.reload();
   }
 
   deleteDonation(donation: any) {
@@ -149,7 +149,7 @@ export class DonationComponent implements OnInit {
 
     this.donationService.updateDonationDB(donation.id.toString(), this.donation);
     this.updateDonationDialog = false;
-    // window.location.reload();
+    window.location.reload();
   }
 
   // saveDonation() {
@@ -271,7 +271,9 @@ export class DonationComponent implements OnInit {
       this.donationList = [...this.donationList];
       this.donationDialog = false;
       this.clearDonationForm();
-      // window.location.reload();
+      window.location.reload();
+
+
 
       // Call the service to save the donation
     //   this.donationService.saveDonationDB(
@@ -372,5 +374,36 @@ export class DonationComponent implements OnInit {
     };
   }
 
+  exportViewToCSV() {
+    let csvContent = "Amount,Approve Date,Approved,Created Date,Currency,Notes,Approved By,Campaign Name,Created By,Donor First Name,Donor Last Name\n";
+
+    this.donationList.forEach(donation => {
+      const row = [
+        donation.amount,
+        donation.approveDate,
+        donation.approved ? 'Yes' : 'No',
+        donation.createdDate,
+        donation.currency,
+        donation.notes,
+        donation.approvedBy ? donation.approvedBy.username : '',
+        donation.campaign.name,
+        donation.createdBy.username,
+        donation.donor.firstName,
+        donation.donor.lastName
+      ];
+      csvContent += row.join(',') + '\n';
+    });
+    this.downloadCSV(csvContent);
+  }
+
+  downloadCSV(csvData: string) {
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'donations.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
 
 }

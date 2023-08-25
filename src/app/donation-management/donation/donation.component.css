@@ -1,7 +1,12 @@
 .green-icon {
-  color: green;
+  color: purple;
 }
 
 .red-icon {
   color: red;
+}
+
+.space {
+  display: flex;
+  align-items: center;
 }
