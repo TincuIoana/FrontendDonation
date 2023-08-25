@@ -13,6 +13,8 @@ import {Subscription} from "rxjs";
 })
 export class TabMenuComponent implements OnInit {
   items: MenuItem[] | undefined;
+  sDelay = 3000;
+  hDelay = 3000;
   // @ts-ignore
   shouldDisplayTabMenu: true;
 
@@ -43,13 +45,35 @@ export class TabMenuComponent implements OnInit {
 
       const loginOrLogoutLabel = loggedIn || isLoggedin ? logoutLabel : loginLabel;
 
+      // this.items = [
+      //   { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
+      //   { label: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
+      //   { label: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
+      //   { label: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management']},
+      //   { label: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
+      // ];
+
+
+      const labelForLogIn = 'pi pi-sign-in';
+      const labelForLogOut = 'pi pi-sign-out';
+      const logInOrLogOut = loggedIn || isLoggedin ? labelForLogOut : labelForLogIn;
+      // adaugat de mine pentru icons
+      // this.items = [
+      //   { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
+      //   { icon: 'pi pi-megaphone', tooltip: 'Campaign Management', routerLink: ['/campaign'] },
+      //   { icon: 'pi pi-id-card', routerLink: ['/donor-management'] },
+      //   { icon: 'pi pi-wallet', routerLink: ['/donation-management']},
+      //   { icon: 'pi pi-lock', routerLink: ['/roles-dialog'] },
+      // ];
+
       this.items = [
-        { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
-        { label: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
-        { label: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
-        { label: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management']},
-        { label: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
+        { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
+        { icon: 'pi pi-megaphone', tooltip: 'Campaign Management', routerLink: ['/campaign'] },
+        { icon: 'pi pi-id-card', tooltip: 'Donor Management', routerLink: ['/donor-management'] },
+        { icon: 'pi pi-wallet', tooltip: 'Donation Management', routerLink: ['/donation-management'] },
+        { icon: 'pi pi-lock', tooltip: 'Roles', routerLink: ['/roles-dialog'] },
       ];
+
 
       this.authService.getUserPermissions().subscribe(permissions => {
         // Check if user has the admin role
@@ -57,7 +81,9 @@ export class TabMenuComponent implements OnInit {
           // Add the "User Administration" menu item
           // @ts-ignore
           this.items.splice(1, 0, {
-            label: this.translate.instant('MENU.USERADMINISTRATION'),
+            // label: this.translate.instant('MENU.USERADMINISTRATION'),
+            icon: 'pi pi-users',
+            tooltip: 'User Management',
             routerLink: ['/user-administration']
           }
           );

@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TooltipModule} from "primeng/tooltip";
 
 // PrimeNG imports
 import {DropdownModule} from 'primeng/dropdown';
@@ -74,7 +75,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CampaignComponent,
     LogoutComponent,
     ChangeComponent,
-    DonationComponent
+    DonationComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -90,6 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ButtonModule,
     DynamicDialogModule,
     ListboxModule,
+    TooltipModule,
 
     // ngx-translate setup
     TranslateModule.forRoot({

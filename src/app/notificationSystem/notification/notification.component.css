@@ -27,3 +27,12 @@ p-toolbar {
 .p-card-header {
   height: 43px;
 }
+
+/* Override PrimeNG Button Styles */
+:host >>> .p-button {
+  background-color: transparent !important; /* Remove background color */
+  border: blue !important; /* Remove border */
+  color: #6c757d; /* Inherit text color */
+}
+
+/* Override Icon Styles */
