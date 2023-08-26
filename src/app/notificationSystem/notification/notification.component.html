@@ -1,7 +1,11 @@
 <p-toast position="top-right"></p-toast>
 
 <!-- Button to toggle the sidebar -->
-<i class="pi pi-bell custom-font" (click)="toggleSidebar()" style="cursor: pointer;"></i>
+<!--<p-button label="{{'BUTTON_SHOW_NOTIFICATIONS'|translate}}" class="custom-font" (click)="toggleSidebar()"></p-button>-->
+<!--<p-button type="button" icon="pi pi-bell" class="" (click)="toggleSidebar()"></p-button>-->
+<p-button icon="pi pi-bell" styleClass="p-button-squared p-button-text" (click)="toggleSidebar()"></p-button>
+
+
 
 <!-- Sidebar -->
 <p-sidebar [(visible)]="displaySidebar" position="right" styleClass="notification-sidebar">

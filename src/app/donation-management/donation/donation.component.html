@@ -2,41 +2,44 @@
 
 <div class="card">
   <p-toolbar styleClass="p-mb-4">
-    <ng-template pTemplate="left">
-      <button pButton pRipple label="{{'CAMPAIGN.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+    <ng-template pTemplate="left" class="space">
+      <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText #textInput type="text" (input)="dt.filterGlobal(textInput.value, 'contains')" placeholder="{{'CAMPAIGN.SEARCH' | translate}}..." />
+      </span>
+      &nbsp;
+      <button pButton pRipple icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      &nbsp;
       <button pButton pRipple [label]="delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonations()" [disabled]="!selectedDonations || !selectedDonations.length"></button>
-      <button pButton pRipple label="Export to CSV" (click)="exportViewToCSV()"></button>
-
+      &nbsp;
+      <button pTooltip="Export to CSV" pButton pRipple icon="pi pi-download" (click)="exportViewToCSV()"></button>
     </ng-template>
   </p-toolbar>
 
-  <p-table #dt [value]="donationList" [rows]="10" [paginator]="true" [globalFilterFields]="['approvedBy.id', 'createdBy.id', 'currency']"
+  <p-table #dt [value]="donationList" [rows]="10" [paginator]="true" [globalFilterFields]="['approvedBy.username', 'createdBy.username', 'currency', 'donor.firstName', 'campaign.name', 'amount']"
            [(selection)]="selectedDonations" [rowHover]="true" dataKey="id"
            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-    <ng-template pTemplate="caption">
-      <div class="p-d-flex p-ai-center p-jc-between">
-        <h2 class="p-m-0">{{'DONATION.MANAGE' | translate}}</h2>
-        <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText #textInput type="text" (input)="dt.filterGlobal(textInput.value, 'contains')" placeholder="{{'CAMPAIGN.SEARCH' | translate}}..." />
-                </span>
-      </div>
-    </ng-template>
+<!--    <ng-template pTemplate="caption">-->
+<!--      <div class="p-d-flex p-ai-center p-jc-between">-->
+<!--        <h2 class="p-m-0">{{'DONATION.MANAGE' | translate}}</h2>-->
+
+<!--      </div>-->
+<!--    </ng-template>-->
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th pSortableColumn="amount">{{'DONATION.AMOUNT' | translate}} <p-sortIcon field="amount"></p-sortIcon></th>
-        <th pSortableColumn="approveDate">{{'DONATION.APPROVEDATE' | translate}} <p-sortIcon field="approveDate"></p-sortIcon></th>
-        <th pSortableColumn="approved">{{'DONATION.APPROVED' | translate}} <p-sortIcon field="approved"></p-sortIcon></th>
-        <th pSortableColumn="createdDate">{{'DONATION.CREATEDDATE' | translate}} <p-sortIcon field="createdDate"></p-sortIcon></th>
-        <th pSortableColumn="currency">{{'DONATION.CURRENCY' | translate}} <p-sortIcon field="currency"></p-sortIcon></th>
-        <th pSortableColumn="notes">{{'DONATION.NOTES' | translate}}</th>
-        <th pSortableColumn="approvedBy">{{'DONATION.APPROVEDBY' | translate}} <p-sortIcon field="approvedBy"></p-sortIcon></th>
-        <th pSortableColumn="campaign">{{'DONATION.CAMPAIGN' | translate}} <p-sortIcon field="campaign"></p-sortIcon></th>
-        <th pSortableColumn="createdBy">{{'DONATION.CREATEDBY' | translate}} <p-sortIcon field="createdBy"></p-sortIcon></th>
-        <th pSortableColumn="donor">{{'DONATION.DONOR' | translate}} <p-sortIcon field="donor"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="amount">{{'DONATION.AMOUNT' | translate}} <p-sortIcon field="amount"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="approveDate">{{'DONATION.APPROVEDATE' | translate}} <p-sortIcon field="approveDate"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="approved">{{'DONATION.APPROVED' | translate}} <p-sortIcon field="approved"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="createdDate">{{'DONATION.CREATEDDATE' | translate}} <p-sortIcon field="createdDate"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="currency">{{'DONATION.CURRENCY' | translate}} <p-sortIcon field="currency"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="notes">{{'DONATION.NOTES' | translate}}</th>
+        <th style="text-align: center" pSortableColumn="approvedBy">{{'DONATION.APPROVEDBY' | translate}} <p-sortIcon field="approvedBy"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="campaign">{{'DONATION.CAMPAIGN' | translate}} <p-sortIcon field="campaign"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="createdBy">{{'DONATION.CREATEDBY' | translate}} <p-sortIcon field="createdBy"></p-sortIcon></th>
+        <th style="text-align: center" pSortableColumn="donor">{{'DONATION.DONOR' | translate}} <p-sortIcon field="donor"></p-sortIcon></th>
         <th></th>
       </tr>
     </ng-template>
@@ -46,9 +49,9 @@
         <td>
           <p-tableCheckbox [value]="donation"></p-tableCheckbox>
         </td>
-        <td>{{donation.amount}}</td>
-        <td>{{donation.approveDate}}</td>
-        <td>
+        <td style="text-align: center">{{donation.amount}}</td>
+        <td style="text-align: center">{{donation.approveDate}}</td>
+        <td style="text-align: center">
           <ng-container *ngIf="donation.approved; else failedIcon">
             <i class="pi pi-check-circle green-icon"></i>
           </ng-container>
@@ -56,19 +59,19 @@
             <i class="pi pi-times-circle red-icon"></i>
           </ng-template>
         </td>
-        <td>{{donation.createdDate}}</td>
-        <td>{{donation.currency}}</td>
-        <td>{{donation.notes}}</td>
-        <td>{{donation.approvedBy?.username}}</td>
-        <td>{{donation.campaign.name}}</td>
-        <td>{{donation.createdBy.username}}</td>
-        <td>{{donation.donor.firstName}} {{donation.donor.lastName}}</td>
+        <td style="text-align: center">{{donation.createdDate}}</td>
+        <td style="text-align: center">{{donation.currency}}</td>
+        <td style="text-align: center">{{donation.notes}}</td>
+        <td style="text-align: center">{{donation.approvedBy?.username}}</td>
+        <td style="text-align: center">{{donation.campaign.name}}</td>
+        <td style="text-align: center">{{donation.createdBy.username}}</td>
+        <td style="text-align: center">{{donation.donor.firstName}} {{donation.donor.lastName}}</td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openEdit(donation)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" [disabled]="donation.approved" (click)="openEdit(donation)"></button>
           &nbsp;
-          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteDonation(donation)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" [disabled]="donation.approved" (click)="deleteDonation(donation)"></button>
           &nbsp;
-          <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded" (click)="approveDonation(donation)"></button>
+          <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-help" [disabled]="donation.approved" (click)="approveDonation(donation)"></button>
         </td>
       </tr>
     </ng-template>
