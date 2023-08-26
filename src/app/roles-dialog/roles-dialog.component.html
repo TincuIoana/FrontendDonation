@@ -58,10 +58,12 @@
             </select>
 
             <p-toast></p-toast>
-            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
+            <button pTooltip="{{'PERMISSIONS.ADD' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
                     (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission1,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            <button pTooltip="{{'PERMISSIONS.DELETE' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                     (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission1, '!')"></button>
 
           </ng-container>
@@ -71,10 +73,12 @@
             </select>
 
             <p-toast></p-toast>
-            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
+            <button pTooltip="{{'PERMISSIONS.ADD' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
                     (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission2,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            <button pTooltip="{{'PERMISSIONS.DELETE' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                     (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission2,'!')"></button>
 
           </ng-container>
@@ -84,10 +88,12 @@
             </select>
 
             <p-toast></p-toast>
-            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
+            <button pTooltip="{{'PERMISSIONS.ADD' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
                     (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission3,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            <button pTooltip="{{'PERMISSIONS.DELETE' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                     (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission3,'!')"></button>
 
           </ng-container>
@@ -97,10 +103,12 @@
             </select>
 
             <p-toast></p-toast>
-            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
+            <button pTooltip="{{'PERMISSIONS.ADD' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2"
                     (click)="addPermissionToRole(loggedUserId,role.id,selectedPermission4,'!')"></button>
             &nbsp; <!-- Non-breaking space for adding a gap -->
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            <button pTooltip="{{'PERMISSIONS.DELETE' | translate}}" [showDelay]="500" tooltipPosition="bottom"
+              pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                     (click)="deletePermissionFromRole(loggedUserId,role.id,selectedPermission4,'!')"></button>
 
           </ng-container>
