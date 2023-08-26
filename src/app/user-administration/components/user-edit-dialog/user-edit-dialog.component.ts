@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {User} from "../../models/user";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
@@ -19,6 +19,8 @@ import {Role} from "../../models/role";
 })
 export class UserEditDialogComponent implements OnInit {
   @Input() userFromDB!: User;
+  userModified!: any;
+  @Output() editedUser = new EventEmitter<User>();
   showDialog!: boolean;
   submitted!: boolean;
   allRoles!: Role[];
@@ -60,6 +62,9 @@ export class UserEditDialogComponent implements OnInit {
     this.roleService.getRoles().subscribe(roles => {
       roles.forEach(role => role.permissions = [])
       this.allRoles = roles;
+    });
+    this.userService.getUserById(this.userFromDB.id).subscribe(value => {
+      this.userModified = value;
     });
 
     this.userFromDB.roles?.forEach(role => role.permissions = [])
@@ -149,17 +154,17 @@ export class UserEditDialogComponent implements OnInit {
               }
             });
             this.showDialog = false;
-            setTimeout(() => {
-              document.location.reload();
-            }, 1500);
           }
         }
       ))
       .subscribe(
-        {
-          next: (user => {
-            this.userFromDB = user;
-          })
+        () => {
+          this.userService.getUserById(this.userFromDB.id).subscribe(value => {
+            this.userModified = value;
+          });
+          console.log(this.userModified);
+          this.userModified.roles.forEach(role => role.permissions = []);
+          this.editedUser.emit(this.userModified);
         }
       );
   }
@@ -177,7 +182,6 @@ export class UserEditDialogComponent implements OnInit {
     this.registerForm.get("email").setValue(this.userFromDB.email);
     this.registerForm.get("mobileNumber").setValue(this.userFromDB.mobileNumber);
     this.registerForm.get("roles").setValue(this.userFromDB.roles);
-    console.log(this.registerForm.get("roles"))
     this.registerForm.get("campaigns").setValue(this.userFromDB.campaigns);
     this.registerForm.get("active").setValue(this.userFromDB.active);
   }
