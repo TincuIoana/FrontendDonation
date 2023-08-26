@@ -53,6 +53,11 @@
     "SEARCH": "Search"
   },
   "DONATION": {
+    "NEW": "New Donation",
+    "DELETE": "Delete Donation",
+    "EXPORT": "Export DonationS",
+    "EDIT": "Edit Donation",
+    "APPROVE": "Approve Donation",
     "AMOUNT": "Amount",
     "APPROVEDATE": "Approve Date",
     "APPROVED": "Approved",
@@ -63,7 +68,9 @@
     "CAMPAIGN": "Campaign",
     "CREATEDBY": "Created By",
     "DONOR": "Donor",
-    "MANAGE": "Manage Donations"
+    "MANAGE": "Manage Donations",
+    "TOTAL": "In total there are",
+    "DONATIONS": "donations"
   },
   "DONOR": {
     "DONOR": "Donor",

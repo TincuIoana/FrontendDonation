@@ -53,8 +53,13 @@
   },
 
   "DONATION": {
+    "NEW": "Donatie noua",
+    "DELETE": "Stergere donatie",
+    "EXPORT": "Exportare donatii",
+    "EDIT": "Editare donatie",
+    "APPROVE": "Aprobare donatie",
     "AMOUNT": "Valoare",
-    "APPROVEDATE": "Data Aprobare",
+    "APPROVEDATE": "Data aprobare",
     "APPROVED": "Aprobat",
     "CREATEDDATE": "Data creare",
     "CURRENCY": "Valută",
@@ -63,7 +68,6 @@
     "CAMPAIGN": "Campanie",
     "CREATEDBY": "Creată de",
     "DONOR": "Donator",
-    "MANAGE": "Administrare Donații"
   },
 
   "DONOR": {

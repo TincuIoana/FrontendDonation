@@ -51,10 +51,12 @@ export class DonationService {
   }
 
   deleteDonationDB(id: string) {
-    this.http.delete(this.url+'/'+id+'/' + this.userId).subscribe(log=>console.log("deleted successfully"))
+    return this.http.delete(this.url+'/'+id+'/' + this.userId);//.subscribe(log=>console.log("deleted successfully"))
   }
 
   approveDonationDB(id: string, donation: Donation) {
+    console.log(id);
+    console.log(this.userId);
     this.http.patch(this.url + "/" + id + "/" + this.userId, donation).subscribe(log=> console.log("successfull!"));
   }
 }
