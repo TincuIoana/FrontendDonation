@@ -4,6 +4,7 @@ import {TranslateService} from "@ngx-translate/core";
 
 import {AuthService} from "../auth/auth.service";
 import {Subscription} from "rxjs";
+import {LoginService} from "../login/login.service";
 
 @Component({
   selector: 'app-tab-menu',
@@ -20,7 +21,7 @@ export class TabMenuComponent implements OnInit {
   // @ts-ignore
   shouldDisplayTabMenu: true;
 
-  constructor(private translate: TranslateService, private authService: AuthService) {
+  constructor(private translate: TranslateService, private loginService: LoginService,private authService:AuthService) {
 
   }
 
@@ -38,14 +39,22 @@ export class TabMenuComponent implements OnInit {
       'MENU.ROLES',
       'MENU.SIGNIN'
     ]).subscribe(translations => {
-    this.loggedInSubscription = this.authService.isLoggedin().subscribe(loggedIn => {
+    this.loggedInSubscription = this.loginService.isLoggedInfunction().subscribe(loggedIn => {
       const loginLabel = this.translate.instant('MENU.LOGIN');
       const logoutLabel = this.translate.instant('MENU.LOGOUT');
-      const token = sessionStorage.getItem("token")
+      const token:string|null|undefined = sessionStorage.getItem("token")?? ''
+      console.log("aici")
       let isLoggedin = false
       isLoggedin = !!token;
+      if( token!=='' || token  ){
+        isLoggedin=true;
+      }
+      else{
+        isLoggedin=false
+      }
 
-      const loginOrLogoutLabel = loggedIn || isLoggedin ? logoutLabel : loginLabel;
+
+      const loginOrLogoutLabel = loggedIn  ? logoutLabel : loginLabel;
 
       // this.items = [
       //   { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },

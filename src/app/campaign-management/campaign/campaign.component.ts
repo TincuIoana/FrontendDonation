@@ -3,13 +3,15 @@ import {Campaign} from "../campaign";
 import {CampaignService} from "../campaign.service";
 import {AbstractControl, ValidationErrors} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {Donation} from "../../donation-management/donation";
 import {Donor} from "../../donor-management/Donor";
 import {Router} from "@angular/router";
 import {tap} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-campaign',
@@ -58,7 +60,7 @@ export class CampaignComponent implements OnInit {
   Delete: any;
 
   constructor(private campaignService: CampaignService,private messageService: MessageService, private router:Router,private translate: TranslateService
-              ,private cdr: ChangeDetectorRef,private http: HttpClient) { }
+              ,private cdr: ChangeDetectorRef,private http: HttpClient,private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     console.log("start campaign manager")
@@ -121,6 +123,7 @@ export class CampaignComponent implements OnInit {
           this.cdr.detectChanges();
           this.campaignDialog = false;
           this.campaign = { id: 0, name: '', purpose: '' };
+          document.location.reload()
         },
         error => {
           console.error('Error adding campaign:', error.error);
@@ -176,37 +179,55 @@ export class CampaignComponent implements OnInit {
   }
 
 
-  deleteCampaign(campaign: any) {
-    const id = campaign.id;
-    console.log(id)
-    this.campaignService.deleteFromDB(id.toString()).subscribe(
-      response => {
-        console.log('Deleted successfully:', response);
-        this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
-        window.location.reload()
+  async deleteCampaign(campaign: any) {
+    console.log('deleting')
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      const id = campaign.id;
+      console.log(id)
+      this.campaignService.deleteFromDB(id.toString()).subscribe(
+        response => {
+          console.log('Deleted successfully:', response);
+          this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
+          window.location.reload()
 
-      },
-      error => {
-        this.campaignErrors[campaign.id] = error.error.text;
-        console.error('Error deleting campaign:', error.error);
-        this.showError(error.error.text)
-      }
-    );
+        },
+        error => {
+          this.campaignErrors[campaign.id] = error.error.text;
+          console.error('Error deleting campaign:', error.error);
+          this.showError(error.error.text)
+        }
+      );
+    }
 
 
   }
 
 
 
-  deleteSelectedCampaigns() {
-    this.selectedCampaigns.forEach(campaign => {
-      const id = campaign.id;
-      console.log(id);
+  async deleteSelectedCampaigns() {
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      this.selectedCampaigns.forEach(campaign => {
+        const id = campaign.id;
+        console.log(id);
 
-      this.campaignService.deleteFromDB(id.toString()).subscribe()
-    });
+        this.campaignService.deleteFromDB(id.toString()).subscribe(
+          response => {
+            console.log('Deleted successfully:', response);
+            this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
+            window.location.reload()
 
-    window.location.reload();
+          },
+          error => {
+            this.campaignErrors[campaign.id] = error.error.text;
+            console.error('Error deleting campaign:', error.error);
+            this.showError(error.error.text)
+          });
+
+      })
+    }
+    else console.log("asd")
   }
 
 
@@ -259,5 +280,44 @@ export class CampaignComponent implements OnInit {
   }
 
 
+
+  exportStyledCampaignsWithDonators(): void {
+    this.campaignService.getCampaignsWithDonators().subscribe(data => {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data.map(item => ({
+        'Campaign Name': item.campaign.name,
+        'Donator Names': item.donators.map(d => d.firstName + ' ' + d.lastName).join(', ')
+      })));
+
+      // Example of adding some basic styling
+      if (!ws['!cols']) ws['!cols'] = [];
+      ws['!cols'][0] = { width: 20 }; // Set width for the first column
+      ws['!cols'][1] = { width: 40 }; // Set width for the second column
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+      XLSX.writeFile(wb, 'campaigns_with_donators.xlsx');
+    });
+  }
+
+  async confirm(): Promise<boolean> {
+    try {
+      return new Promise((resolve) => {
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to perform this action?',
+          accept: () => {
+            resolve(true);
+          },
+          reject: () => {
+            resolve(false);
+            window.location.reload()
+          },
+        });
+      });
+    } catch (error) {
+      console.error('Error in confirm():', error);
+      return false;
+    }
+  }
 
 }
