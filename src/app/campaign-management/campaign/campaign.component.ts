@@ -3,7 +3,7 @@ import {Campaign} from "../campaign";
 import {CampaignService} from "../campaign.service";
 import {AbstractControl, ValidationErrors} from "@angular/forms";
 import {AuthService} from "../../auth/auth.service";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {Donation} from "../../donation-management/donation";
 import {Donor} from "../../donor-management/Donor";
 import {Router} from "@angular/router";
@@ -58,7 +58,7 @@ export class CampaignComponent implements OnInit {
   Delete: any;
 
   constructor(private campaignService: CampaignService,private messageService: MessageService, private router:Router,private translate: TranslateService
-              ,private cdr: ChangeDetectorRef,private http: HttpClient) { }
+              ,private cdr: ChangeDetectorRef,private http: HttpClient,private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     console.log("start campaign manager")
@@ -121,6 +121,7 @@ export class CampaignComponent implements OnInit {
           this.cdr.detectChanges();
           this.campaignDialog = false;
           this.campaign = { id: 0, name: '', purpose: '' };
+          document.location.reload()
         },
         error => {
           console.error('Error adding campaign:', error.error);
@@ -176,37 +177,55 @@ export class CampaignComponent implements OnInit {
   }
 
 
-  deleteCampaign(campaign: any) {
-    const id = campaign.id;
-    console.log(id)
-    this.campaignService.deleteFromDB(id.toString()).subscribe(
-      response => {
-        console.log('Deleted successfully:', response);
-        this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
-        window.location.reload()
+  async deleteCampaign(campaign: any) {
+    console.log('deleting')
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      const id = campaign.id;
+      console.log(id)
+      this.campaignService.deleteFromDB(id.toString()).subscribe(
+        response => {
+          console.log('Deleted successfully:', response);
+          this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
+          window.location.reload()
 
-      },
-      error => {
-        this.campaignErrors[campaign.id] = error.error.text;
-        console.error('Error deleting campaign:', error.error);
-        this.showError(error.error.text)
-      }
-    );
+        },
+        error => {
+          this.campaignErrors[campaign.id] = error.error.text;
+          console.error('Error deleting campaign:', error.error);
+          this.showError(error.error.text)
+        }
+      );
+    }
 
 
   }
 
 
 
-  deleteSelectedCampaigns() {
-    this.selectedCampaigns.forEach(campaign => {
-      const id = campaign.id;
-      console.log(id);
+  async deleteSelectedCampaigns() {
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      this.selectedCampaigns.forEach(campaign => {
+        const id = campaign.id;
+        console.log(id);
 
-      this.campaignService.deleteFromDB(id.toString()).subscribe()
-    });
+        this.campaignService.deleteFromDB(id.toString()).subscribe(
+          response => {
+            console.log('Deleted successfully:', response);
+            this.campaignErrors[campaign.id] = ''; // Clear the error message if deletion was successful
+            window.location.reload()
 
-    window.location.reload();
+          },
+          error => {
+            this.campaignErrors[campaign.id] = error.error.text;
+            console.error('Error deleting campaign:', error.error);
+            this.showError(error.error.text)
+          });
+
+      })
+    }
+    else console.log("asd")
   }
 
 
@@ -259,5 +278,24 @@ export class CampaignComponent implements OnInit {
   }
 
 
+  async confirm(): Promise<boolean> {
+    try {
+      return new Promise((resolve) => {
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to perform this action?',
+          accept: () => {
+            resolve(true);
+          },
+          reject: () => {
+            resolve(false);
+            window.location.reload()
+          },
+        });
+      });
+    } catch (error) {
+      console.error('Error in confirm():', error);
+      return false;
+    }
+  }
 
 }

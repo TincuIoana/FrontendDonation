@@ -49,7 +49,9 @@ const routes: Routes = [
     canActivate: [Role_guards],
     data:{
       permissions:['CAMP_MANAGEMENT','CAMP_REPORT_RESTRICTED']
-    }
+
+    },
+
   },
   {
     path: 'logout',
