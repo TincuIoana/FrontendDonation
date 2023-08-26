@@ -84,7 +84,7 @@
   </p-table>
 </div>
 
-<p-dialog [(visible)]="donationDialog" [style]="{width: '450px'}" header="Donation Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [draggable]="false" [(visible)]="donationDialog" [style]="{width: '450px'}" header="Donation Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
       <label for="amount">{{'DONATION.AMOUNT' | translate}}</label>
@@ -224,7 +224,7 @@
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
 
-<p-dialog [(visible)]="updateDonationDialog" [style]="{width: '450px'}" header="Donation Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [draggable]="false" [(visible)]="updateDonationDialog" [style]="{width: '450px'}" header="Donation Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content1">
     <div class="p-field">
       <label for="amount">{{'DONATION.AMOUNT' | translate}}</label>

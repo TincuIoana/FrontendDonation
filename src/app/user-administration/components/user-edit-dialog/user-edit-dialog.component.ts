@@ -132,25 +132,11 @@ export class UserEditDialogComponent implements OnInit {
               "USER.SUCCESS",
               "USER.INFO"
             ]).subscribe(translations => {
-              this.messageService.add({
-                severity: 'success',
-                summary: translations["USER.SUCCESS"],
-                detail: translations["USER.MODIFIED"]
-              });
-              if (this.registerForm.controls.active.dirty) {
-                if (!this.registerForm.controls.active.value) {
-                  this.messageService.add({
-                    severity: 'info',
-                    summary: translations["USER.INFO"],
-                    detail: translations["USER.DEACTIVATED"]
-                  });
-                } else {
-                  this.messageService.add({
-                    severity: 'info',
-                    summary: translations["USER.INFO"],
-                    detail: translations["USER.ACTIVATED"]
-                  });
-                }
+              if (this.registerForm.controls.active.dirty && this.registerForm.controls.active.value) {
+                this.messageService.add({
+                  severity: 'info',
+                  detail: translations["USER.ACTIVATED"]
+                });
               }
             });
             this.showDialog = false;
