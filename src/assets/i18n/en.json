@@ -1,4 +1,8 @@
 {
+  "WELCOME": {
+    "Welcome_to_the_DONATION_MANAGER!": "Welcome to the DONATION MANAGER!"
+  },
+
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"
