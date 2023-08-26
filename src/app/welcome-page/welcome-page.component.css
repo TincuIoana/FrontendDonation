@@ -1,11 +1,16 @@
-.image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  height: auto;
+.s {
+  justify-content: center;
+  justify-items: center;
+  background: linear-gradient(to bottom, #a8d7f6, white);
+  font-family: 'Times New Roman', serif;
+  color: white;
+  text-shadow: 2px 2px 4px grey; /* Adds a grey shadow to the text */
+  text-align: center;
+  display: flex;
+  border-bottom: none;
 }
 
-.background{
-  background-color: #125265;
+.icon-image {
+  width: 32.5vw;
+  max-width: 100%;
 }
