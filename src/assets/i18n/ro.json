@@ -126,12 +126,12 @@
     "DETAILS": "Detalii vechi: {{oldDetails}}<br>Detalii actualizate: {{updatedDetails}}"
   },
   "USER_DEACTIVATED_MANUAL": {
-    "TITLE": "Notificare de dezactivare a contului",
+    "TITLE": "Dezactivare a contului",
     "DETAILS": "Detalii: {{details}}"
   },
   "USER_DEACTIVATED_INCORRECT_PASSWORD": {
-    "TITLE": "Cont blocat din cauza mai multor introduceri greșite ale parolei",
-    "DETAILS": "Detalii: {{details}}"
+    "TITLE": "Cont blocat",
+    "DETAILS": "Cont blocat din cauza mai multor introduceri greșite ale parolei. Detalii: {{details}}"
   },
   "DONATION_APPROVED": {
     "TITLE": "Donație aprobată",

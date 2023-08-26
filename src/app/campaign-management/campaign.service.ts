@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable, tap} from "rxjs";
+import {BehaviorSubject, forkJoin, map, Observable, tap} from "rxjs";
 import {Campaign} from "./campaign";
 import {Donor} from "../donor-management/Donor";
 import {Donation} from "../donation-management/donation";
 import {LoginService} from "../login/login.service";
+import {switchMap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,18 @@ export class CampaignService {
     return this.http.put(this.url+"/"+id+"/" + this.userID,campaign)
   }
 
+  getCampaignsWithDonators(): Observable<{ campaign: Campaign, donators: Donor[] }[]> {
+    return this.loadCampaigns().pipe(
+      switchMap((campaigns: Campaign[]) => {
+        const observables = campaigns.map(campaign =>
+          this.loadDonators(campaign.id.toString()).pipe(
+            map((donators: Donor[]) => ({ campaign, donators }))
+          )
+        );
+        return forkJoin(observables);
+      })
+    );
+  }
 
 
 }

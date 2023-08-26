@@ -11,6 +11,8 @@
       <button *ngIf="!checkIfReporter()" pButton pRipple icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
       &nbsp;
       <button *ngIf="!checkIfReporter()" pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
+      <button pButton pRipple label="Export to CSV" (click)="exportStyledCampaignsWithDonators()"></button>
+
     </ng-template>
 
 
