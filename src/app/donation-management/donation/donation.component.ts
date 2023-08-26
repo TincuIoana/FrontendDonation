@@ -8,6 +8,7 @@ import {Donor} from "../../donor-management/Donor";
 import {CampaignService} from "../../campaign-management/campaign.service";
 import {DonorService} from "../../donor-management/donor.service";
 import {LoginService} from "../../login/login.service";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-donation',
@@ -374,34 +375,64 @@ export class DonationComponent implements OnInit {
     };
   }
 
-  exportViewToCSV() {
-    let csvContent = "Amount,Approve Date,Approved,Created Date,Currency,Notes,Approved By,Campaign Name,Created By,Donor First Name,Donor Last Name\n";
 
-    this.donationList.forEach(donation => {
-      const row = [
-        donation.amount,
-        donation.approveDate,
-        donation.approved ? 'Yes' : 'No',
-        donation.createdDate,
-        donation.currency,
-        donation.notes,
-        donation.approvedBy ? donation.approvedBy.username : '',
-        donation.campaign.name,
-        donation.createdBy.username,
-        donation.donor.firstName,
-        donation.donor.lastName
-      ];
-      csvContent += row.join(',') + '\n';
+  exportViewToXLSX() {
+    const data = this.donationList.map(donation => {
+      const approveDate = donation.approveDate ? new Date(donation.approveDate).toISOString().split('T')[0] : '';
+      const createdDate = donation.createdDate ? new Date(donation.createdDate).toISOString().split('T')[0] : '';
+
+      return {
+        'Amount': donation.amount,
+        'Approve Date': approveDate,
+        'Approved': donation.approved ? 'Yes' : 'No',
+        'Created Date': createdDate,
+        'Currency': donation.currency,
+        'Notes': donation.notes,
+        'Approved By': donation.approvedBy ? donation.approvedBy.username : '',
+        'Campaign Name': donation.campaign.name,
+        'Created By': donation.createdBy.username,
+        'Donor First Name': donation.donor.firstName,
+        'Donor Last Name': donation.donor.lastName
+      };
     });
-    this.downloadCSV(csvContent);
+
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    // Set width for all columns
+    if (!ws['!cols']) ws['!cols'] = [];
+    const columnWidth = 20; // You can adjust this value as needed
+    Object.keys(data[0]).forEach((key, index) => {
+      ws['!cols'][index] = { width: columnWidth };
+    });
+    // Highlight the header
+    const headerStyle = {
+      font: {
+        bold: true
+      },
+      fill: {
+        fgColor: { rgb: "FFFF00" } // Yellow fill. You can adjust the color as needed.
+      }
+    };
+
+    const headers = Object.keys(data[0]);
+    for (let i = 0; i < headers.length; i++) {
+      const cellAddress = XLSX.utils.encode_cell({ r: 0, c: i }); // 0 is the first row
+      if (!ws[cellAddress]) continue; // Skip if cell doesn't exist
+      ws[cellAddress].s = headerStyle;
+    }
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Donations');
+
+    this.downloadXLSX(wb);
   }
 
-  downloadCSV(csvData: string) {
-    const blob = new Blob([csvData], { type: 'text/csv' });
+  downloadXLSX(wb: XLSX.WorkBook) {
+    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([wbout], { type: 'application/octet-stream' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'donations.csv';
+    a.download = 'donations.xlsx';
     a.click();
     window.URL.revokeObjectURL(url);
   }

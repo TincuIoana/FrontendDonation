@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 import {tap} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-campaign',
@@ -256,6 +258,26 @@ export class CampaignComponent implements OnInit {
       return text.substring(0, maxLength - 3) + '...';
     }
     return text;
+  }
+
+
+  exportStyledCampaignsWithDonators(): void {
+    this.campaignService.getCampaignsWithDonators().subscribe(data => {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data.map(item => ({
+        'Campaign Name': item.campaign.name,
+        'Donator Names': item.donators.map(d => d.firstName + ' ' + d.lastName).join(', ')
+      })));
+
+      // Example of adding some basic styling
+      if (!ws['!cols']) ws['!cols'] = [];
+      ws['!cols'][0] = { width: 20 }; // Set width for the first column
+      ws['!cols'][1] = { width: 40 }; // Set width for the second column
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+      XLSX.writeFile(wb, 'campaigns_with_donators.xlsx');
+    });
   }
 
 

@@ -12,7 +12,7 @@
       &nbsp;
       <button pButton pRipple [label]="delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonations()" [disabled]="!selectedDonations || !selectedDonations.length"></button>
       &nbsp;
-      <button pTooltip="Export to CSV" pButton pRipple icon="pi pi-download" (click)="exportViewToCSV()"></button>
+      <button pTooltip="Export to CSV" pButton pRipple icon="pi pi-download" (click)="exportViewToXLSX()"></button>
     </ng-template>
   </p-toolbar>
 
