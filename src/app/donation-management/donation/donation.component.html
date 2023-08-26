@@ -8,23 +8,23 @@
                     <input pInputText #textInput type="text" (input)="dt.filterGlobal(textInput.value, 'contains')" placeholder="{{'CAMPAIGN.SEARCH' | translate}}..." />
       </span>
       &nbsp;
-      <button pButton pRipple icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      <button pTooltip="{{'DONATION.NEW' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()" ></button>
       &nbsp;
-      <button pButton pRipple [label]="delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonations()" [disabled]="!selectedDonations || !selectedDonations.length"></button>
+      <button pTooltip="{{'DONATION.DELETE' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple [label]="delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonations()" [disabled]="!selectedDonations || !selectedDonations.length"></button>
       &nbsp;
-      <button pTooltip="Export to CSV" pButton pRipple icon="pi pi-download" (click)="exportViewToCSV()"></button>
+      <button pTooltip="{{'DONATION.EXPORT' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pTooltip="Export to CSV" pButton pRipple icon="pi pi-download" (click)="exportViewToCSV()"></button>
     </ng-template>
   </p-toolbar>
 
   <p-table #dt [value]="donationList" [rows]="10" [paginator]="true" [globalFilterFields]="['approvedBy.username', 'createdBy.username', 'currency', 'donor.firstName', 'campaign.name', 'amount']"
            [(selection)]="selectedDonations" [rowHover]="true" dataKey="id"
-           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-<!--    <ng-template pTemplate="caption">-->
-<!--      <div class="p-d-flex p-ai-center p-jc-between">-->
-<!--        <h2 class="p-m-0">{{'DONATION.MANAGE' | translate}}</h2>-->
-
-<!--      </div>-->
-<!--    </ng-template>-->
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h2 class="p-m-0">{{'DONATION.MANAGE' | translate}}</h2>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 3rem">
@@ -67,18 +67,18 @@
         <td style="text-align: center">{{donation.createdBy.username}}</td>
         <td style="text-align: center">{{donation.donor.firstName}} {{donation.donor.lastName}}</td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" [disabled]="donation.approved" (click)="openEdit(donation)"></button>
+          <button pTooltip="{{'DONATION.EDIT' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" [disabled]="donation.approved" (click)="openEdit(donation)"></button>
           &nbsp;
-          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" [disabled]="donation.approved" (click)="deleteDonation(donation)"></button>
+          <button pTooltip="{{'DONATION.DELETE' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" [disabled]="donation.approved" (click)="deleteDonation(donation)"></button>
           &nbsp;
-          <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-help" [disabled]="donation.approved" (click)="approveDonation(donation)"></button>
+          <button pTooltip="{{'DONATION.APPROVE' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-help" [disabled]="donation.approved" (click)="approveDonation(donation)"></button>
         </td>
       </tr>
     </ng-template>
     <!--    </ng-container>-->
     <ng-template pTemplate="summary">
       <div class="p-d-flex p-ai-center p-jc-between">
-        {{'CAMPAIGN.TOTAL' | translate}} {{donation ? donationList.length : 0 }}  {{'CAMPAIGN.CAMPAIGNS' | translate}}.
+        {{'DONATION.TOTAL' | translate}} {{donation ? donationList.length : 0 }}  {{'DONATION.DONATIONS' | translate}}.
       </div>
     </ng-template>
   </p-table>
