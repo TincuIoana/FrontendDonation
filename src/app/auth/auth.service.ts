@@ -13,10 +13,14 @@ export class AuthService {
 
   private loggedInSubject = new BehaviorSubject<boolean>(false);
 
+
   setLoggedIn(value: boolean) {
 
+
     try {
-      this.loggedInSubject.next(value);
+
+      this.loggedInSubject.next(value)
+
     }catch(ERROR){
       console.error('amn error has occured', ERROR)
     }

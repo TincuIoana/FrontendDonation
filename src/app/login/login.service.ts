@@ -27,8 +27,9 @@ export class LoginService {
 
 
   constructor(private http: HttpClient) {
-    if (sessionStorage.getItem("token"))
+    if (sessionStorage.getItem("token")) {
       this._isLoggedIn.next(true)
+    }
   }
 
   login(loginRequest : LoginRequest):Observable<LoginResponse>{
@@ -47,8 +48,15 @@ export class LoginService {
     this._isLoggedIn.next(true)
   }
 
+  isLoggedInfunction(){
+    return this.isLoggedIn
+  }
   getLoggedUserId(){
     // @ts-ignore
+
+    console.log(jwtDecode(sessionStorage.getItem("token")!).id)
+    // @ts-ignore
+
     return jwtDecode(sessionStorage.getItem("token")!).id;
   }
 
