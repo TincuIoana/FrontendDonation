@@ -79,10 +79,10 @@ export class TabMenuComponent implements OnInit {
 
       this.items = [
         { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
-        { icon: 'pi pi-megaphone', tooltip: 'Campaign Management', routerLink: ['/campaign'] },
-        { icon: 'pi pi-id-card', tooltip: 'Donor Management', routerLink: ['/donor-management'] },
-        { icon: 'pi pi-wallet', tooltip: 'Donation Management', routerLink: ['/donation-management'] },
-        { icon: 'pi pi-lock', tooltip: 'Roles', routerLink: ['/roles-dialog'] },
+        { icon: 'pi pi-megaphone', tooltip: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
+        { icon: 'pi pi-id-card', tooltip: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
+        { icon: 'pi pi-wallet', tooltip: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management'] },
+        { icon: 'pi pi-lock', tooltip: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
       ];
       this.loginItem=[ { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },]
 
@@ -94,7 +94,7 @@ export class TabMenuComponent implements OnInit {
           this.items.splice(1, 0, {
             // label: this.translate.instant('MENU.USERADMINISTRATION'),
             icon: 'pi pi-users',
-            tooltip: 'User Management',
+            tooltip: this.translate.instant('MENU.USERADMINISTRATION'),
             routerLink: ['/user-administration']
           }
           );

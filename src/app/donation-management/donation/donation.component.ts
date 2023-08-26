@@ -8,6 +8,7 @@ import {Donor} from "../../donor-management/Donor";
 import {CampaignService} from "../../campaign-management/campaign.service";
 import {DonorService} from "../../donor-management/donor.service";
 import {LoginService} from "../../login/login.service";
+import {LazyLoadEvent} from "primeng/api";
 import * as XLSX from 'xlsx';
 import {ConfirmationService} from "primeng/api";
 
@@ -17,7 +18,6 @@ import {ConfirmationService} from "primeng/api";
   styleUrls: ['./donation.component.css']
 })
 export class DonationComponent implements OnInit {
-
   currencies: any[] | undefined;
   selectedCurrency: any | undefined;
 
@@ -53,7 +53,7 @@ export class DonationComponent implements OnInit {
     notes: string,
     approvedBy: User | null,
     campaign: Campaign,
-    createdBy: User ,
+    createdBy: User,
     donor: Donor,
     approveDate: Date | null
   } = {
@@ -77,7 +77,6 @@ export class DonationComponent implements OnInit {
   submitted: boolean;
   delete: any
   userId: number = parseInt(this.loginService.getLoggedUserId());
-
 
   constructor (private donationService: DonationService,
                private campaignService: CampaignService,
@@ -117,16 +116,26 @@ export class DonationComponent implements OnInit {
   approveDonation(donation: any) {
     const id = donation.id;
     this.donationService.approveDonationDB(donation.id.toString(), donation);
-    window.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, 1500);
+    this.donationService.loadDonations().subscribe();
   }
 
-  async deleteDonation(donation: any) {
-    const userConfirmed = await this.confirm();
-    if (userConfirmed) {
-      const id = donation.id;
-      this.donationService.deleteDonationDB(id.toString())
-      window.location.reload();
-    }
+  deleteDonation(donation: any) {
+    const id = donation.id;
+    this.donationService.deleteDonationDB(id.toString()).subscribe(
+      this.donationService.loadDonations().subscribe(
+           (value)
+            => {
+            this.donationList = value;
+          }
+
+      )
+    )
+    // setTimeout(() => {
+    //   document.location.reload();
+    // }, 1500);
   }
   async confirm(): Promise<boolean> {
     try {
@@ -153,7 +162,7 @@ export class DonationComponent implements OnInit {
 
   editDonation() {
     this.submitted = true;
-    let camp = new Campaign();
+    let camp = this.emptyCampaign();
     let donor = this.emptyDonor();
     let user = this.goodUser();
 
@@ -172,7 +181,10 @@ export class DonationComponent implements OnInit {
 
     this.donationService.updateDonationDB(donation.id.toString(), this.donation);
     this.updateDonationDialog = false;
-    window.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, 1500);
+    this.donationService.loadDonations().subscribe();
   }
 
 
@@ -243,17 +255,43 @@ export class DonationComponent implements OnInit {
       this.donationList = [...this.donationList];
       this.donationDialog = false;
       this.clearDonationForm();
-      window.location.reload();
+      // setTimeout(() => {
+      //   document.location.reload();
+      // }, 1500);
+      this.donationService.loadDonations().subscribe(
+        {
+          next: (value)
+            => {
+            this.donationList = value;
+          }
+        }
+      );
 
-
-
-
+      // Call the service to save the donation
+      //   this.donationService.saveDonationDB(
+      //     this.donation.campaign.id,
+      //     this.donation.donor.id,
+      //     newDonation
+      //   ).subscribe(
+      //     (response) => {
+      //       console.log('Added successfully: ', response);
+      //       this.donationList = [...this.donationList];
+      //       this.donationDialog = false;
+      //       this.clearDonationForm(); // Clear the form after successful save
+      //     },
+      //     (error) => {
+      //       console.error('Error saving donation:', error);
+      //       this.errorMessage = 'Error saving donation: ' + error.message;
+      //     }
+      //   );
+      // } else {
+      //   console.warn('Invalid donation data.');
+      //   this.errorMessage = 'Invalid donation data. Please fill out all required fields.';
     } else {
       console.warn('Checks failed!');
-      this.errorMessage='Checks failed!';
+      this.errorMessage = 'Checks failed!';
     }
   }
-
 
 
   deleteSelectedDonations() {
@@ -263,7 +301,10 @@ export class DonationComponent implements OnInit {
 
       this.donationService.deleteDonationDB(id.toString())
     });
-    window.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, 1500);
+
   }
 
   openEdit(donation: any) {
@@ -286,47 +327,26 @@ export class DonationComponent implements OnInit {
   goodUser(): User {
     return {
       id: parseInt(sessionStorage.getItem('id')),
-      // firstName: '',
-      // lastName: '',
-      // mobileNumber: '',
-      // username: '',
-      // email: '',
-      // roles: [],
-      // campaigns: [],
-      // password: '',
-      // active: false,
-      // firstLogin: false,
-      // retryCount: 0
     };
   }
 
   emptyUser(): User {
     return {
       id: 0,
-      // firstName: '',
-      // lastName: '',
-      // mobileNumber: '',
-      // username: '',
-      // email: '',
-      // roles: [],
-      // campaigns: [],
-      // password: '',
-      // active: false,
-      // firstLogin: false,
-      // retryCount: 0
     };
   }
 
   emptyDonor(): Donor {
     return {
       id: 0,
-      // firstName: '',
-      // lastName: '',
-      // additionalName: '',
-      // maidenName: ''
     };
   }
 
+  emptyCampaign(): Campaign {
+    return {
+      id: 0
+    }
+  }
 
   exportViewToXLSX() {
     const data = this.donationList.map(donation => {
@@ -388,5 +408,4 @@ export class DonationComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
-
 }

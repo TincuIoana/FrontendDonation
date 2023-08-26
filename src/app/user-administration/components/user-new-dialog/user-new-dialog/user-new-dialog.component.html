@@ -1,5 +1,5 @@
 <div class="card flex justify-content-center">
-  <button pButton pRipple label="{{'USER.NEW' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()" ></button>
+  <button pButton icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()" ></button>
   <p-dialog  [(visible)]="showDialog" [draggable]="false" [style]="{width: '450px'}" header="{{'USER.USER' | translate}}" [modal]="true" styleClass="p-fluid" (onHide)="clearForm()">
     <ng-template pTemplate="content">
       <form [formGroup]="registerForm">
