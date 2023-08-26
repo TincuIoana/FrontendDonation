@@ -9,14 +9,14 @@
   "MENU": {
     "USERADMINISTRATION": "Administrare Utilizatori",
     "CAMPAIGNMANAGEMENT": "Administrare Campanii",
-    "DONATIONMANAGEMENT": "Administrare Donatii",
+    "DONATIONMANAGEMENT": "Administrare Donații",
     "DONORMANAGEMENT": "Administrare Donatori",
     "LOGOUT": "Deconectare",
     "ROLES": "Editare Roluri",
     "LOGIN": "Autentificare",
-    "PASSWORD": "Parola",
-    "LOGINACC": "Logheazate in contul tau",
-    "SIGNIN": "Inresgistrare"
+    "PASSWORD": "Parolă",
+    "LOGINACC": "Loghează-te în contul tău",
+    "SIGNIN": "Înregistrare"
   },
 
   "ROLES": {
@@ -25,17 +25,17 @@
 
   "PERMISSIONS": {
     "GET": "Drepturi",
-    "ADD": "Adaugare",
-    "DELETE": "Stergere",
+    "ADD": "Adăugare",
+    "DELETE": "Ștergere",
     "SELECT": "Alege un drept",
     "AVAILABLE": "Drepturi disponibile",
-    "Permission_to_add_cannot_be_null.":  "Trebuie selectat un drept.",
-    "Permission_already_exists.": "Dreptul deja exista.",
-    "User_not_found_or_permission_not_available_to_edit_roles.": "Utilizatorul nu a fost gasit sau dreptul de a edita rolurile nu este disponibil.",
+    "Permission_to_add_cannot_be_null.": "Trebuie selectat un drept.",
+    "Permission_already_exists.": "Dreptul deja există.",
+    "User_not_found_or_permission_not_available_to_edit_roles.": "Utilizatorul nu a fost găsit sau dreptul de a edita rolurile nu este disponibil.",
     "Permission_to_delete_cannot_be_null.": "Trebuie selectat un drept.",
-    "Permission_to_delete_does_not_exist.": "Dreptul nu exista.",
-    "Added_successfully": "Adaugare reusita.",
-    "Deleted_successfully": "Stergere reusita."
+    "Permission_to_delete_does_not_exist.": "Dreptul nu există.",
+    "Added_successfully": "Adăugare reușită.",
+    "Deleted_successfully": "Ștergere reușită."
   },
 
   "CAMPAIGN": {
@@ -44,11 +44,11 @@
     "CAMPAIGNS": "campanii",
     "NEW": "Nou",
     "MANAGE": "Manager campanii",
-    "TOTAL": "In total sunt ",
-    "SAVE": "Salveaza",
-    "CANCEL": "Anuleaza",
+    "TOTAL": "În total sunt",
+    "SAVE": "Salvează",
+    "CANCEL": "Anulează",
     "DETAILS": "Detaliile campaniilor",
-    "SEARCH": "Cauta"
+    "SEARCH": "Caută",
 
   },
 
@@ -57,21 +57,21 @@
     "APPROVEDATE": "Data Aprobare",
     "APPROVED": "Aprobat",
     "CREATEDDATE": "Data creare",
-    "CURRENCY": "Valuta",
-    "NOTES": "Notite",
-    "APPROVEDBY": "Aprobata de",
+    "CURRENCY": "Valută",
+    "NOTES": "Note",
+    "APPROVEDBY": "Aprobată de",
     "CAMPAIGN": "Campanie",
-    "CREATEDBY": "Creata de",
+    "CREATEDBY": "Creată de",
     "DONOR": "Donator",
-    "MANAGE": "Administrare Donatii"
+    "MANAGE": "Administrare Donații"
   },
 
   "DONOR": {
     "DONOR": "Donator",
     "FIRSTN": "Prenume",
     "LASTN": "Nume",
-    "ADDITIONALN": "Porecla",
-    "MAIDENN": "Nume de fata",
+    "ADDITIONALN": "Nume adițional",
+    "MAIDENN": "Nume de fată",
     "MANAGE": "Manager donatori",
     "DONORS": "donatori",
     "DETAILS": "Detaliile donatorului"
@@ -81,35 +81,35 @@
     "USER": "Utilizator",
     "FIRST_NAME": "Prenume",
     "LAST_NAME": "Nume",
-    "MOBILE_NUMBER": "Numar mobil",
+    "MOBILE_NUMBER": "Număr mobil",
     "EMAIL": "Email",
     "USERNAME": "Nume Utilizator",
     "ROLES": "Roluri",
     "CAMPAIGNS": "Campanii",
-    "NO_USERS_FOUND": "Nici un utilizator gasit.",
-    "SEARCH_KEYWORD": "Cuvant cheie",
-    "CURRENT_PAGE_REPORT_TEMPLATE": "Afisand {first} pana la {last} din {totalRecords} inregistrari",
+    "NO_USERS_FOUND": "Nici un utilizator găsit.",
+    "SEARCH_KEYWORD": "Cuvânt cheie",
+    "CURRENT_PAGE_REPORT_TEMPLATE": "Afișând {first} până la {last} din {totalRecords} înregistrări",
     "NEW": "Nou",
     "EDIT_USER": "Modificare utilizator",
     "EDIT": "Modificare",
     "FIRST_NAME_REQUIRED": "Prenumele este obligatoriu",
     "LAST_NAME_REQUIRED": "Numele de familie este obligatoriu",
     "EMAIL_REQUIRED": "Email-ul este obligatoriu",
-    "ROLES_REQUIRED": "Cel putin un rol trebuie selectat",
-    "MOBILE_NUMBER_REQUIRED": "Numarul mobil este obligatoriu",
-    "SELECT_A_ROLE": "Selectati un rol",
-    "SELECT_A_CAMPAIGN": "Selectati o campanie",
-    "PASSWORD": "Parola",
+    "ROLES_REQUIRED": "Cel puțin un rol trebuie selectat",
+    "MOBILE_NUMBER_REQUIRED": "Numărul mobil este obligatoriu",
+    "SELECT_A_ROLE": "Selectați un rol",
+    "SELECT_A_CAMPAIGN": "Selectați o campanie",
+    "PASSWORD": "Parolă",
     "ACTIVATED": "Activat",
     "DEACTIVATED": "Dezactivat",
     "EMAIL_INVALID": "Email invalid",
-    "MOBILE_NUMBER_INVALID": "Numar mobil invalid",
+    "MOBILE_NUMBER_INVALID": "Număr mobil invalid",
     "EMAIL_IN_USE": "Email-ul este deja folosit",
-    "MOBILE_NUMBER_IN_USE": "Numarul de telefon este deja folosit",
+    "MOBILE_NUMBER_IN_USE": "Numărul de telefon este deja folosit",
     "MODIFIED": "Utilizator modificat",
     "CREATED": "Utilizator creat",
     "SUCCESS": "Succes",
-    "INFO": "Informatie"
+    "INFO": "Informație"
   },
 
   "WELCOME_NEW_USER": {

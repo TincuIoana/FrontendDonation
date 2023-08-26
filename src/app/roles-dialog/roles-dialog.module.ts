@@ -13,26 +13,28 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CascadeSelectModule} from "primeng/cascadeselect";
 import {RippleModule} from "primeng/ripple";
 import {MessageService} from "primeng/api";
+import {MenuModule} from "primeng/menu";
 
 
 @NgModule({
   declarations: [
     RolesDialogComponent
   ],
-  imports: [
-    CommonModule,
-    RolesDialogRoutingModule,
-    ButtonModule,
-    TableModule,
-    TranslateModule,
-    ToastModule,
-    ListboxModule,
-    AutoCompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CascadeSelectModule,
-    RippleModule
-  ],
+    imports: [
+        CommonModule,
+        RolesDialogRoutingModule,
+        ButtonModule,
+        TableModule,
+        TranslateModule,
+        ToastModule,
+        ListboxModule,
+        AutoCompleteModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CascadeSelectModule,
+        RippleModule,
+        MenuModule
+    ],
   providers: [
     RolesDialogService]
 })
