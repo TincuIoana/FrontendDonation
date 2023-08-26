@@ -9,6 +9,7 @@ import {CampaignService} from "../../campaign-management/campaign.service";
 import {DonorService} from "../../donor-management/donor.service";
 import {LoginService} from "../../login/login.service";
 import * as XLSX from 'xlsx';
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-donation',
@@ -81,7 +82,8 @@ export class DonationComponent implements OnInit {
   constructor (private donationService: DonationService,
                private campaignService: CampaignService,
                private donorService: DonorService,
-               private loginService: LoginService
+               private loginService: LoginService,
+               private confirmationService: ConfirmationService
   ) {
   }
 
@@ -118,11 +120,36 @@ export class DonationComponent implements OnInit {
     window.location.reload();
   }
 
-  deleteDonation(donation: any) {
-    const id = donation.id;
-    this.donationService.deleteDonationDB(id.toString())
-    //window.location.reload();
+  async deleteDonation(donation: any) {
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      const id = donation.id;
+      this.donationService.deleteDonationDB(id.toString())
+      window.location.reload();
+    }
   }
+  async confirm(): Promise<boolean> {
+    try {
+      return new Promise((resolve) => {
+
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to perform this action?',
+          accept: () => {
+            resolve(true);
+          },
+          reject: () => {
+            resolve(false);
+
+            window.location.reload()
+          },
+        });
+      });
+    } catch (error) {
+      console.error('Error in confirm():', error);
+      return false;
+    }
+  }
+
 
   editDonation() {
     this.submitted = true;
@@ -140,71 +167,15 @@ export class DonationComponent implements OnInit {
     donation.campaign = camp;
     donation.donor = donor;
 
-    // camp.id = this.selectedDonation.campaign.id;
-    // donor.id = this.selectedDonation.donor.id;
-    // user.id = this.selectedDonation.createdBy.id;
 
-    // donation.donor = donor;
-    // donation.campaign = camp;
-    // donation.createdBy = user;
+
 
     this.donationService.updateDonationDB(donation.id.toString(), this.donation);
     this.updateDonationDialog = false;
     window.location.reload();
   }
 
-  // saveDonation() {
-  //   this.submitted = true;
-  //   let user = this.emptyUser();
-  //
-  //   if (
-  //     this.donation.amount !== undefined
-  //     //&& this.donation.approveDate
-  //     //&& this.donation.approved
-  //     //&& this.donation.createdDate !== undefined
-  //     && this.donation.currency !== ''
-  //     //&& this.donation.notes !== ''
-  //     //&& this.donation.approvedBy
-  //     && this.donation.campaign !== undefined
-  //     //&& this.donation.createdBy !== undefined
-  //     && this.donation.donor !== undefined
-  //     //&& this.campaign.name.replace(/\s/g, '').length>0
-  //   ) {
-  //     const newDonation = new Donation(
-  //       this.donation.amount,
-  //       this.donation.createdDate,
-  //       this.donation.currency,
-  //       this.donation.campaign,
-  //       this.donation.createdBy,
-  //       this.donation.donor,
-  //       this.donation.approveDate,
-  //       this.donation.approved,
-  //       this.donation.notes,
-  //       this.donation.approvedBy,
-  //     );
-  //
-  //     this.donationService.saveDonationDB(newDonation.campaign?.id, newDonation.donor?.id, newDonation);
-  //     this.donationList = [...this.donationList];
-  //     this.donationDialog = false;
-  //     this.donation = {
-  //       id: 0,
-  //       amount: 0,
-  //       approved: false,
-  //       createdDate: new Date(),
-  //       currency: '',
-  //       notes: '',
-  //       approvedBy: this.emptyUser(),
-  //       campaign: new Campaign('', ''),
-  //       createdBy: this.emptyUser(),
-  //       donor: this.emptyDonor(), // those are empty objects
-  //       approveDate: null
-  //     };
-  //
-  //   } else {
-  //     console.warn('Something went wrong!');
-  //     this.errorMessage = 'Something went wrong!';
-  //   }
-  // }
+
 
 
 // Helper function to clear the donation form
@@ -276,26 +247,7 @@ export class DonationComponent implements OnInit {
 
 
 
-      // Call the service to save the donation
-    //   this.donationService.saveDonationDB(
-    //     this.donation.campaign.id,
-    //     this.donation.donor.id,
-    //     newDonation
-    //   ).subscribe(
-    //     (response) => {
-    //       console.log('Added successfully: ', response);
-    //       this.donationList = [...this.donationList];
-    //       this.donationDialog = false;
-    //       this.clearDonationForm(); // Clear the form after successful save
-    //     },
-    //     (error) => {
-    //       console.error('Error saving donation:', error);
-    //       this.errorMessage = 'Error saving donation: ' + error.message;
-    //     }
-    //   );
-    // } else {
-    //   console.warn('Invalid donation data.');
-    //   this.errorMessage = 'Invalid donation data. Please fill out all required fields.';
+
     } else {
       console.warn('Checks failed!');
       this.errorMessage='Checks failed!';

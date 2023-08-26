@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DonorService} from "../donor.service";
 import {Donor} from "../Donor";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-donor',
@@ -28,13 +29,13 @@ export class DonorComponent implements OnInit {
 
   // campaign:{id:number,name:string, purpose:string} ={id:0,name: '', purpose:''}
   donor:{id:number,firstName:string,lastName:string,additionalName:string,maidenName:string}={id:0,firstName:'',lastName:'',additionalName:'',maidenName:''}
-
+  errorMessage:any
 
   // @ts-ignore
   submitted: boolean;
   Delete: any;
 
-  constructor(private donorService: DonorService) { }
+  constructor(private donorService: DonorService,private confirmationService:ConfirmationService) { }
 
   ngOnInit() {
     console.log("start donor manager")
@@ -87,7 +88,7 @@ export class DonorComponent implements OnInit {
 
     }else{
       console.warn('Donor first name or last name cannot be empty.');
-
+      this.errorMessage = "Campaign name or purpose cannot be empty.";
     }
   }
 
@@ -105,10 +106,13 @@ export class DonorComponent implements OnInit {
   }
 
 
-  deleteDonor(donor: any) {
-    console.log(donor.id)
-    this.donorService.deleteFromDB(donor.id.toString())
-    window.location.reload()
+  async deleteDonor(donor: any) {
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      console.log(donor.id)
+      this.donorService.deleteFromDB(donor.id.toString())
+      window.location.reload()
+    }
 
 
   }
@@ -148,6 +152,27 @@ export class DonorComponent implements OnInit {
     }
     return text;
   }
+
+  async confirm(): Promise<boolean> {
+    try {
+      return new Promise((resolve) => {
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to perform this action?',
+          accept: () => {
+            resolve(true);
+          },
+          reject: () => {
+            resolve(false);
+            window.location.reload()
+          },
+        });
+      });
+    } catch (error) {
+      console.error('Error in confirm():', error);
+      return false;
+    }
+  }
+
 
 
 
