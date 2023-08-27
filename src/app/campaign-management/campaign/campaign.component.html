@@ -12,7 +12,8 @@
       &nbsp;
       <button *ngIf="!checkIfReporter()" pTooltip="{{'DONATION.DELETE' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
       &nbsp;
-      <button *ngIf="checkIfCanExport()" pTooltip="Export to CSV"  [showDelay]="500"  tooltipPosition="bottom"  pButton pRipple icon="pi pi-download" (click)="exportStyledCampaignsWithDonators()"></button>
+
+      <button *ngIf="checkIfCanExport()" pTooltip="{{'DONATION.EXPORT' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pTooltip="Export to CSV" pButton pRipple icon="pi pi-download" (click)="exportStyledCampaignsWithDonators()"></button>
 
     </ng-template>
 
