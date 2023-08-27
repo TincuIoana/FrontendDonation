@@ -14,3 +14,11 @@
 .spaced-select {
   margin-right: 10px; /* Adjust spacing as needed */
 }
+
+.custom-select {
+  margin-bottom: 9px;
+  padding-bottom: 10px;
+  width: 220px;
+  height: 30px;
+  font-size: 14px;
+}

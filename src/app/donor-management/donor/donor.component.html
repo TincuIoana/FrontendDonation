@@ -66,7 +66,7 @@
   </p-table>
 </div>
 
-<p-dialog [(visible)]="donorDialog" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [draggable]="false" [(visible)]="donorDialog" [style]="{width: '450px'}" header="Campaign Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
       <label for="FirstName">{{'DONOR.FIRSTN'|translate}}</label>
@@ -101,7 +101,7 @@
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
 
-<p-dialog [(visible)]="donorDialog1" [style]="{width: '450px'}" header="{{'DONOR.DETAILS'|translate}}" [modal]="true" styleClass="p-fluid">
+<p-dialog [draggable]="false" [(visible)]="donorDialog1" [style]="{width: '450px'}" header="{{'DONOR.DETAILS'|translate}}" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content1">
     <div class="p-field">
       <label for="updatedFirstName">{{'DONOR.FIRSTN'|translate}}</label>

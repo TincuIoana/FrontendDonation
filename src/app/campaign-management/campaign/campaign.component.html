@@ -76,7 +76,7 @@
   </p-table>
 </div>
 
-<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [modal]="true" styleClass="p-fluid">
+<p-dialog [draggable]="false" [(visible)]="campaignDialog" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
       <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>
@@ -103,7 +103,7 @@
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
 
-<p-dialog [(visible)]="campaignDialog1" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [closable]="false" [modal]="true" styleClass="p-fluid">
+<p-dialog [draggable]="false" [(visible)]="campaignDialog1" [style]="{width: '450px'}" header="{{'CAMPAIGN.DETAILS'| translate}}" [closable]="false" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content1">
     <div class="p-field">
       <label for="name">{{'CAMPAIGN.NAME'|translate}}</label>

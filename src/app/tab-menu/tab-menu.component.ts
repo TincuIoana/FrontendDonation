@@ -79,10 +79,10 @@ export class TabMenuComponent implements OnInit {
 
       this.items = [
         { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
-        { icon: 'pi pi-megaphone', tooltip: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
+        { icon: 'pi pi-building', tooltip: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
         { icon: 'pi pi-id-card', tooltip: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
-        { icon: 'pi pi-wallet', tooltip: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management'] },
-        { icon: 'pi pi-lock', tooltip: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
+        { icon: 'pi pi-dollar', tooltip: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management'] },
+        { icon: 'pi pi-user-edit', tooltip: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
       ];
       this.loginItem=[ { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },]
 

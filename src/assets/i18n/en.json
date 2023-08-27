@@ -9,16 +9,19 @@
   },
 
   "MENU": {
-    "USERADMINISTRATION": "User Administration",
+    "USERADMINISTRATION": "User Management",
     "CAMPAIGNMANAGEMENT": "Campaign Management",
     "DONORMANAGEMENT": "Donor Management",
     "DONATIONMANAGEMENT": "Donation Management",
     "LOGOUT": "Logout",
     "LOGIN": "Login",
-    "PASSWORD": "Password",
+    "PASSWORD": "Password:",
+    "USERNAME": "Username:",
     "LOGINACC": "Log into your account",
     "SIGNIN": "Sign up",
-    "ROLES": "Edit Roles"
+    "ROLES": "Permission Management",
+    "PASSWORD_REQUIRED": "Password is required",
+    "USERNAME_REQUIRED": "Username is required"
   },
 
   "ROLES": {
@@ -31,11 +34,11 @@
     "DELETE": "Delete",
     "SELECT": "Select a permission",
     "AVAILABLE": "Permissions available",
-    "Permission_to_add_cannot_be_null.":  "Must select a permission to add.",
-    "Permission_already_exists.": "Permission already exists.",
-    "User_not_found_or_permission_not_available_to_edit_roles.": "User not found or permission not available to edit roles.",
-    "Permission_to_delete_cannot_be_null.": "Permission to delete cannot be null.",
-    "Permission_to_delete_does_not_exist.": "Permission to delete does not exist.",
+    "Permission_to_add_cannot_be_null.":  "Must select a permission to add",
+    "Permission_already_exists.": "Permission already exists",
+    "User_not_found_or_permission_not_available_to_edit_roles.": "User not found or permission not available to edit roles",
+    "Permission_to_delete_cannot_be_null.": "Permission to delete cannot be null",
+    "Permission_to_delete_does_not_exist.": "Permission to delete does not exist",
     "Added_successfully": "Added successfully.",
     "Deleted_successfully": "Deleted successfully."
   },
@@ -43,7 +46,7 @@
   "CAMPAIGN": {
     "NAME": "Name",
     "PURPOSE": "Purpose",
-    "CAMPAIGNS": "campaigns",
+    "CAMPAIGNS": "Campaigns",
     "NEW": "New",
     "MANAGE": "Manage campaigns",
     "TOTAL": "In total there are",
@@ -55,7 +58,7 @@
   "DONATION": {
     "NEW": "New Donation",
     "DELETE": "Delete Donation",
-    "EXPORT": "Export DonationS",
+    "EXPORT": "Export Donations",
     "EDIT": "Edit Donation",
     "APPROVE": "Approve Donation",
     "AMOUNT": "Amount",
@@ -93,7 +96,7 @@
     "ROLES": "Roles",
     "CAMPAIGNS": "Campaigns",
     "NO_USERS_FOUND": "No users found.",
-    "SEARCH_KEYWORD": "Search keyword",
+    "SEARCH_KEYWORD": "Search...",
     "CURRENT_PAGE_REPORT_TEMPLATE": "Showing {first} to {last} of {totalRecords} entries",
     "NEW": "New",
     "EDIT_USER": "Edit user",

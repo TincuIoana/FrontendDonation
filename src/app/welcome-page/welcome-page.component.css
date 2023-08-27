@@ -2,8 +2,8 @@
   justify-content: center;
   justify-items: center;
   background: linear-gradient(to bottom, #a8d7f6, white);
-  font-family: 'Times New Roman', serif;
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: black;
   text-shadow: 2px 2px 4px grey; /* Adds a grey shadow to the text */
   text-align: center;
   display: flex;
