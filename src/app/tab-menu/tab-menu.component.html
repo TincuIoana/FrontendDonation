@@ -3,7 +3,7 @@
 <div class="card">
   <p-tabMenu [model]="items">
     <ng-template pTemplate="item" let-item>
-      <div tooltipPosition="bottom" pTooltip="{{ item?.tooltip }}" class="menu-item-icon" [showDelay]="1000">
+      <div tooltipPosition="bottom" pTooltip="{{ item?.tooltip }}" class="menu-item-icon">
         <i [class]="item.icon"></i>
         <span class="p-ml-2">{{ item.label }}</span>
       </div>

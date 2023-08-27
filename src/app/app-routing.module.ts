@@ -31,11 +31,11 @@ const routes: Routes = [
       permissions:['BENEF_MANAGEMENT']
     }
   },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'welcome-page',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)

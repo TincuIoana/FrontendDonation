@@ -1,6 +1,6 @@
 <!--<div class="card flex justify-content-center">-->
 <!--  <p-button label="Donors" class="p-button-success p-mr-2" (click)="showCampaigns()"></p-button>-->
-<!--  <p-dialog [(visible)]="showDialog" [style]="{width: '950px'}" header="Donors" [modal]="true" styleClass="p-fluid">-->
+<!--  <p-dialog [draggable]="false" [(visible)]="showDialog" [style]="{width: '950px'}" header="Donors" [modal]="true" styleClass="p-fluid">-->
 <!--    <ng-template pTemplate="header">-->
 
 <!--    </ng-template>-->
@@ -33,7 +33,7 @@
 
 <div class="card flex justify-content-center">
   <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-help" (click)="showCampaigns()"></p-button>
-  <p-dialog [(visible)]="showDialog" [style]="{width: '950px'}" header="Donors" [modal]="true" styleClass="p-fluid">
+  <p-dialog [draggable]="false" [(visible)]="showDialog" [style]="{width: '950px'}" header="Donors" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="header">
       <div class="skill-list">
         <div class="skill-item">First Name</div>
