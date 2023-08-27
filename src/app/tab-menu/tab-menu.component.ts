@@ -14,8 +14,6 @@ import {LoginService} from "../login/login.service";
 })
 export class TabMenuComponent implements OnInit {
   items: MenuItem[] | undefined;
-  sDelay = 3000;
-  hDelay = 3000;
   loginItem: MenuItem[] | undefined;
 
   // @ts-ignore
@@ -53,29 +51,10 @@ export class TabMenuComponent implements OnInit {
         isLoggedin=false
       }
 
-
       const loginOrLogoutLabel = loggedIn  ? logoutLabel : loginLabel;
-
-      // this.items = [
-      //   { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
-      //   { label: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
-      //   { label: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
-      //   { label: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management']},
-      //   { label: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
-      // ];
-
-
       const labelForLogIn = 'pi pi-sign-in';
       const labelForLogOut = 'pi pi-sign-out';
       const logInOrLogOut = loggedIn || isLoggedin ? labelForLogOut : labelForLogIn;
-      // adaugat de mine pentru icons
-      // this.items = [
-      //   { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
-      //   { icon: 'pi pi-megaphone', tooltip: 'Campaign Management', routerLink: ['/campaign'] },
-      //   { icon: 'pi pi-id-card', routerLink: ['/donor-management'] },
-      //   { icon: 'pi pi-wallet', routerLink: ['/donation-management']},
-      //   { icon: 'pi pi-lock', routerLink: ['/roles-dialog'] },
-      // ];
 
       this.items = [
         { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },

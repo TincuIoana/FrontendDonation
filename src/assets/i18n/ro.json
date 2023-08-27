@@ -48,8 +48,7 @@
     "SAVE": "Salvează",
     "CANCEL": "Anulează",
     "DETAILS": "Detaliile campaniilor",
-    "SEARCH": "Caută",
-
+    "SEARCH": "Caută"
   },
 
   "DONATION": {
@@ -67,7 +66,7 @@
     "APPROVEDBY": "Aprobată de",
     "CAMPAIGN": "Campanie",
     "CREATEDBY": "Creată de",
-    "DONOR": "Donator",
+    "DONOR": "Donator"
   },
 
   "DONOR": {

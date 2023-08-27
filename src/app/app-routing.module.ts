@@ -17,7 +17,11 @@ const routes: Routes = [
   },
   {
     path: 'donation-management',
-    loadChildren: () => import('./donation-management/donation.module').then(m => m.DonationModule)
+    loadChildren: () => import('./donation-management/donation.module').then(m => m.DonationModule),
+    canActivate: [Role_guards],
+    data: {
+      permissions: ['DONATION_MANAGEMENT']
+    }
   },
   {
     path: 'donor-management',

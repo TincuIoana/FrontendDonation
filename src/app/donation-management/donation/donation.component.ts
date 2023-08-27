@@ -8,7 +8,7 @@ import {Donor} from "../../donor-management/Donor";
 import {CampaignService} from "../../campaign-management/campaign.service";
 import {DonorService} from "../../donor-management/donor.service";
 import {LoginService} from "../../login/login.service";
-import {LazyLoadEvent} from "primeng/api";
+import {LazyLoadEvent, MessageService} from "primeng/api";
 import * as XLSX from 'xlsx';
 import {ConfirmationService} from "primeng/api";
 
@@ -64,12 +64,9 @@ export class DonationComponent implements OnInit {
     currency: this.selectedCurrency,
     notes: '',
     approvedBy: this.emptyUser(),
-    //approvedBy: User = {},
     campaign: this.selectedCampaign,
     createdBy: this.goodUser(),
-    //createdBy: User = {id: parseInt(sessionStorage.getItem('id'))},
-    donor: this.selectedDonor, // those are empty objects
-    //donor: Donor = {},
+    donor: this.selectedDonor,
     approveDate: null
   };
 
@@ -82,7 +79,8 @@ export class DonationComponent implements OnInit {
                private campaignService: CampaignService,
                private donorService: DonorService,
                private loginService: LoginService,
-               private confirmationService: ConfirmationService
+               private confirmationService: ConfirmationService,
+               private messageService: MessageService
   ) {
   }
 
@@ -116,26 +114,30 @@ export class DonationComponent implements OnInit {
   approveDonation(donation: any) {
     const id = donation.id;
     this.donationService.approveDonationDB(donation.id.toString(), donation);
+    this.showSuccessApprove();
     setTimeout(() => {
       document.location.reload();
     }, 1500);
-    this.donationService.loadDonations().subscribe();
+    //this.donationService.loadDonations().subscribe();
   }
 
-  deleteDonation(donation: any) {
+  async deleteDonation(donation: any) {
+    const userConfirmed = await this.confirm();
     const id = donation.id;
-    this.donationService.deleteDonationDB(id.toString()).subscribe(
-      this.donationService.loadDonations().subscribe(
-           (value)
-            => {
-            this.donationList = value;
-          }
-
+    if (userConfirmed) {
+      this.donationService.deleteDonationDB(id.toString()).subscribe(
+        // this.donationService.loadDonations().subscribe(
+        //   (value)
+        //     => {
+        //     this.donationList = value;
+        //   }
+        // )
       )
-    )
-    // setTimeout(() => {
-    //   document.location.reload();
-    // }, 1500);
+      this.showSuccessDelete();
+    }
+    setTimeout(() => {
+      document.location.reload();
+    }, 1500);
   }
   async confirm(): Promise<boolean> {
     try {
@@ -159,7 +161,6 @@ export class DonationComponent implements OnInit {
     }
   }
 
-
   editDonation() {
     this.submitted = true;
     let camp = this.emptyCampaign();
@@ -176,15 +177,13 @@ export class DonationComponent implements OnInit {
     donation.campaign = camp;
     donation.donor = donor;
 
-
-
-
     this.donationService.updateDonationDB(donation.id.toString(), this.donation);
     this.updateDonationDialog = false;
+    this.showSuccessEdit();
     setTimeout(() => {
       document.location.reload();
     }, 1500);
-    this.donationService.loadDonations().subscribe();
+    //this.donationService.loadDonations().subscribe();
   }
 
 
@@ -255,41 +254,14 @@ export class DonationComponent implements OnInit {
       this.donationList = [...this.donationList];
       this.donationDialog = false;
       this.clearDonationForm();
-      // setTimeout(() => {
-      //   document.location.reload();
-      // }, 1500);
-      this.donationService.loadDonations().subscribe(
-        {
-          next: (value)
-            => {
-            this.donationList = value;
-          }
-        }
-      );
-
-      // Call the service to save the donation
-      //   this.donationService.saveDonationDB(
-      //     this.donation.campaign.id,
-      //     this.donation.donor.id,
-      //     newDonation
-      //   ).subscribe(
-      //     (response) => {
-      //       console.log('Added successfully: ', response);
-      //       this.donationList = [...this.donationList];
-      //       this.donationDialog = false;
-      //       this.clearDonationForm(); // Clear the form after successful save
-      //     },
-      //     (error) => {
-      //       console.error('Error saving donation:', error);
-      //       this.errorMessage = 'Error saving donation: ' + error.message;
-      //     }
-      //   );
-      // } else {
-      //   console.warn('Invalid donation data.');
-      //   this.errorMessage = 'Invalid donation data. Please fill out all required fields.';
+      this.showSuccessAdd();
+      setTimeout(() => {
+        document.location.reload();
+      }, 1500);
     } else {
       console.warn('Checks failed!');
       this.errorMessage = 'Checks failed!';
+      this.showError();
     }
   }
 
@@ -396,6 +368,7 @@ export class DonationComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Donations');
 
     this.downloadXLSX(wb);
+    this.showSuccessExport();
   }
 
   downloadXLSX(wb: XLSX.WorkBook) {
@@ -408,4 +381,29 @@ export class DonationComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
+
+  showSuccessAdd(){
+    this.messageService.add({ severity: 'success', detail: ""})
+  }
+
+  showSuccessDelete(){
+    this.messageService.add({ severity: 'success', detail: ""})
+  }
+
+  showSuccessApprove() {
+    this.messageService.add({ severity: 'success', detail: ""})
+  }
+
+  showSuccessEdit() {
+    this.messageService.add({ severity: 'success', detail: ""})
+  }
+
+  showError() {
+    this.messageService.add({ severity: 'error', detail: "" });
+  }
+
+  showSuccessExport() {
+    this.messageService.add({ severity: 'success', detail: ""})
+  }
+
 }
