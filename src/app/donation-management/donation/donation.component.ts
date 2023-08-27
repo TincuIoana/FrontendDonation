@@ -8,6 +8,8 @@ import {Donor} from "../../donor-management/Donor";
 import {CampaignService} from "../../campaign-management/campaign.service";
 import {DonorService} from "../../donor-management/donor.service";
 import {LoginService} from "../../login/login.service";
+import {LazyLoadEvent} from "primeng/api";
+import * as XLSX from 'xlsx';
 import {ConfirmationService} from "primeng/api";
 
 @Component({
@@ -16,7 +18,6 @@ import {ConfirmationService} from "primeng/api";
   styleUrls: ['./donation.component.css']
 })
 export class DonationComponent implements OnInit {
-
   currencies: any[] | undefined;
   selectedCurrency: any | undefined;
 
@@ -52,7 +53,7 @@ export class DonationComponent implements OnInit {
     notes: string,
     approvedBy: User | null,
     campaign: Campaign,
-    createdBy: User ,
+    createdBy: User,
     donor: Donor,
     approveDate: Date | null
   } = {
@@ -76,7 +77,6 @@ export class DonationComponent implements OnInit {
   submitted: boolean;
   delete: any
   userId: number = parseInt(this.loginService.getLoggedUserId());
-
 
   constructor (private donationService: DonationService,
                private campaignService: CampaignService,
@@ -116,16 +116,26 @@ export class DonationComponent implements OnInit {
   approveDonation(donation: any) {
     const id = donation.id;
     this.donationService.approveDonationDB(donation.id.toString(), donation);
-    window.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, 1500);
+    this.donationService.loadDonations().subscribe();
   }
 
-  async deleteDonation(donation: any) {
-    const userConfirmed = await this.confirm();
-    if (userConfirmed) {
-      const id = donation.id;
-      this.donationService.deleteDonationDB(id.toString())
-      window.location.reload();
-    }
+  deleteDonation(donation: any) {
+    const id = donation.id;
+    this.donationService.deleteDonationDB(id.toString()).subscribe(
+      this.donationService.loadDonations().subscribe(
+           (value)
+            => {
+            this.donationList = value;
+          }
+
+      )
+    )
+    // setTimeout(() => {
+    //   document.location.reload();
+    // }, 1500);
   }
   async confirm(): Promise<boolean> {
     try {
@@ -152,7 +162,7 @@ export class DonationComponent implements OnInit {
 
   editDonation() {
     this.submitted = true;
-    let camp = new Campaign();
+    let camp = this.emptyCampaign();
     let donor = this.emptyDonor();
     let user = this.goodUser();
 
@@ -171,7 +181,10 @@ export class DonationComponent implements OnInit {
 
     this.donationService.updateDonationDB(donation.id.toString(), this.donation);
     this.updateDonationDialog = false;
-    window.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, 1500);
+    this.donationService.loadDonations().subscribe();
   }
 
 
@@ -242,17 +255,43 @@ export class DonationComponent implements OnInit {
       this.donationList = [...this.donationList];
       this.donationDialog = false;
       this.clearDonationForm();
-      window.location.reload();
+      // setTimeout(() => {
+      //   document.location.reload();
+      // }, 1500);
+      this.donationService.loadDonations().subscribe(
+        {
+          next: (value)
+            => {
+            this.donationList = value;
+          }
+        }
+      );
 
-
-
-
+      // Call the service to save the donation
+      //   this.donationService.saveDonationDB(
+      //     this.donation.campaign.id,
+      //     this.donation.donor.id,
+      //     newDonation
+      //   ).subscribe(
+      //     (response) => {
+      //       console.log('Added successfully: ', response);
+      //       this.donationList = [...this.donationList];
+      //       this.donationDialog = false;
+      //       this.clearDonationForm(); // Clear the form after successful save
+      //     },
+      //     (error) => {
+      //       console.error('Error saving donation:', error);
+      //       this.errorMessage = 'Error saving donation: ' + error.message;
+      //     }
+      //   );
+      // } else {
+      //   console.warn('Invalid donation data.');
+      //   this.errorMessage = 'Invalid donation data. Please fill out all required fields.';
     } else {
       console.warn('Checks failed!');
-      this.errorMessage='Checks failed!';
+      this.errorMessage = 'Checks failed!';
     }
   }
-
 
 
   deleteSelectedDonations() {
@@ -262,7 +301,10 @@ export class DonationComponent implements OnInit {
 
       this.donationService.deleteDonationDB(id.toString())
     });
-    window.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, 1500);
+
   }
 
   openEdit(donation: any) {
@@ -285,77 +327,85 @@ export class DonationComponent implements OnInit {
   goodUser(): User {
     return {
       id: parseInt(sessionStorage.getItem('id')),
-      // firstName: '',
-      // lastName: '',
-      // mobileNumber: '',
-      // username: '',
-      // email: '',
-      // roles: [],
-      // campaigns: [],
-      // password: '',
-      // active: false,
-      // firstLogin: false,
-      // retryCount: 0
     };
   }
 
   emptyUser(): User {
     return {
       id: 0,
-      // firstName: '',
-      // lastName: '',
-      // mobileNumber: '',
-      // username: '',
-      // email: '',
-      // roles: [],
-      // campaigns: [],
-      // password: '',
-      // active: false,
-      // firstLogin: false,
-      // retryCount: 0
     };
   }
 
   emptyDonor(): Donor {
     return {
       id: 0,
-      // firstName: '',
-      // lastName: '',
-      // additionalName: '',
-      // maidenName: ''
     };
   }
 
-  exportViewToCSV() {
-    let csvContent = "Amount,Approve Date,Approved,Created Date,Currency,Notes,Approved By,Campaign Name,Created By,Donor First Name,Donor Last Name\n";
-
-    this.donationList.forEach(donation => {
-      const row = [
-        donation.amount,
-        donation.approveDate,
-        donation.approved ? 'Yes' : 'No',
-        donation.createdDate,
-        donation.currency,
-        donation.notes,
-        donation.approvedBy ? donation.approvedBy.username : '',
-        donation.campaign.name,
-        donation.createdBy.username,
-        donation.donor.firstName,
-        donation.donor.lastName
-      ];
-      csvContent += row.join(',') + '\n';
-    });
-    this.downloadCSV(csvContent);
+  emptyCampaign(): Campaign {
+    return {
+      id: 0
+    }
   }
 
-  downloadCSV(csvData: string) {
-    const blob = new Blob([csvData], { type: 'text/csv' });
+  exportViewToXLSX() {
+    const data = this.donationList.map(donation => {
+      const approveDate = donation.approveDate ? new Date(donation.approveDate).toISOString().split('T')[0] : '';
+      const createdDate = donation.createdDate ? new Date(donation.createdDate).toISOString().split('T')[0] : '';
+
+      return {
+        'Amount': donation.amount,
+        'Approve Date': approveDate,
+        'Approved': donation.approved ? 'Yes' : 'No',
+        'Created Date': createdDate,
+        'Currency': donation.currency,
+        'Notes': donation.notes,
+        'Approved By': donation.approvedBy ? donation.approvedBy.username : '',
+        'Campaign Name': donation.campaign.name,
+        'Created By': donation.createdBy.username,
+        'Donor First Name': donation.donor.firstName,
+        'Donor Last Name': donation.donor.lastName
+      };
+    });
+
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    // Set width for all columns
+    if (!ws['!cols']) ws['!cols'] = [];
+    const columnWidth = 20; // You can adjust this value as needed
+    Object.keys(data[0]).forEach((key, index) => {
+      ws['!cols'][index] = { width: columnWidth };
+    });
+    // Highlight the header
+    const headerStyle = {
+      font: {
+        bold: true
+      },
+      fill: {
+        fgColor: { rgb: "FFFF00" } // Yellow fill. You can adjust the color as needed.
+      }
+    };
+
+    const headers = Object.keys(data[0]);
+    for (let i = 0; i < headers.length; i++) {
+      const cellAddress = XLSX.utils.encode_cell({ r: 0, c: i }); // 0 is the first row
+      if (!ws[cellAddress]) continue; // Skip if cell doesn't exist
+      ws[cellAddress].s = headerStyle;
+    }
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Donations');
+
+    this.downloadXLSX(wb);
+  }
+
+  downloadXLSX(wb: XLSX.WorkBook) {
+    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([wbout], { type: 'application/octet-stream' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'donations.csv';
+    a.download = 'donations.xlsx';
     a.click();
     window.URL.revokeObjectURL(url);
   }
-
 }

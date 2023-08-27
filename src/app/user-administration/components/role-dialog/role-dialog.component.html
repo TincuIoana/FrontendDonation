@@ -1,5 +1,5 @@
 <div class="card flex justify-content-center">
-  <button pButton label="{{'USER.ROLES' | translate}}" class="p-button-success p-mr-2" (click)="showRoles()"></button>
+  <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-help" (click)="showRoles()"></p-button>
   <p-dialog [(visible)]="showDialog" [draggable]="false" [style]="{width: '450px'}" header="{{'USER.ROLES' | translate}}" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
       <div>

@@ -41,6 +41,7 @@ export class NotificationService {
   }
 
   getAllNotifications(userId: number): Observable<NotificationDTO[]> {
+    console.log(userId)
     return this.http.get<NotificationDTO[]>(`http://localhost:8080/api/inbox/${userId}`);
   }
 

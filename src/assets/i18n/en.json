@@ -1,4 +1,8 @@
 {
+  "WELCOME": {
+    "Welcome_to_the_DONATION_MANAGER!": "Welcome to the DONATION MANAGER!"
+  },
+
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"
@@ -49,6 +53,11 @@
     "SEARCH": "Search"
   },
   "DONATION": {
+    "NEW": "New Donation",
+    "DELETE": "Delete Donation",
+    "EXPORT": "Export DonationS",
+    "EDIT": "Edit Donation",
+    "APPROVE": "Approve Donation",
     "AMOUNT": "Amount",
     "APPROVEDATE": "Approve Date",
     "APPROVED": "Approved",
@@ -59,7 +68,9 @@
     "CAMPAIGN": "Campaign",
     "CREATEDBY": "Created By",
     "DONOR": "Donor",
-    "MANAGE": "Manage Donations"
+    "MANAGE": "Manage Donations",
+    "TOTAL": "In total there are",
+    "DONATIONS": "donations"
   },
   "DONOR": {
     "DONOR": "Donor",
@@ -121,13 +132,13 @@
     "DETAILS": "Old Details: {{oldDetails}}<br>Updated Details: {{updatedDetails}}"
   },
   "USER_DEACTIVATED_MANUAL": {
-    "TITLE": "Account Deactivation Notice",
+    "TITLE": "Account Deactivation",
     "DETAILS": "Details: {{details}}"
 
   },
   "USER_DEACTIVATED_INCORRECT_PASSWORD": {
-    "TITLE": "Account Locked Due to Incorrect Password Attempts",
-    "DETAILS": "Details: {{details}}"
+    "TITLE": "Account Locked",
+    "DETAILS": "Account locked due to incorrect password attempts. Details: {{details}}"
 
   },
   "DONATION_APPROVED": {

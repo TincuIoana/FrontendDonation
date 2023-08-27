@@ -11,6 +11,8 @@
       <button *ngIf="!checkIfReporter()" pButton pRipple icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
       &nbsp;
       <button *ngIf="!checkIfReporter()" pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
+      <button pButton pRipple label="Export to CSV" (click)="exportStyledCampaignsWithDonators()"></button>
+
     </ng-template>
 
 
@@ -19,11 +21,11 @@
   <p-table #dt [value]="campaignList" [rows]="10" [paginator]="true" [globalFilterFields]="['name','purpose']"
            [(selection)]="selectedCampaigns" [rowHover]="true" dataKey="id"
            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-<!--    <ng-template pTemplate="caption">-->
-<!--      <div class="p-d-flex p-ai-center p-jc-between">-->
-
-<!--      </div>-->
-<!--    </ng-template>-->
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h2 class="p-m-0">{{'CAMPAIGN.MANAGE' | translate}}</h2>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 3rem">

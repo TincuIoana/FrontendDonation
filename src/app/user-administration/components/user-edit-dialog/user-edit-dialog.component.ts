@@ -138,9 +138,9 @@ export class UserEditDialogComponent implements OnInit {
               }
             });
             this.showDialog = false;
-            setTimeout(() => {
-              document.location.reload();
-            }, 1500);
+            // setTimeout(() => {
+            //   document.location.reload();
+            // }, 1500);
           }
         }
       ))
