@@ -10,8 +10,8 @@
       &nbsp;
       <button pTooltip="{{'DONATION.NEW' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()" ></button>
       &nbsp;
-      <button pTooltip="{{'DONATION.DELETE' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple [label]="delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonations()" [disabled]="!selectedDonations || !selectedDonations.length"></button>
-      &nbsp;
+<!--      <button pTooltip="{{'DONATION.DELETE' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pButton pRipple [label]="delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedDonations()" [disabled]="!selectedDonations || !selectedDonations.length"></button>-->
+<!--      &nbsp;-->
       <button pTooltip="{{'DONATION.EXPORT' | translate}}" [showDelay]="500"  tooltipPosition="bottom" pTooltip="Export to CSV" pButton pRipple icon="pi pi-download" (click)="exportViewToXLSX()"></button>
     </ng-template>
   </p-toolbar>
@@ -92,24 +92,6 @@
       <small class="p-invalid" *ngIf="submitted && !donation.amount">Amount is required!</small>
     </div>
 
-<!--    <div class="p-field">-->
-<!--      <label for="approveDate">{{'DONATION.APPROVEDATE' | translate}}</label>-->
-<!--      <input type="text" pInputText id="approveDate" [(ngModel)]="donation.approveDate"/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.approveDate">Date is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="createdDate">{{'DONATION.CREATEDDATE' | translate}}</label>-->
-<!--      <input type="text" pInputText id="createdDate" [(ngModel)]="donation.createdDate" required/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.createdDate">Date is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="currency">{{'DONATION.CURRENCY' | translate}}</label>-->
-<!--      <input type="text" pInputText id="currency" [(ngModel)]="donation.currency" required/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.currency">Currency is required!</small>-->
-<!--    </div>-->
-
     <div class="card flex justify-content-center">
       <label for="currency">{{'DONATION.CURRENCY' | translate}}</label>
       <p-dropdown [options]="currencies" [(ngModel)]="selectedCurrency" id="currency" optionLabel="name" [filter]="true" appendTo="body" filterBy="name" [showClear]="true" placeholder="Select a currency">
@@ -132,18 +114,6 @@
       <small class="p-invalid" *ngIf="submitted && !donation.notes">Notes is required!</small>
     </div>
 
-<!--    <div class="p-field">-->
-<!--      <label for="approvedBy">{{'DONATION.APPROVEDBY' | translate}}</label>-->
-<!--      <input type="text" pInputText id="approvedBy" [(ngModel)]="donation.approvedBy"/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.approvedBy">ApprovedBy is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="campaign">{{'DONATION.CAMPAIGN' | translate}}</label>-->
-<!--      <input type="text" pInputText id="campaign" [(ngModel)]="donation.campaign.id" required/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.campaign">Campaign is required!</small>-->
-<!--    </div>-->
-
     <div class="card flex justify-content-center">
       <label for="campaign">{{'DONATION.CAMPAIGN' | translate}}</label>
       <p-dropdown [options]="allCampaigns" [(ngModel)]="selectedCampaign" id="campaign" optionLabel="name" [filter]="true" appendTo="body" filterBy="name" [showClear]="true" placeholder="Select a campaign">
@@ -159,41 +129,6 @@
         </ng-template>
       </p-dropdown>
     </div>
-
-
-<!--    <div class="card flex justify-content-center">-->
-<!--      <label for="campaign">{{'DONATION.CAMPAIGN' | translate}}</label>-->
-<!--      <p-dropdown [options]="donors" [(ngModel)]="selectedDonor" id="campaign" optionLabel="name" [filter]="true" appendTo="body" filterBy="name" [showClear]="true" placeholder="Select a currency">-->
-<!--        <ng-template pTemplate="selectedItem">-->
-<!--          <div class="flex align-items-center gap-2" *ngIf="selectedDonor">-->
-<!--            <div>{{ selectedDonor.name }}</div>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-<!--        <ng-template let-currency pTemplate="item">-->
-<!--          <div class="flex align-items-center gap-2">-->
-<!--            <div>{{ currency.name }}</div>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-<!--      </p-dropdown>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="approved">{{'DONATION.APPROVED' | translate}}</label>-->
-<!--      <input type="text" pInputText id="approved" [(ngModel)]="donation.approved"/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.approved">Approved is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="createdBy">{{'DONATION.CREATEDBY' | translate}}</label>-->
-<!--      <input type="text" pInputText id="createdBy" [(ngModel)]="donation.createdBy" required/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.createdBy">CreatedBy is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="donor">{{'DONATION.DONOR' | translate}}</label>-->
-<!--      <input type="text" pInputText id="donor" [(ngModel)]="donation.donor.id" required/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.donor">Donor is required!</small>-->
-<!--    </div>-->
 
     <div class="card flex justify-content-center">
       <label for="donor">{{'DONATION.DONOR' | translate}}</label>
@@ -232,24 +167,6 @@
       <small class="p-invalid" *ngIf="submitted && !donation.amount">Amount is required!</small>
     </div>
 
-<!--    <div class="p-field">-->
-<!--      <label for="approveDate">{{'DONATION.APPROVEDATE' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedApproveDate" [(ngModel)]="donation.approveDate" required/>-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.approveDate">Date is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="createdDate">{{'DONATION.CREATEDDATE' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedCreatedDate" [(ngModel)]="donation.createdDate" required  />-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.createdDate">Date is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="currency">{{'DONATION.CURRENCY' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedCurrency" [(ngModel)]="donation.currency" required  />-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.currency">Currency is required!</small>-->
-<!--    </div>-->
-
     <div class="card flex justify-content-center">
       <label for="currency">{{'DONATION.CURRENCY' | translate}}</label>
       <p-dropdown [options]="currencies" [(ngModel)]="selectedCurrency" id="updatedCurrency" optionLabel="name" [filter]="true" appendTo="body" filterBy="name" [showClear]="true" placeholder="Select a currency">
@@ -272,18 +189,6 @@
       <small class="p-invalid" *ngIf="submitted && !donation.notes">Notes is required!</small>
     </div>
 
-<!--    <div class="p-field">-->
-<!--      <label for="approvedBy">{{'DONATION.APPROVEDBY' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedApprovedBy" [(ngModel)]="donation.approvedBy" required  />-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.approvedBy">ApprovedBy is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="campaign">{{'DONATION.CAMPAIGN' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedCampaign" [(ngModel)]="donation.campaign.id" required  />-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.campaign">Campaign is required!</small>-->
-<!--    </div>-->
-
     <div class="card flex justify-content-center">
       <label for="campaign">{{'DONATION.CAMPAIGN' | translate}}</label>
       <p-dropdown [options]="allCampaigns" [(ngModel)]="selectedCampaign" id="updatedCampaign" optionLabel="name" [filter]="true" appendTo="body" filterBy="name" [showClear]="true" placeholder="Select a campaign">
@@ -300,23 +205,6 @@
       </p-dropdown>
     </div>
 
-<!--    <div class="p-field">-->
-<!--      <label for="approved">{{'DONATION.APPROVED' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedApproved" [(ngModel)]="donation.approved" required  />-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.amount">Date is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="createdBy">{{'DONATION.CREATEDBY' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedCreatedBy" [(ngModel)]="donation.createdBy.id" required  />-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.createdBy">CreatedBy is required!</small>-->
-<!--    </div>-->
-
-<!--    <div class="p-field">-->
-<!--      <label for="donor">{{'DONATION.DONOR' | translate}}</label>-->
-<!--      <input type="text" pInputText id="updatedDonor" [(ngModel)]="donation.donor.id" required  />-->
-<!--      <small class="p-invalid" *ngIf="submitted && !donation.donor">Donor is required!</small>-->
-<!--    </div>-->
     <div class="card flex justify-content-center">
       <label for="donor">{{'DONATION.DONOR' | translate}}</label>
       <p-dropdown [options]="allDonors" [(ngModel)]="selectedDonor" id="updatedDonor" optionLabel="firstName" [filter]="true" appendTo="body" filterBy="firstName" [showClear]="true" placeholder="Select a donor">

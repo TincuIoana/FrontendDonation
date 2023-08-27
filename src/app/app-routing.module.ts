@@ -19,8 +19,8 @@ const routes: Routes = [
     path: 'donation-management',
     loadChildren: () => import('./donation-management/donation.module').then(m => m.DonationModule),
     canActivate: [Role_guards],
-    data:{
-      permissions:['USER_MANAGEMENT']
+    data: {
+      permissions: ['DONATION_MANAGEMENT']
     }
   },
   {
