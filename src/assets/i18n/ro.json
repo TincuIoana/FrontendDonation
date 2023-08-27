@@ -47,7 +47,7 @@
     "PURPOSE": "Scop",
     "CAMPAIGNS": "campanii",
     "NEW": "Adaugare campanie",
-    "MANAGE": "Manager campanii",
+    "MANAGE": "administrează campanii",
     "TOTAL": "În total sunt",
     "SAVE": "Salvează",
     "CANCEL": "Anulează",
@@ -79,7 +79,7 @@
     "CAMPAIGN": "Campanie",
     "CREATEDBY": "Creată de",
 
-    "DONOR": "Donator"
+    "DONOR": "Donator",
 
     "MANAGE": "Administrare Donații"
   },
