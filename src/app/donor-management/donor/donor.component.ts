@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DonorService} from "../donor.service";
 import {Donor} from "../Donor";
 import {ConfirmationService} from "primeng/api";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-donor',
@@ -35,7 +36,7 @@ export class DonorComponent implements OnInit {
   submitted: boolean;
   Delete: any;
 
-  constructor(private donorService: DonorService,private confirmationService:ConfirmationService) { }
+  constructor(private donorService: DonorService,private confirmationService:ConfirmationService, private translate: TranslateService) { }
 
   ngOnInit() {
     console.log("start donor manager")
@@ -119,17 +120,20 @@ export class DonorComponent implements OnInit {
 
 
 
-  deleteSelectedDonors() {
-    this.selectedDonors.forEach(donor => {
-      const id = donor.id;
-      console.log(id);
+  async deleteSelectedDonors() {
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      this.selectedDonors.forEach(donor => {
+        const id = donor.id;
+        console.log(id);
 
-      // @ts-ignore
-      this.donorService.deleteFromDB( id.toString())
-    });
+        // @ts-ignore
+        this.donorService.deleteFromDB(id.toString())
+      });
 
 
-    window.location.reload();
+      window.location.reload();
+    }
   }
   openEdit(donor: any) {
     this.selectedDonor = donor;
@@ -157,7 +161,7 @@ export class DonorComponent implements OnInit {
     try {
       return new Promise((resolve) => {
         this.confirmationService.confirm({
-          message: 'Are you sure that you want to perform this action?',
+          message:  this.translate.instant('ERROR.SURE'),
           accept: () => {
             resolve(true);
           },

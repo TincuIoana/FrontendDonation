@@ -11,7 +11,8 @@
       <button *ngIf="!checkIfReporter()" pButton pRipple icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
       &nbsp;
       <button *ngIf="!checkIfReporter()" pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
-      <button pButton pRipple label="Export to CSV" (click)="exportStyledCampaignsWithDonators()"></button>
+      &nbsp;
+      <button *ngIf="checkIfCanExport()" pButton pRipple label="Export to CSV" (click)="exportStyledCampaignsWithDonators()"></button>
 
     </ng-template>
 
@@ -33,8 +34,8 @@
         </th>
         <th pSortableColumn="name">{{'CAMPAIGN.NAME' | translate}} <p-sortIcon field="name"></p-sortIcon></th>
         <th pSortableColumn="purpose">{{'CAMPAIGN.PURPOSE' | translate}} <p-sortIcon field="purpose"></p-sortIcon></th>
-        <th pSortableColumn="donors">Donors <p-sortIcon field="donors"></p-sortIcon></th>
-        <th pSortableColumn="donations">Donations <p-sortIcon field="donations"></p-sortIcon></th>
+        <th>{{'CAMPAIGN.DONORS' | translate}}</th>
+        <th>{{'CAMPAIGN.DONATIONS' | translate}}</th>
         <th></th>
       </tr>
     </ng-template>
@@ -90,8 +91,8 @@
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" [disabled]="!campaign.name || !campaign.purpose" (click)="saveCampaign()"></button>
+    <button pButton pRipple label="{{'CAMPAIGN.CANCEL'|translate}}" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="{{'CAMPAIGN.SAVE'|translate}}" icon="pi pi-check" class="p-button-text" [disabled]="!campaign.name || !campaign.purpose" (click)="saveCampaign()"></button>
   </ng-template>
 </p-dialog>
 
@@ -116,8 +117,8 @@
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
-    <button pButton pRipple label="Save changes" icon="pi pi-check" class="p-button-text" [disabled]="!campaign.name || !campaign.purpose" (click)="editCampaign()"></button>
+    <button pButton pRipple label="{{'CAMPAIGN.CANCEL'|translate}}" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
+    <button pButton pRipple label="{{'CAMPAIGN.SAVEC'|translate}}" icon="pi pi-check" class="p-button-text" [disabled]="!campaign.name || !campaign.purpose" (click)="editCampaign()"></button>
   </ng-template>
 </p-dialog>
 

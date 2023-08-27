@@ -49,6 +49,10 @@
     "CANCEL": "Anulează",
     "DETAILS": "Detaliile campaniilor",
     "SEARCH": "Caută",
+    "DONATIONS": "Donatii",
+    "DONORS": "Donatori",
+    "SAVEC": "Salvează"
+
 
   },
 
@@ -67,7 +71,7 @@
     "APPROVEDBY": "Aprobată de",
     "CAMPAIGN": "Campanie",
     "CREATEDBY": "Creată de",
-    "DONOR": "Donator",
+    "DONOR": "Donator"
   },
 
   "DONOR": {
@@ -140,5 +144,8 @@
   "DONATION_APPROVED": {
     "TITLE": "Donație aprobată",
     "DETAILS": "Sumă: {{details}}"
+  },
+  "ERROR": {
+    "SURE":"Sunteți sigur că doriți să efectuați această acțiune?"
   }
 }
