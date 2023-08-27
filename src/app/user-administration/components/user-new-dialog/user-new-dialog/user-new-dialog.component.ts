@@ -77,7 +77,6 @@ export class UserNewDialogComponent implements OnInit {
     this.user.mobileNumber = this.registerForm.value.mobileNumber;
     this.user.roles = this.registerForm.controls.roles.value
     this.user.campaigns = this.registerForm.controls.campaigns.value;
-    this.user.password = "test";
     console.log(this.user)
 
     this.userService.createUser(this.user)
