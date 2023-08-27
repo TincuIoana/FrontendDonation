@@ -60,16 +60,16 @@ export class RolesDialogComponent implements OnInit {
             next: (permissions) => {
               switch (role.id) {
                 case 1:
-                  this.p1 = permissions;
+                  this.p1 = permissions.sort();
                   break;
                 case 2:
-                  this.p2 = permissions;
+                  this.p2 = permissions.sort();
                   break;
                 case 3:
-                  this.p3 = permissions;
+                  this.p3 = permissions.sort();
                   break;
                 case 4:
-                  this.p4 = permissions;
+                  this.p4 = permissions.sort();
                   break;
               }
             }
@@ -83,7 +83,7 @@ export class RolesDialogComponent implements OnInit {
 
     this.rolesDialogPermissionsService.loadPermissions().subscribe({
       next: (permissions) => {
-        this.permissions = permissions;
+        this.permissions = permissions.sort();
       },
       error: (error) => {
         console.error(error);

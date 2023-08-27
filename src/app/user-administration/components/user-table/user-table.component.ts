@@ -34,11 +34,6 @@ export class UserTableComponent implements OnInit {
     table.clear();
   }
 
-  // show(id: number) {
-  //   this.userService.loadUserById(id).subscribe(user => {
-  //
-  //   })
-  // }
 
   filterFunction(array: Role[] | Campaign[], filter: string): boolean {
     if (filter === undefined || filter == null || filter.length == 0) {
@@ -48,5 +43,17 @@ export class UserTableComponent implements OnInit {
       return false;
     }
     return array.some(value => value["name"].toLowerCase().includes(filter.toLowerCase()));
+  }
+
+  editUser(userToEdit: User) {
+    this.users.forEach(user => {
+      if(user.id === userToEdit.id){
+        user = userToEdit;
+        console.log("test")
+        this.userService.getUsers().subscribe((users) => {
+          this.users = users;
+        });
+      }
+    })
   }
 }

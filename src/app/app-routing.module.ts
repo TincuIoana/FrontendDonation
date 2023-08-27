@@ -17,7 +17,11 @@ const routes: Routes = [
   },
   {
     path: 'donation-management',
-    loadChildren: () => import('./donation-management/donation.module').then(m => m.DonationModule)
+    loadChildren: () => import('./donation-management/donation.module').then(m => m.DonationModule),
+    canActivate: [Role_guards],
+    data:{
+      permissions:['USER_MANAGEMENT']
+    }
   },
   {
     path: 'donor-management',
@@ -27,11 +31,11 @@ const routes: Routes = [
       permissions:['BENEF_MANAGEMENT']
     }
   },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'welcome-page',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)

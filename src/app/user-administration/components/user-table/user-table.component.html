@@ -83,7 +83,7 @@
           <app-campaign-dialog [campaigns]="user.campaigns"></app-campaign-dialog>
         </td>
         <td>
-          <app-user-edit-dialog [userFromDB]="user"></app-user-edit-dialog>
+          <app-user-edit-dialog [userFromDB]="user" (editedUser)="editUser($event)"></app-user-edit-dialog>
         </td>
       </tr>
     </ng-template>

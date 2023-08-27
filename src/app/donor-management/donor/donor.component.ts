@@ -151,10 +151,12 @@ export class DonorComponent implements OnInit {
 
   getDisplayText(text: string): string {
     const maxLength = 12; // Adjust as needed
-    if (text.length > maxLength && !this.fullTextMap[text]) {
-      return text.substring(0, maxLength - 3) + '...';
+    if(text){
+      if (text.length > maxLength && !this.fullTextMap[text]) {
+        return text.substring(0, maxLength - 3) + '...';
+      }
     }
-    return text;
+    return text || "";
   }
 
   async confirm(): Promise<boolean> {
