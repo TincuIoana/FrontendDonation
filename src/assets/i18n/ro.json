@@ -45,9 +45,9 @@
   "CAMPAIGN": {
     "NAME": "Nume",
     "PURPOSE": "Scop",
-    "CAMPAIGNS": "Campanii",
-    "NEW": "Nou",
-    "MANAGE": "Manager campanii",
+    "CAMPAIGNS": "campanii",
+    "NEW": "Adaugare campanie",
+    "MANAGE": "administrează campanii",
     "TOTAL": "În total sunt",
     "SAVE": "Salvează",
     "CANCEL": "Anulează",
@@ -55,7 +55,9 @@
     "SEARCH": "Caută",
     "DONATIONS": "Donații",
     "DONORS": "Donatori",
-    "SAVEC": "Salvează"
+    "SAVEC": "Salvează",
+    "EDIT": "Editare campanie",
+    "DELETE": "Stergere campanie"
 
 
 

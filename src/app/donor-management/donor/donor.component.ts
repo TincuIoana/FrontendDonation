@@ -96,14 +96,24 @@ export class DonorComponent implements OnInit {
 
   editDonor() {
     this.submitted = true;
-    const donor = this.selectedDonor
-    console.log(donor.id)
-    this.donorService.updateDonorFromDB(donor.id.toString(),this.donor)
-    this.donorDialog1=false
-    // this.donor ={id:0,firstName:'',lastName:'',additionalName:'',maidenName:''}
-    setTimeout(() => {
-      document.location.reload();
-    }, 100);
+    if(this.donor.firstName && this.donor.lastName &&
+      this.donor.firstName.replace(/\s/g, '').length>0 && this.donor.lastName.replace(/\s/g, '').length>0 ) {
+      const newDonor = {
+        firstName: this.removeExcessiveWhitespace(this.donor.firstName),
+        lastName: this.removeExcessiveWhitespace(this.donor.lastName),
+        additionalName: this.removeExcessiveWhitespace(this.donor.additionalName),
+        maidenName: this.removeExcessiveWhitespace(this.donor.maidenName)
+      }
+      const donor = this.selectedDonor
+      console.log(donor.id)
+      this.donorService.updateDonorFromDB(donor.id.toString(), this.donor)
+      this.donorDialog1 = false
+      // this.donor ={id:0,firstName:'',lastName:'',additionalName:'',maidenName:''}
+      window.location.reload()
+    }else {
+      console.warn('Donor first name or last name cannot be empty.');
+      this.errorMessage = "Campaign name or purpose cannot be empty.";
+    }
 
 
   }
@@ -114,9 +124,7 @@ export class DonorComponent implements OnInit {
     if (userConfirmed) {
       console.log(donor.id)
       this.donorService.deleteFromDB(donor.id.toString())
-      setTimeout(() => {
-        document.location.reload();
-      }, 100);
+      window.location.reload()
     }
 
 
@@ -136,9 +144,7 @@ export class DonorComponent implements OnInit {
       });
 
 
-      // setTimeout(() => {
-      //   document.location.reload();
-      // }, 100);
+      window.location.reload();
     }
   }
   openEdit(donor: any) {
@@ -175,9 +181,7 @@ export class DonorComponent implements OnInit {
           },
           reject: () => {
             resolve(false);
-            setTimeout(() => {
-              document.location.reload();
-            }, 100);
+            window.location.reload()
           },
         });
       });
