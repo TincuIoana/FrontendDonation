@@ -203,4 +203,8 @@ export class RolesDialogComponent implements OnInit {
     });
     this.messageService.add({ severity: 'success', detail: this.summary3})
   }
+
+  changeAllowed() {
+
+  }
 }

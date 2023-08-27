@@ -101,7 +101,9 @@ export class DonorComponent implements OnInit {
     this.donorService.updateDonorFromDB(donor.id.toString(),this.donor)
     this.donorDialog1=false
     // this.donor ={id:0,firstName:'',lastName:'',additionalName:'',maidenName:''}
-    window.location.reload()
+    setTimeout(() => {
+      document.location.reload();
+    }, 100);
 
 
   }
@@ -112,7 +114,9 @@ export class DonorComponent implements OnInit {
     if (userConfirmed) {
       console.log(donor.id)
       this.donorService.deleteFromDB(donor.id.toString())
-      window.location.reload()
+      setTimeout(() => {
+        document.location.reload();
+      }, 100);
     }
 
 
@@ -132,7 +136,9 @@ export class DonorComponent implements OnInit {
       });
 
 
-      window.location.reload();
+      // setTimeout(() => {
+      //   document.location.reload();
+      // }, 100);
     }
   }
   openEdit(donor: any) {
@@ -169,7 +175,9 @@ export class DonorComponent implements OnInit {
           },
           reject: () => {
             resolve(false);
-            window.location.reload()
+            setTimeout(() => {
+              document.location.reload();
+            }, 100);
           },
         });
       });

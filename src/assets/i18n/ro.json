@@ -53,7 +53,7 @@
     "CANCEL": "Anulează",
     "DETAILS": "Detaliile campaniilor",
     "SEARCH": "Caută",
-    "DONATIONS": "Donatii",
+    "DONATIONS": "Donații",
     "DONORS": "Donatori",
     "SAVEC": "Salvează"
 
@@ -62,11 +62,11 @@
   },
 
   "DONATION": {
-    "NEW": "Donatie noua",
-    "DELETE": "Stergere donatie",
-    "EXPORT": "Exportare donatii",
-    "EDIT": "Editare donatie",
-    "APPROVE": "Aprobare donatie",
+    "NEW": "Donație noua",
+    "DELETE": "Stergere donație",
+    "EXPORT": "Exportare donații",
+    "EDIT": "Editare donație",
+    "APPROVE": "Aprobare donație",
     "AMOUNT": "Valoare",
     "APPROVEDATE": "Data aprobării",
     "APPROVED": "Aprobat",

@@ -157,6 +157,12 @@ export class CampaignComponent implements OnInit {
     console.log(this.campaign.name)
     console.log(this.campaign.purpose)
 
+    if (this.campaign.name && this.campaign.purpose && this.campaign.name.replace(/\s/g, '').length > 0) {
+      const newCampaign = new Campaign(
+        this.removeExcessiveWhitespace(this.campaign.name),
+        this.removeExcessiveWhitespace(this.campaign.purpose)
+      );
+    }
     this.campaignService.updateCampaignFromDB(this.selectedCampaign.id.toString(),this.selectedCampaign).subscribe(
       response => {
         console.log('edited successfully:', response);

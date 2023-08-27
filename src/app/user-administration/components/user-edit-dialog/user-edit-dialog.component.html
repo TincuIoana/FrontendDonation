@@ -6,7 +6,7 @@
         <div class="p-field">
           <label for="firstName">{{"USER.FIRST_NAME" | translate}}</label>
           <input pInputText id="firstName" formControlName="firstName" />
-          <small *ngIf="this.registerForm.controls.firstName.value === '' && this.registerForm.controls.firstName.dirty">{{"USER.FIRST_NAME_REQUIRED" | translate}}</small>
+          <small *ngIf="(this.registerForm.controls.firstName.value === '' && this.registerForm.controls.firstName.dirty)">{{"USER.FIRST_NAME_REQUIRED" | translate}}</small>
         </div>
         <div class="p-field">
           <label for="lastName">{{"USER.LAST_NAME" | translate}}</label>
@@ -18,11 +18,6 @@
           <input type="text" pInputText id="email" formControlName="email" (input)="changeMessage()" />
           <small class="p-invalid" *ngIf="this.registerForm.controls.email.invalid || (this.registerForm.controls.email.value === '' && this.registerForm.controls.email.dirty) || this.backendEmailError">{{emailMessage}}</small>
         </div>
-<!--        <div class="p-field flex justify-content-center">-->
-<!--          <label for="password">{{"USER.PASSWORD" | translate}}</label>-->
-<!--          <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>-->
-<!--          <small *ngIf="(submitted) && !user.password && registerForm.controls.password.dirty">{{"USER.PASSWORD_SHORT" | translate}}</small>-->
-<!--        </div>-->
         <div class="card">
           <label for="mobileNumber">{{"USER.MOBILE_NUMBER" | translate}}</label>
           <input type="text" pInputText id="mobileNumber" formControlName="mobileNumber" (input)="changeMessage()"/>

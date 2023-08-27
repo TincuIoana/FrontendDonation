@@ -46,9 +46,6 @@ export class LoginComponent implements OnInit{
       this.loginService.setLoginResponse(loginResponse)
       sessionStorage.setItem("token",<string>loginResponse.accessToken)
       this.loginService.setLoggedIn()
-        setTimeout(() => {
-          document.location.reload();
-        }, 150);
 
       if(loginResponse.firstLogin) {
 

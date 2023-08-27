@@ -58,73 +58,13 @@ export class TabMenuComponent implements OnInit {
 
       this.items = [
         { icon: logInOrLogOut, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },
+        { icon: 'pi pi-users', tooltip: this.translate.instant('MENU.USERADMINISTRATION'), routerLink: ['/user-administration'] },
         { icon: 'pi pi-building', tooltip: this.translate.instant('MENU.CAMPAIGNMANAGEMENT'), routerLink: ['/campaign'] },
         { icon: 'pi pi-id-card', tooltip: this.translate.instant('MENU.DONORMANAGEMENT'), routerLink: ['/donor-management'] },
         { icon: 'pi pi-dollar', tooltip: this.translate.instant('MENU.DONATIONMANAGEMENT'), routerLink: ['/donation-management'] },
-        { icon: 'pi pi-user-edit', tooltip: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] },
+        { icon: 'pi pi-user-edit', tooltip: this.translate.instant('MENU.ROLES'), routerLink: ['/roles-dialog'] }
       ];
-      this.loginItem=[ { label: loginOrLogoutLabel, routerLink: loggedIn || isLoggedin ? ['/logout'] : ['/login'] },]
-
-      this.authService.getUserPermissions().subscribe(permissions => {
-        // Check if user has the admin role
-        if (permissions.includes('USER_MANAGEMENT')) {
-          // Add the "User Administration" menu item
-          // @ts-ignore
-          this.items.splice(1, 0, {
-            // label: this.translate.instant('MENU.USERADMINISTRATION'),
-            icon: 'pi pi-users',
-            tooltip: this.translate.instant('MENU.USERADMINISTRATION'),
-            routerLink: ['/user-administration']
-          }
-          );
-        }
-        });
       });
     });
-
   }
-
-
-  // ngOnInit() {
-  //   this.translate.stream([
-  //     'MENU.USERADMINISTRATION',
-  //     'MENU.CAMPAIGNMANAGEMENT',
-  //     'MENU.DONORMANAGEMENT',
-  //     'MENU.LOGOUT',
-  //     'MENU.LOGIN',
-  //     'MENU.ROLES',
-  //     'MENU.SIGNIN'
-  //   ]).subscribe(translations => {
-  //     const loginLabel = translations['MENU.LOGIN'];
-  //     const logoutLabel = translations['MENU.LOGOUT'];
-  //     const token = sessionStorage.getItem("token")
-  //     let isLoggedin = false
-  //     isLoggedin = !!token;
-  //     const loginOrLogoutLabel = isLoggedin ? logoutLabel : loginLabel;
-  //
-  //     // Initialize menu items with login/logout button
-  //     this.items = [
-  //       {label: loginOrLogoutLabel, routerLink: isLoggedin ? ['/logout'] : ['/login']},
-  //       // {label: translations['MENU.USERADMINISTRATION'], routerLink: ['/user-administration']},
-  //       {label: translations['MENU.CAMPAIGNMANAGEMENT'], routerLink: ['/campaign']},
-  //       {label: translations['MENU.DONORMANAGEMENT'], routerLink: ['/donor-management']},
-  //       {label: translations['MENU.ROLES'], routerLink: ['/roles-dialog']},
-  //     ];
-  //
-  //     this.authService.getUserRoles().subscribe(roles => {
-  //       // Check if user has the admin role
-  //       if (roles.includes('ROLE_ADM')) {
-  //         // Add the "User Administration" menu item
-  //         // @ts-ignore
-  //         this.items.splice(1, 0, {
-  //           label: this.translate.instant('MENU.USERADMINISTRATION'),
-  //           routerLink: ['/user-administration']
-  //         });
-  //       }
-  //     });
-  //
-  //   })
-  //
-  // }
-
 }

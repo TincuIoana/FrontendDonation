@@ -45,7 +45,7 @@ export class ChangeComponent implements OnInit {
         this.changeService.updateUser(this.user)
         console.log("am trecut")
 
-        this.router.navigate(['/campaign'])
+        this.router.navigate(['/welcome-page'])
       } else {
         this.eroare = "Passwords do not match."
       }
