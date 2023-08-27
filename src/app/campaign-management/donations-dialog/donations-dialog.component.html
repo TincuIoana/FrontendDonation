@@ -1,6 +1,8 @@
 <div class="card flex justify-content-center">
   <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-help" (click)="showCampaigns()"></p-button>
-  <p-dialog [draggable]="false" [(visible)]="showDialog" [style]="{width: '1550px'}" header="Donations" [modal]="true" styleClass="p-fluid">
+
+  <p-dialog [(visible)]="showDialog" [style]="{width: '1550px'}" header="{{'CAMPAIGN.DONATIONS' | translate}}" [modal]="true" styleClass="p-fluid">
+
     <ng-template pTemplate="header">
       <div class="skill-list">
         <div class="skill-item">Amount</div>
@@ -13,8 +15,21 @@
         <div class="skill-item">Created By</div>
       </div>
     </ng-template>
+
     <ng-template pTemplate="body">
       <table class="donation-table">
+        <thead>
+        <tr>
+          <th> {{'DONATION.AMOUNT' | translate}}</th>
+          <th >{{'DONATION.APPROVEDATE' | translate}}</th>
+          <th >{{'DONATION.APPROVED' | translate}}</th>
+          <th >{{'DONATION.CREATEDDATE' | translate}}</th>
+          <th >{{'DONATION.CURRENCY' | translate}}</th>
+          <th >{{'DONATION.NOTES' | translate}}</th>
+          <th >{{'DONATION.APPROVEDBY' | translate}}</th>
+          <th >{{'DONATION.CREATEDBY' | translate}}</th>
+        </tr>
+        </thead>
         <tbody>
         <tr *ngFor="let donation of donations">
           <td>{{ donation.amount }}</td>

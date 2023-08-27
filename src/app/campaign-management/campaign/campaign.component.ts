@@ -11,6 +11,7 @@ import {tap} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import * as XLSX from 'xlsx';
+import {LoginService} from "../../login/login.service";
 
 
 @Component({
@@ -60,7 +61,7 @@ export class CampaignComponent implements OnInit {
   Delete: any;
 
   constructor(private campaignService: CampaignService,private messageService: MessageService, private router:Router,private translate: TranslateService
-              ,private cdr: ChangeDetectorRef,private http: HttpClient,private confirmationService: ConfirmationService) { }
+              ,private cdr: ChangeDetectorRef,private http: HttpClient,private confirmationService: ConfirmationService, private loginService: LoginService) { }
 
   ngOnInit() {
     console.log("start campaign manager")
@@ -244,11 +245,19 @@ export class CampaignComponent implements OnInit {
 
 
   }
+  checkIfCanExport():boolean{
+    const userPermissions: Array<string> = this.loginService.getLoggedUserPermissions();
 
-  checkIfReporter():boolean{ //check if user is cenzor for restricted visualization
-    const storedPermissions   = localStorage.getItem("permissions")
-    const userPermissions: Array<string> = storedPermissions ? JSON.parse(storedPermissions) :[]
-    return userPermissions.includes("CAMP_REPORT_RESTRICTED") && userPermissions.length === 1 ;
+
+    return  userPermissions.includes("CAMP_REPORTING");
+
+  }
+
+  checkIfReporter():boolean{ //check if user is reporter for restricted visualization
+    const userPermissions: Array<string> = this.loginService.getLoggedUserPermissions();
+
+
+    return (userPermissions.includes("CAMP_REPORT_RESTRICTED") || userPermissions.includes("CAMP_REPORTING"))  && !userPermissions.includes("CAMP_MANAGEMENT") ;
 
   }
 
@@ -304,7 +313,7 @@ export class CampaignComponent implements OnInit {
     try {
       return new Promise((resolve) => {
         this.confirmationService.confirm({
-          message: 'Are you sure that you want to perform this action?',
+          message:  this.translate.instant('ERROR.SURE'),
           accept: () => {
             resolve(true);
           },
