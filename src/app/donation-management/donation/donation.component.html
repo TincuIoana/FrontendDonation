@@ -111,7 +111,6 @@
     <div class="p-field">
       <label for="notes">{{'DONATION.NOTES' | translate}}</label>
       <input type="text" pInputText id="notes" [(ngModel)]="donation.notes"/>
-      <small class="p-invalid" *ngIf="submitted && !donation.notes">Notes is required!</small>
     </div>
 
     <div class="card flex justify-content-center">
@@ -185,8 +184,7 @@
 
     <div class="p-field">
       <label for="notes">{{'DONATION.NOTES' | translate}}</label>
-      <input type="text" pInputText id="updatedNotes" [(ngModel)]="donation.notes" required  />
-      <small class="p-invalid" *ngIf="submitted && !donation.notes">Notes is required!</small>
+      <input type="text" pInputText id="updatedNotes" [(ngModel)]="donation.notes" />
     </div>
 
     <div class="card flex justify-content-center">

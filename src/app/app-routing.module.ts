@@ -31,11 +31,6 @@ const routes: Routes = [
       permissions:['BENEF_MANAGEMENT']
     }
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'welcome-page',
-  //   pathMatch: 'full'
-  // },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
@@ -68,7 +63,17 @@ const routes: Routes = [
   {
     path:'welcome-page',
     loadChildren: () => import('./welcome-page/welcome-page.module').then(m=> m.WelcomePageModule)
-  }
+  },
+  {
+    path: '**',
+    redirectTo: 'welcome-page',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

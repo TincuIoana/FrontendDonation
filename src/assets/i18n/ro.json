@@ -46,27 +46,29 @@
     "NAME": "Nume",
     "PURPOSE": "Scop",
     "CAMPAIGNS": "Campanii",
-    "NEW": "Nou",
-    "MANAGE": "Manager campanii",
+    "NEW": "Adaugare campanie",
+    "MANAGE": "administrează campanii",
     "TOTAL": "În total sunt",
     "SAVE": "Salvează",
     "CANCEL": "Anulează",
     "DETAILS": "Detaliile campaniilor",
     "SEARCH": "Caută",
-    "DONATIONS": "Donatii",
+    "DONATIONS": "Donații",
     "DONORS": "Donatori",
-    "SAVEC": "Salvează"
+    "SAVEC": "Salvează",
+    "EDIT": "Editare campanie",
+    "DELETE": "Stergere campanie"
 
 
 
   },
 
   "DONATION": {
-    "NEW": "Donatie noua",
-    "DELETE": "Stergere donatie",
-    "EXPORT": "Exportare donatii",
-    "EDIT": "Editare donatie",
-    "APPROVE": "Aprobare donatie",
+    "NEW": "Donație noua",
+    "DELETE": "Stergere donație",
+    "EXPORT": "Exportare donații",
+    "EDIT": "Editare donație",
+    "APPROVE": "Aprobare donație",
     "AMOUNT": "Valoare",
     "APPROVEDATE": "Data aprobării",
     "APPROVED": "Aprobat",

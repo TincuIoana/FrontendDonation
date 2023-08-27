@@ -100,7 +100,6 @@ export class CampaignComponent implements OnInit {
 
 
 
-  campnerror! : string;
 
 
   saveCampaign() {
@@ -156,22 +155,33 @@ export class CampaignComponent implements OnInit {
     console.log(campaign.id)
     console.log(this.campaign.name)
     console.log(this.campaign.purpose)
+    if (this.campaign.name && this.campaign.purpose && this.campaign.name.replace(/\s/g, '').length > 0) {
+      const newCampaign = new Campaign(
+        this.removeExcessiveWhitespace(this.campaign.name),
+        this.removeExcessiveWhitespace(this.campaign.purpose)
+      );
 
-    this.campaignService.updateCampaignFromDB(this.selectedCampaign.id.toString(),this.selectedCampaign).subscribe(
-      response => {
-        console.log('edited successfully:', response);
-        window.location.reload()
-        this.campaignDialog1 = false;
 
-      },
-      error => {
+      this.campaignService.updateCampaignFromDB(this.selectedCampaign.id.toString(), newCampaign).subscribe(
+        response => {
+          console.log('edited successfully:', response);
+          window.location.reload()
+          this.campaignDialog1 = false;
 
-        console.error('Error editing campaign:', error.error);
-        const errorMessage = error.error.text;
-        this.showError(errorMessage.toString());
+        },
+        error => {
 
-      }
-    )
+          console.error('Error editing campaign:', error.error);
+          const errorMessage = error.error.text;
+          this.showError(errorMessage.toString());
+
+        }
+      )
+    }
+    else {
+      console.warn('Campaign name or purpose cannot be empty.');
+      this.errorMessage = "Campaign name or purpose cannot be empty.";
+    }
 
 
 

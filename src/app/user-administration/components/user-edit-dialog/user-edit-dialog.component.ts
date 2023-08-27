@@ -32,11 +32,11 @@ export class UserEditDialogComponent implements OnInit {
   errorMessage!: string;
 
   @Input() registerForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     email: ['', Validators.pattern("^$|[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")],
     password: ['', Validators.pattern("^$|.{6,32}$")],
-    mobileNumber: ['', Validators.pattern('^$|(?:(?:\\+?40)|0)?7\\d{8}$')],
+    mobileNumber: ['', Validators.pattern('^(?:(?:\\+?40)|0)?7\\d{8}$')],
     roles: new FormControl<Role[]>([], Validators.required),
     campaigns: [[]],
     active: [false]
@@ -85,9 +85,9 @@ export class UserEditDialogComponent implements OnInit {
 
     this.user.id = this.userFromDB.id;
     if (this.registerForm.controls.firstName.dirty)
-      this.user.firstName = this.registerForm.value.firstName;
+      this.user.firstName = this.registerForm.value.firstName.replace(/\s+/g, ' ').trim();
     if (this.registerForm.controls.lastName.dirty)
-      this.user.lastName = this.registerForm.value.lastName;
+      this.user.lastName = this.registerForm.value.lastName.replace(/\s+/g, ' ').trim();
     if (this.registerForm.controls.email.dirty)
       this.user.email = this.registerForm.value.email;
     if (this.registerForm.controls.mobileNumber.dirty)

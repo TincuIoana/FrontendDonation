@@ -104,7 +104,9 @@ export class DonationComponent implements OnInit {
     this.donorService.loadDonors().subscribe(donors => {
       this.allDonors = donors;
       console.log(this.allDonors);
-    })
+    });
+
+
   }
 
   openNew() {
