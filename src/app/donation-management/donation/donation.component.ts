@@ -11,6 +11,7 @@ import {LoginService} from "../../login/login.service";
 import {LazyLoadEvent} from "primeng/api";
 import * as XLSX from 'xlsx';
 import {ConfirmationService} from "primeng/api";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-donation',
@@ -82,7 +83,8 @@ export class DonationComponent implements OnInit {
                private campaignService: CampaignService,
                private donorService: DonorService,
                private loginService: LoginService,
-               private confirmationService: ConfirmationService
+               private confirmationService: ConfirmationService,
+               private translate: TranslateService
   ) {
   }
 
@@ -122,33 +124,32 @@ export class DonationComponent implements OnInit {
     this.donationService.loadDonations().subscribe();
   }
 
-  deleteDonation(donation: any) {
-    const id = donation.id;
-    this.donationService.deleteDonationDB(id.toString()).subscribe(
-      this.donationService.loadDonations().subscribe(
-           (value)
+  async deleteDonation(donation: any) {
+    const userConfirmed = await this.confirm();
+    if (userConfirmed) {
+      const id = donation.id;
+      this.donationService.deleteDonationDB(id.toString()).subscribe(
+        this.donationService.loadDonations().subscribe(
+          (value)
             => {
             this.donationList = value;
           }
-
+        )
       )
-    )
-    // setTimeout(() => {
-    //   document.location.reload();
-    // }, 1500);
+      window.location.reload()
+    }
+
   }
   async confirm(): Promise<boolean> {
     try {
       return new Promise((resolve) => {
-
         this.confirmationService.confirm({
-          message: 'Are you sure that you want to perform this action?',
+          message:  this.translate.instant('ERROR.SURE'),
           accept: () => {
             resolve(true);
           },
           reject: () => {
             resolve(false);
-
             window.location.reload()
           },
         });

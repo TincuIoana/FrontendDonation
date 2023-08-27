@@ -11,21 +11,21 @@
   text-overflow: ellipsis;
 }
 
-.donation-table {
+.donor-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.donation-table td {
+.donor-table td {
   padding: 10px;
   border: 1px solid #ccc;
 }
 
-.donation-table td:not(:last-child) {
+.donor-table td:not(:last-child) {
   border-right: none;
 }
 
-.donation-table tr:not(:last-child) td {
+.donor-table tr:not(:last-child) td {
   border-bottom: none;
 }
 
