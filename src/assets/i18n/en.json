@@ -44,7 +44,7 @@
     "NAME": "Name",
     "PURPOSE": "Purpose",
     "CAMPAIGNS": "campaigns",
-    "NEW": "New",
+    "NEW": "Add campaign",
     "MANAGE": "Manage campaigns",
     "TOTAL": "In total there are",
     "SAVE": "Save",
@@ -53,7 +53,9 @@
     "SEARCH": "Search",
     "DONATIONS": "Donations",
     "DONORS": "Donors",
-    "SAVEC": "Save changes"
+    "SAVEC": "Save changes",
+    "EDIT": "Editare campanie",
+    "DELETE": "Stergere campanie"
 
   },
   "DONATION": {
